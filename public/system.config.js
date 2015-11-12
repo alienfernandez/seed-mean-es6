@@ -62,6 +62,11 @@ System.config({
       "deps": [
         "github:LukaszWatroba/v-accordion@1.3.1/dist/v-accordion.min.css!"
       ]
+    },
+    "github:twbs/bootstrap@3.3.5": {
+      "deps": [
+        "github:twbs/bootstrap@3.3.5/css/bootstrap.min.css!"
+      ]
     }
   },
 
@@ -78,8 +83,8 @@ System.config({
     "angular-validation": "github:huei90/angular-validation@1.3.2",
     "babel": "npm:babel-core@5.7.4",
     "babel-runtime": "npm:babel-runtime@5.7.0",
+    "bootstrap": "github:twbs/bootstrap@3.3.5",
     "bower-ui-grid": "github:angular-ui/bower-ui-grid@3.0.6",
-    "commons-views": "kruger:commons-views@4.0.2",
     "core-js": "npm:core-js@0.9.18",
     "css": "github:systemjs/plugin-css@0.1.18",
     "driftyco/ionicons": "github:driftyco/ionicons@2.0.1",
@@ -125,9 +130,7 @@ System.config({
     "github:jspm/nodelibs-process@0.1.1": {
       "process": "npm:process@0.10.1"
     },
-    "kruger:commons-views@4.0.2": {
-      "angular": "github:angular/bower-angular@1.4.5",
-      "angular-material": "github:angular/bower-material@0.11.0",
+    "github:twbs/bootstrap@3.3.5": {
       "jquery": "github:components/jquery@2.1.4"
     },
     "npm:babel-runtime@5.7.0": {

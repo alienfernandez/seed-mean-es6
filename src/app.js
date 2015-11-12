@@ -1,6 +1,7 @@
 import 'jquery';
 import angular from 'angular';
 import 'angular-material';
+import 'bootstrap';
 import 'angular-ui-router';
 import 'ocLazyLoad';
 import 'ngStorage';
@@ -11,12 +12,12 @@ import 'ui-router-stateHelper';
 import {routing} from 'commons';
 import futureRoutes from './routes.json!';
 
-let app = angular.module('app', ['ui.router', 
-                                'ui.router.stateHelper', 
-                                'oc.lazyLoad', 
-                                'ngMaterial', 
-                                'ngStorage',
-                                'LocalStorageModule']);
+let app = angular.module('app', ['ui.router',
+    'ui.router.stateHelper',
+    'oc.lazyLoad',
+    'ngMaterial',
+    'ngStorage',
+    'LocalStorageModule']);
 
 /*Config Theme*/
 app.config(() => {
