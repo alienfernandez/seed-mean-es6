@@ -1,7 +1,7 @@
 {
-  "name": "framework_mean",
-  "version": "0.0.0",
-  "description": "Proyecto para el registro de clientes para locales",
+  "name": "meanes6",
+  "version": "0.0.1",
+  "description": "Full-Stack JavaScript with MongoDB, Express, AngularJS, and Node.js with ES6.",
   "main": "index.js",
   "scripts": {
     "start": "gulp",
@@ -11,8 +11,11 @@
     "name": "",
     "url": ""
   },
+  "repository": {
+    "type": "git",
+    "url": "https://alienfernandez@bitbucket.org/alienfernandez/seed-mean-es6.git"
+  },
   "contributors": [],
-  "license": "ISC",
   "devDependencies": {
     "browser-sync": "^2.8.0",
     "del": "^1.2.0",
