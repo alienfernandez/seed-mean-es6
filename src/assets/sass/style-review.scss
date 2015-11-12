@@ -1,0 +1,215 @@
+.grid {
+  height: 600px;
+  /*color: #242729;	*/
+}
+.idiomsGrid {
+  height: 300px;
+  /*color: #242729;	*/
+}
+
+.photo_wraper {
+  float: left;
+  left: 50%;
+}
+
+.picker-top-row{
+  background-image: -webkit-linear-gradient(top, #C5DBF9 0%, #EFF5FE 100%);
+  background-image: -o-linear-gradient(top, #C5DBF9 0%, #EFF5FE 100%);
+  background-image: linear-gradient(to bottom, #C5DBF9 0%, #EFF5FE 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff004400', endColorstr='#ff009900', GradientType=0);
+  border-color: #BED6F8;
+}
+
+.picker-days-week-row{
+  background-color: #dbdbdb;
+}
+
+.dt-available{
+  color: #fff;
+  background-color: green !important;
+  border-color: green !important;
+}
+
+.dt-disabled{
+  color: #fff;
+  background-color: red !important;
+  border-color: red !important;
+}
+
+.dt-selected{
+  color: #fff;
+  background-color: blue !important;
+  border-color: blue !important;
+}
+
+div#container{text-align:left}
+div#navigation{}
+div#extra{background:#CCC8B3;}
+div#footer{}
+div#container{width:100%;margin:0 auto;}
+div#content{float:right;width:80%;}
+div#navigation{float:left;width:20%;}
+div#navigation > .photo{padding-left:20px; float:center;width:90%;}
+div#navigation > .photo img{float:right;width:100%;height: 100%;}
+div#extra{float:right;width:500px}
+div#footer{clear:both;width:100%}
+
+.glyphicon-refresh-animate {
+  -animation: spin .7s infinite linear;
+  -webkit-animation: spin2 .7s infinite linear;
+}
+
+@-webkit-keyframes spin2 {
+  from { -webkit-transform: rotate(0deg);}
+  to { -webkit-transform: rotate(360deg);}
+}
+
+@keyframes spin {
+  from { transform: scale(1) rotate(0deg);}
+  to { transform: scale(1) rotate(360deg);}
+}
+
+.cg-busy-default-sign {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  border-radius: 5px;
+}
+
+input[type="radio"] {
+  -webkit-appearance: checkbox;
+  -moz-appearance: checkbox;
+  -ms-appearance: checkbox;     /* not currently supported */
+  -o-appearance: checkbox;      /* not currently supported */
+}
+
+/* .ui-grid-header, .ui-grid-column-menu, .rowHeaderCell {  */
+/* 	text-align: center; */
+/* 	background-image: -webkit-linear-gradient(top, #C5DBF9 0%, #EFF5FE 100%); */
+/*     background-image: -o-linear-gradient(top, #C5DBF9 0%, #EFF5FE 100%); */
+/*     background-image: linear-gradient(to bottom, #C5DBF9 0%, #EFF5FE 100%); */
+/*     background-repeat: repeat-x; */
+/*     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff004400', endColorstr='#ff009900', GradientType=0); */
+/*     border-color: #BED6F8; */
+/* } */
+
+/* .content-header {
+	text-align: center;
+	background-image: -webkit-linear-gradient(top, #C5DBF9 0%, #EFF5FE 100%);
+    background-image: -o-linear-gradient(top, #C5DBF9 0%, #EFF5FE 100%);
+    background-image: linear-gradient(to bottom, #C5DBF9 0%, #EFF5FE 100%);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff004400', endColorstr='#ff009900', GradientType=0);
+    border-color: #BED6F8;
+} */
+
+.content-header {
+  text-align: center;
+}
+
+/*.ui-grid-header-cell-wrapper {
+  text-align: center;
+  background-image: -webkit-linear-gradient(top, #C5DBF9 0%, #EFF5FE 100%);
+  background-image: -o-linear-gradient(top, #C5DBF9 0%, #EFF5FE 100%);
+  background-image: linear-gradient(to bottom, #C5DBF9 0%, #EFF5FE 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff004400', endColorstr='#ff009900', GradientType=0);
+  border-color: #BED6F8;
+}
+
+.ui-grid-top-panel {
+  text-align: center;
+  background-image: -webkit-linear-gradient(top, #C5DBF9 0%, #EFF5FE 100%);
+  background-image: -o-linear-gradient(top, #C5DBF9 0%, #EFF5FE 100%);
+  background-image: linear-gradient(to bottom, #C5DBF9 0%, #EFF5FE 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff004400', endColorstr='#ff009900', GradientType=0);
+  border-color: #BED6F8;
+}
+
+.ui-grid-top-panel-background {
+  text-align: center;
+  background-image: -webkit-linear-gradient(top, #C5DBF9 0%, #EFF5FE 100%);
+  background-image: -o-linear-gradient(top, #C5DBF9 0%, #EFF5FE 100%);
+  background-image: linear-gradient(to bottom, #C5DBF9 0%, #EFF5FE 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff004400', endColorstr='#ff009900', GradientType=0);
+  border-color: #BED6F8;
+}
+
+.ui-grid-pager-panel {
+  text-align: center;
+  background-image: -webkit-linear-gradient(top, #C5DBF9 0%, #EFF5FE 100%);
+  background-image: -o-linear-gradient(top, #C5DBF9 0%, #EFF5FE 100%);
+  background-image: linear-gradient(to bottom, #C5DBF9 0%, #EFF5FE 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff004400', endColorstr='#ff009900', GradientType=0);
+  border-color: #BED6F8;
+}
+
+.ui-grid-pager-container {
+  text-align: center;
+  background-image: -webkit-linear-gradient(top, #C5DBF9 0%, #EFF5FE 100%);
+  background-image: -o-linear-gradient(top, #C5DBF9 0%, #EFF5FE 100%);
+  background-image: linear-gradient(to bottom, #C5DBF9 0%, #EFF5FE 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff004400', endColorstr='#ff009900', GradientType=0);
+  border-color: #BED6F8;
+}
+*/
+
+.ui-grid {
+  text-align: center;
+}
+
+.ui-grid-pager-control-input {
+
+}
+
+.sideBarMenu {
+  font-family: Tahoma, Geneva, sans-serif;
+  color: #000;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1.5;
+}
+
+.sideBarFilter {
+  padding-top: 2px;
+  padding-right: 2px;
+  padding-bottom: 2px;
+  padding-left: 2px;
+}
+/*
+
+.sideBarMenu a:focus{
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: #008080;
+	font-size: 16px;
+	font-weight: bold;
+	line-height: 0.5;
+}
+
+.sideBarMenu a:active{
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: #0080ff;
+	font-size: 16px;
+	font-weight: bold;
+	line-height: 0.5;
+}
+
+.sideBarMenu a:hover{
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: #ff0000;
+	font-size: 16px;
+	font-weight: bold;
+	line-height: 0.5;
+} */
+
+.col-text-left {
+  text-align: left;
+  padding-left: 5px;
+}

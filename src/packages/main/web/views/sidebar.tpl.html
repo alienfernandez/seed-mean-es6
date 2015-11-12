@@ -1,0 +1,89 @@
+<!--<md-sidenav class="site-sidenav md-sidenav-left md-whiteframe-z2 open" md-component-id="left">-->
+<aside class="site-sidenav md-sidenav-left md-whiteframe-z2 open" md-component-id="left">
+    <md-content layout-padding>
+        <div style="padding: 5px; margin-left: 10px; margin-top: 15px;">
+            <v-accordion class="vAccordion--default">
+                <!-- add expanded attribute to open the section -->
+                <v-pane ng-repeat="group in sidebarCtrl.filterItems" expanded="$first">
+                    <v-pane-header>
+                        <span class="md-subhead"><i class="fa fa-filter"></i> {{ group.displayName }}</span>
+                    </v-pane-header>
+                    <v-pane-content>
+                        <form>
+                            <div ng-repeat="item in group.items">
+                                <div ng-switch on="item.type" layout="row">
+                                    <div ng-switch-when="date" md-no-float>
+                                        <!--<md-datepicker ng-model="item.model" md-placeholder="{{item.label}}"-->
+                                        <!--ng-model-options="{ getterSetter : true }"></md-datepicker>-->
+                                        <div layout="row" layout-wrap layout-align="space-between bottom"
+                                             style="margin-bottom: 10px;">
+                                            <label flex="90">
+                                                <span data-role="label">{{item.label}}</span>
+                                                <span class="pull-right" style="margin-bottom: -6px;">
+                                                    <button class="btn btn-xs btn-default btn-circle"
+                                                            data-role="btnOptions"
+                                                            ng-click="$mdOpenMenu($event)"
+                                                            disabled="true">
+                                                        <i class="fa fa-cog"></i>
+                                                    </button>
+                                                </span>
+                                            </label>
+                                            <input flex="95" type="{{item.type}}" placeholder="{{item.label}}"
+                                                   ng-model="sidebarCtrl.rsFilterFactory[item.model]"
+                                                   ng-model-options="{ getterSetter : true }"/>
+                                        <span flex="5">
+                                            <button class="btn btn-xs btn-danger" data-role="remove">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </span>
+                                        </div>
+
+                                    </div>
+                                    <div ng-switch-when="select" md-no-float>
+                                        <div layout="row" layout-wrap layout-align="space-between bottom"
+                                             style="margin-bottom: 10px;">
+                                            <label flex="90">
+                                                <span data-role="label">{{item.label}}</span>
+                                                <span class="pull-right" style="margin-bottom: -6px;">
+                                                    <button class="btn btn-xs btn-default btn-circle"
+                                                            data-role="btnOptions"
+                                                            ng-click="$mdOpenMenu($event)"
+                                                            disabled="true">
+                                                        <i class="fa fa-cog"></i>
+                                                    </button>
+                                                </span>
+                                            </label>
+                                            <select flex="90" style="width: 200px;"
+                                                    ng-model="sidebarCtrl.rsFilterFactory[item.model]"
+                                                    ng-model-options="{ getterSetter : true }"
+                                                    placeholder="{{item.label}}"
+                                                    ng-options="option.value as option.label for option in sidebarCtrl.rsFilterFactory[item.dataModel]">
+                                                <option value="" selected="selected">{{ item.selectLabel }}</option>
+                                                <!-- <option ng-repeat="gender in vm.genders" value="gender.value">{{ gender.label }}</option> -->
+                                            </select>
+                                            <span flex="10">
+                                                <button class="btn btn-xs btn-danger" data-role="remove"
+                                                        ng-click="sidebarCtrl.rsFilterFactory[item.model] = '';">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div ng-switch-default md-no-float>
+                                        <k-input-search type="{{item.type}}" label="{{item.label}}"
+                                                        search-options="item.searchOptions"
+                                                        filter-options="item.filterOptions"
+                                                        placeholder="{{item.label}}"
+                                                        ng-model="sidebarCtrl.rsFilterFactory[item.model]"
+                                                        multiple-model="sidebarCtrl.rsFilterFactory._codigosReferenciasEmpleados">
+                                        </k-input-search>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </v-pane-content>
+                </v-pane>
+            </v-accordion>
+        </div>
+    </md-content>
+</aside>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!--manifest="app.manifest"-->
+<html lang="es" data-framework="angularjs">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width = device-width, minimal-ui, initial-scale = 1, user-scalable = no"/>
+    <title>MEAN ES6</title>
+    <base href="/">
+
+    <link rel="stylesheet" type="text/css" href="jspm_packages/github/driftyco/ionicons@2.0.1/css/ionicons.min.css"/>
+    <link rel="stylesheet" type="text/css" href="jspm_packages/github/angular-ui/bower-ui-grid@3.0.6/ui-grid.css"/>
+    <!--Icon Package-->
+    <link rel="stylesheet" type="text/css"
+          href="jspm_packages/github/FortAwesome/Font-Awesome@4.4.0/css/font-awesome.min.css"/>
+
+    <link rel="stylesheet" type="text/css"
+          href="jspm_packages/github/igorlino/fancybox-plus@1.3.6/css/jquery.fancybox-plus.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/main.css"/>
+
+    <style>
+        md-toolbar .icon {
+            font-size: 24px;
+        }
+    </style>
+</head>
+
+<body ng-cloak>
+<noscript>
+    <div class="deprecation-warning">
+        <h1>Por favor habilite Javascript en su navegador.</h1>
+    </div>
+</noscript>
+
+<div id="loading"></div>
+<div ui-view></div>
+
+<script src="jspm_packages/system.js"></script>
+<script src="system.config.js"></script>
+<script>
+    System.import('app/app');
+</script>
+</body>
+</html>

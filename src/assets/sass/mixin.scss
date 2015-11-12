@@ -1,0 +1,6 @@
+/*
+ * Mixins global app
+ **/
+@mixin bg-image-header() {
+  background-image: url("../img/dsBtnGrad.png") !important;
+}
