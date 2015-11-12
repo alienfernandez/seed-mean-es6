@@ -25,7 +25,7 @@ $ npm install -g bower
 $ npm install -g gulp
 ```
 
-### Cloning The GitHub Repository
+### Cloning The Repository
 The recommended way to get MEAN.ES6 is to use git to directly clone the MEAN.ES6 repository:
 
 ```bash
