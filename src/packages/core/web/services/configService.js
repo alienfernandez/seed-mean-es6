@@ -1,4 +1,4 @@
-import securityModule from '../../securityModule';
+import coreModule from '../../coreModule';
 import debug from 'debug';
 
 class ConfigService {
@@ -24,6 +24,6 @@ class ConfigService {
   }
 }
 
-securityModule.service('mainConfigService', ConfigService);
+coreModule.service('mainConfigService', ConfigService);
 
-export default securityModule;
+export default coreModule;
