@@ -1,4 +1,4 @@
-import securityModule from '../../securityModule';
+import coreModule from '../../coreModule';
 import {HttpService} from 'packages/common/lib';
 
 class BaseService extends HttpService {
@@ -9,6 +9,6 @@ class BaseService extends HttpService {
   }
 }
 
-securityModule.service('mainBaseService', BaseService);
+coreModule.service('mainBaseService', BaseService);
 
-export default securityModule;
+export default coreModule;

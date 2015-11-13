@@ -2,12 +2,12 @@
 
 module.exports = {
     app: {
-        title: 'MEAN',
+        title: 'MEAN.ES6',
         description: 'Full-Stack JavaScript with MongoDB, Express, AngularJS, and Node.js',
         keywords: 'MongoDB, Express, AngularJS, Node.js',
         googleAnalyticsTrackingID: process.env.GOOGLE_ANALYTICS_TRACKING_ID || 'GOOGLE_ANALYTICS_TRACKING_ID'
     },
-    port: process.env.PORT || 3000,
+    port: process.env.PORT || 8000,
     templateEngine: 'swig',
     // Session Cookie settings
     sessionCookie: {
@@ -22,7 +22,7 @@ module.exports = {
         secure: false
     },
     // sessionSecret should be changed for security measures and concerns
-    sessionSecret: 'MEAN',
+    sessionSecret: 'MEAN_ES6',
     // sessionKey is set to the generic sessionId key used by PHP applications
     // for obsecurity reasons
     sessionKey: 'sessionId',

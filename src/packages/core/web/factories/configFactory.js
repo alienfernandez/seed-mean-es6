@@ -1,4 +1,4 @@
-import securityModule from '../../securityModule';
+import coreModule from '../../coreModule';
 import '../services/configService';
 import debug from 'debug';
 
@@ -13,6 +13,6 @@ class ConfigFactory {
     }
 }
 
-securityModule.factory('configFactory', ConfigFactory.instance);
+coreModule.factory('configFactory', ConfigFactory.instance);
 
 export default ConfigFactory;
