@@ -4,7 +4,11 @@
   "description": "Full-Stack JavaScript with MongoDB, Express, AngularJS, and Node.js with ES6.",
   "main": "index.js",
   "scripts": {
-    "start": "gulp",
+    "watch-gulp": "gulp",
+    "watch-gulp-prod": "gulp serve",
+    "watch-server": "nodemon --ignore public/app/**/web/**/*.js --ignore src/**/web/**/*.js server.js",
+    "start": "npm run watch-server & npm run watch-gulp",
+    "prod": "npm run watch-server & npm run watch-gulp-prod",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": {
@@ -32,6 +36,7 @@
     "gulp-ng-html2js": "^0.2.0",
     "gulp-plumber": "^1.0.1",
     "gulp-sass": "^2.0.4",
+    "gulp-exec": "^2.1.2",
     "gulp-sourcemaps": "^1.5.2",
     "gulp-express": "^0.3.5",
     "jshint-stylish": "^2.0.1",
@@ -69,6 +74,7 @@
     "multer": "0.1.8",
     "node-pre-gyp": "0.6.4",
     "nodemailer": "^1.4.0",
+    "nodemon": "^1.8.1",
     "passport": "~0.2.2",
     "passport-facebook": "^2.0.0",
     "passport-github": "~0.1.5",

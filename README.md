@@ -57,10 +57,10 @@ This command does a few things:
 * Finally, when the install process is over, npm will initiate a bower install command to install all the front-end modules needed for the application
 
 ## Running Your Application
-After the install process is over, you'll be able to run your application using Gulp, just run gulp default task:
+After the install process is over, you'll be able to run your application using npm, just run:
 
 ```
-$ gulp
+$ npm start
 ```
 
 Your application should run on port 9000 with the *development* environment configuration, so in your browser just go to [http://localhost:9000](http://localhost:9000)
@@ -70,10 +70,10 @@ That's it! Your application should be running. To proceed with your development,
 * explore `config/env/development.js` for development environment configuration options
 
 ### Running in Production mode
-To run your application with *production* environment configuration, execute gulp as follows:
+To run your application with *production* environment configuration, execute npm as follows:
 
 ```bash
-$ gulp prod
+$ npm run prod
 ```
 
 * explore `config/env/production.js` for production environment configuration options
