@@ -1,16 +1,14 @@
-import coreModule from './coreModule';
+import securityModule from './securityModule';
 
 //Constant
 //import './../common/constants/appConstant';
 
-////Services
-//import './web/services/baseService';
-//import './web/services/mainService';
-//
-////Factories
-//import './web/factories/configFactory';
-//
-////Controllers
-//import './web/controllers/securityController';
+//Services
+import './web/services/authenticationService';
+import './web/services/securityService';
 
-export default coreModule;
+//Controllers
+import './web/controllers/securityController';
+import './web/controllers/passwordController';
+
+export default securityModule;

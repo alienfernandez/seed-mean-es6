@@ -4,14 +4,13 @@ import debug from 'debug';
 class MainService {
 
     /*ngInject*/
-    constructor(mainBaseService) {
-        this._mainBaseService = mainBaseService;
+    constructor() {
         this._log = debug(`cor:${this.constructor.name}`);
     }
 
     getListEmployee() {
         var url = "http://localhost:8080/ws/service";
-        
+
         return new Promise((resolve, reject) => {
             this._mainBaseService.jsonp(url)
                 .then((data) => {
