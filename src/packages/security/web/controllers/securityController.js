@@ -47,7 +47,8 @@ class SecurityController {
                 // And redirect to the previous or home page
                 this.$state.go(this.$state.previous.state.name || 'home', this.$state.previous.params);
             })
-            .catch(function (error) {
+            .catch((error) => {
+                console.log("error", error);
                 this.error = error.message;
             });
     }

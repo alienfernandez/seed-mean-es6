@@ -3,14 +3,14 @@ import securityModule from '../../securityModule';
 class SecurityService {
 
     /*ngInject*/
-    constructor($window, HttpService) {
+    constructor($window, SecurityBaseService) {
         this.$window = $window;
-        this.http = HttpService;
+        this.http = SecurityBaseService;
         this.serverUrlBase = 'http://localhost:8000';
     }
 
-    static instance() {
-        return new SecurityService();
+    static instance($window, SecurityBaseService) {
+        return new SecurityService($window, SecurityBaseService);
     }
 
     /**

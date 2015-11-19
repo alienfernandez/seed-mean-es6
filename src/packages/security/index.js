@@ -4,6 +4,7 @@ import securityModule from './securityModule';
 //import './../common/constants/appConstant';
 
 //Services
+import './web/services/securityBaseService';
 import './web/services/authenticationService';
 import './web/services/securityService';
 
