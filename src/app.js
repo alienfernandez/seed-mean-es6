@@ -1,11 +1,13 @@
 import 'jquery';
 import angular from 'angular';
-import 'angular-material';
+/**
+ * Import theme
+ */
+import 'font-awesome';
 import 'bootstrap';
+
 import 'angular-ui-router';
 import 'ocLazyLoad';
-import 'ngStorage';
-import 'angular-local-storage';
 import 'ui-router-stateHelper';
 
 //Importanto recursos comunes
@@ -14,10 +16,8 @@ import futureRoutes from './routes.json!';
 
 let app = angular.module('app', ['ui.router',
     'ui.router.stateHelper',
-    'oc.lazyLoad',
-    'ngMaterial',
-    'ngStorage',
-    'LocalStorageModule']);
+    'oc.lazyLoad'
+]);
 
 /*Config Theme*/
 app.config(() => {
