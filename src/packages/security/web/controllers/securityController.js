@@ -10,7 +10,8 @@ class SecurityController {
         this.$window = $window;
 
         // If user is signed in then redirect back home
-        if (this.authentication.getCredentials().user) {
+        var credentials = this.authentication.getCredentials();
+        if (credentials && credentials.user) {
             $location.path('/');
             //$state.transitionTo('main');
         }

@@ -4,5 +4,11 @@
     "urlPrefix": "/",
     "type": "load",
     "src": "packages/main"
+  },
+  {
+    "stateName": "login",
+    "urlPrefix": "/login",
+    "type": "load",
+    "src": "packages/security"
   }
 ]

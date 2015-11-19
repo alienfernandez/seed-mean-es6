@@ -1,5 +1,4 @@
 import securityModule from '../../securityModule';
-import debug from 'debug';
 
 class SecurityService {
 

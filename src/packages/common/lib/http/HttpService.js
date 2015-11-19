@@ -1,143 +1,118 @@
 /**
- * Clase generica para la consulta de servicios
+ * Http services
  */
-
-const PROTOCOL = 'http';
-
 class HttpService {
 
-    constructor($http, lodash, responseTypeConstant) {
-        this._$http = $http;
+    /**
+     * Constructor
+     * @param $http
+     * @param lodash
+     */
+    constructor($http, lodash) {
+        this.http = $http;
         this._ = lodash;
-        this._responseTypeConstant = responseTypeConstant;
-        this._config = {};
-        this.onSuccessFunction = null;
-        this.onErrorFunction = null;
-    }
-
-    _getUrl(partUrl = "") {
-        return `${PROTOCOL}://${this._config.server}:${this._config.port}/${this._config.context}/${partUrl}`;
-        //return `${PROTOCOL}:${this._config.server}:${this._config.port}/${partUrl}`;
-    }
-
-    setOnSuccessFunction(onSuccess) {
-        this.onSuccessFunction = onSuccess;
-    }
-
-    setOnErrorFunction(onError) {
-        this.onErrorFunction = onError;
     }
 
     /**
-     * Metodo que permite realizar un request GET
+     * Get query string
+     * @param url
+     * @param attributes
+     * @returns {*}
      */
-    get(partUrl = "", jsonAttributes = {}) {
-        //Promesa que se ejecuta cuando se tiene respuesta del servicio
+    getQueryString(url, attributes = {}) {
+        if (!this._.isEmpty(attributes)) {
+            //Query string parameters
+            let params = Object.keys(attributes).map((key) => {
+                return `${encodeURIComponent(key)}=${encodeURIComponent(attributes[key])}`;
+            }).join('&');
+
+            url += `?${params}`;
+        }
+        return url;
+    }
+
+    /**
+     * It allows you to request GET
+     * @param uri
+     * @param attributes
+     * @returns {Promise}
+     */
+    get(url, attributes = {}) {
+        //Promise that runs when you have service response
         return new Promise((resolve, reject) => {
-            //Definiendo la ruta a consultar
-            //let url = this._getUrl(partUrl);
-            let url = partUrl;
+            //Get query string
+            url = getQueryString(url, attributes);
 
-            if (!this._.isNull(jsonAttributes) && !this._.isEmpty(jsonAttributes)) {
-                //Obteniendo Parametros
-                let params = Object.keys(jsonAttributes).map(k => {
-                    return `${encodeURIComponent(k)}=${encodeURIComponent(jsonAttributes[k])}`;
-                }).join('&');
-
-                url += `?${params}`;
-            }
-
+            //Headers
             let config = {
                 headers: {
                     'Accept': 'application/json; charset=utf-8'
                 }
             };
-
-            this._$http.get(url, config)
+            //Http request GET
+            this.http.get(url, config)
                 .success(response => {
-                    if (response.resTyp === this._responseTypeConstant.ERROR) {
-                        this.onErrorFunction(response);
-                        reject(response);
-                    } else {
-                        this.onSuccessFunction(response);
-                        resolve(response);
-                    }
+                    resolve(response);
                 })
                 .error((error, status) => {
-                    this.onErrorFunction(error);
-
                     reject({
-                        resTyp: this._responseTypeConstant.ERROR,
-                        men: error,
-                        dat: null
+                        message: error,
+                        data: null
                     });
                 });
         });
     }
 
     /**
-     * Metodo que permite realizar un request JSONP
+     * It allows you to request JSONP
+     * @param url
+     * @param attributes
+     * @returns {Promise}
      */
-    jsonp(url = "", jsonAttributes = {}) {
-
-        //Promesa que se ejecuta cuando se tiene respuesta del servicio
+    jsonp(url, attributes = {}) {
         return new Promise((resolve, reject) => {
-            //Definiendo la ruta a consultar
-            //let url = this._getUrl(partUrl);
-
-            jsonAttributes.callback = "JSON_CALLBACK";
-            if (!this._.isNull(jsonAttributes) && !this._.isEmpty(jsonAttributes)) {
-                //Obteniendo Parametros
-                let params = Object.keys(jsonAttributes).map(k => {
-                    return `${encodeURIComponent(k)}=${encodeURIComponent(jsonAttributes[k])}`;
-                }).join('&');
-
-                url += `?${params}`;
-            }
-            this._$http.jsonp(url)
+            //Add callback function
+            attributes.callback = "JSON_CALLBACK";
+            //Get query string
+            url = getQueryString(url, attributes);
+            //Http request JSONP
+            this.http.jsonp(url)
                 .success((response) => {
-                    //this.onSuccessFunction = response;
                     resolve(response);
                 })
-                .error((error) => { //, status
-                    reject(error);
-                    //this.onErrorFunction(error);
-                    //reject({
-                    //    resTyp: this._responseTypeConstant.ERROR,
-                    //    men: error,
-                    //    dat: null
-                    //});
+                .error((error) => {
+                    reject({
+                        message: error,
+                        data: null
+                    });
                 });
         });
     }
 
-
     /**
-     * Metodo que permite realizar un request POST
+     * It allows you to request POST
+     * @param url
+     * @param parameters
+     * @param isMultipart
+     * @returns {Promise}
      */
-    post(partUrl = "", jsonBody = {}, isMultipart = false) {
+    post(url, parameters = {}, isMultipart = false) {
         return new Promise((resolve, reject) => {
-            //Definiendo la direccion a consultar
-            //let url = this._getUrl(partUrl);
             let headers = {};
             if (isMultipart) {
                 //multipart/form-data
                 headers = {headers: {'Content-Type': undefined}}
             }
-            let url = partUrl;
-            this._$http.post(url, jsonBody, headers)
+
+            //Http request POST
+            this.http.post(url, parameters, headers)
                 .success(response => {
-                    //if (response.resTyp === this._responseTypeConstant.ERROR) {
-                    //    reject(response);
-                    //} else {
                     resolve(response);
-                    //}
                 })
-                .error(error => {
+                .error((error) => {
                     reject({
-                        //resTyp: this._responseTypeConstant.ERROR,
-                        men: error,
-                        dat: null
+                        message: error,
+                        data: null
                     });
                 });
         });

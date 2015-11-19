@@ -1,16 +1,14 @@
 import securityModule from '../../securityModule';
-import debug from 'debug';
 
 class AuthenticationService {
 
-    /*ngInject*/
     constructor($window) {
         this.$window = $window;
     }
 
     getCredentials() {
         this.auth = {
-            user: this.$window.user
+            user: (this.$window) ? this.$window.user : null
         };
         return this.auth;
     }
@@ -19,8 +17,9 @@ class AuthenticationService {
         this.auth = credentials;
     }
 
-    static instance() {
-        return new AuthenticationService();
+    /*ngInject*/
+    static instance($window) {
+        return new AuthenticationService($window);
     }
 }
 

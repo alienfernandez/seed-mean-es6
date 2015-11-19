@@ -17,7 +17,7 @@ let securityModule = angular.module('app.security',
         $stateProvider
             .state('login', {
                 url: '/login',
-                controller: 'securityController',
+                controller: 'SecurityController',
                 controllerAs: 'secCtrl',
                 templateUrl: SigninTemplate.name
             });
