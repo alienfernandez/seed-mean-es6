@@ -5,6 +5,7 @@
  */
 var config = require('../config'),
     express = require('express'),
+    cors = require('cors'),
     morgan = require('morgan'),
     logger = require('./logger'),
     bodyParser = require('body-parser'),
@@ -240,6 +241,9 @@ module.exports.init = function (db) {
 
     // Configure Socket.io
     //app = this.configureSocketIO(app, db);
+
+    //Enable cors
+    app.use(cors());
 
     return app;
 };

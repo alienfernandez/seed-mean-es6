@@ -41,7 +41,7 @@ class HttpService {
         //Promise that runs when you have service response
         return new Promise((resolve, reject) => {
             //Get query string
-            url = getQueryString(url, attributes);
+            url = this.getQueryString(url, attributes);
 
             //Headers
             let config = {
@@ -74,7 +74,7 @@ class HttpService {
             //Add callback function
             attributes.callback = "JSON_CALLBACK";
             //Get query string
-            url = getQueryString(url, attributes);
+            url = this.getQueryString(url, attributes);
             //Http request JSONP
             this.http.jsonp(url)
                 .success((response) => {

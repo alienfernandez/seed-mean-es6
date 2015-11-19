@@ -6,7 +6,7 @@ class SecurityService {
     constructor($window, SecurityBaseService) {
         this.$window = $window;
         this.http = SecurityBaseService;
-        this.serverUrlBase = 'http://localhost:8000';
+        this.serverUrlBase = 'http://localhost:8001';
     }
 
     static instance($window, SecurityBaseService) {
@@ -41,7 +41,7 @@ class SecurityService {
     signin(credentials, uri = '/api/auth/signin') {
         var url = this.serverUrlBase + uri;
         return new Promise((resolve, reject) => {
-            this.http.post(url, credentials)
+            this.http.get(url, credentials)
                 .then((data) => {
                     resolve(data);
                 })

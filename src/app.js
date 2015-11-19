@@ -6,6 +6,12 @@ import angular from 'angular';
 import 'font-awesome';
 import 'bootstrap';
 
+import 'dashboard';
+/**
+ * TODO delete dashboard demo
+ */
+import 'dashboard-demo';
+
 import 'angular-ui-router';
 import 'ocLazyLoad';
 import 'ui-router-stateHelper';
