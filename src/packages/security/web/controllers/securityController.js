@@ -23,6 +23,7 @@ class SecurityController {
         if (!isValid) {
             return false;
         }
+        console.log("this.credentials", this.credentials)
         this.security.signup(this.credentials)
             .then((response) => {
                 this.authentication.getCredentials().user = response;
