@@ -3,7 +3,9 @@ import securityModule from '../../securityModule';
 class SecurityController {
 
     /*ngInject*/
-    constructor($state, $window, $location, AuthenticationService, SecurityService) {
+    constructor($state, $window, $location, AuthenticationService, SecurityService, LoadMask) {
+        this.LoadMask = LoadMask;
+        this.LoadMask.create('loadMaskData', "Espere por favor, cargando ...", 'body');
         this.authentication = AuthenticationService;
         this.security = SecurityService;
         this.$state = $state;
@@ -37,6 +39,7 @@ class SecurityController {
     }
 
     signin(isValid) {
+        this.LoadMask.show('#loadMaskData');
         this.error = null;
         if (!isValid) {
             return false;
