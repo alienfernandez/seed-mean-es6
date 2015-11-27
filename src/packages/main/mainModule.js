@@ -1,4 +1,7 @@
 import angular from 'angular';
+//Import libs react
+import 'react-js';
+//import 'ngReact';
 import debug from 'debug';
 
 import LayoutTemplate from './web/views/layout/layout.tpl';

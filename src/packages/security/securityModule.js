@@ -1,4 +1,8 @@
 import angular from 'angular';
+//Import libs react
+import 'react-js';
+//import 'ngReact';
+
 import debug from 'debug';
 
 //Import templates

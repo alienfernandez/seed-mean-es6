@@ -11,21 +11,26 @@ import commonModule from '../../../commonModule';
  */
 class LoadMaskDirective {
     constructor() {
+        let template = `
+          <div data-role="loadMask" class="load-mask">
+            <div class="load-mask-panel"><div class="loading-wrapper"><span class="loading-center">
+                   <i class="fa fa-spinner fa-pulse"></i> <span data-role="message"></span></span>
+               </div>
+            </div>
+          </div>
+        `;
+
         let directive = {
             restrict: 'E',
             replace: true,
-            template: '<div data-role="loadMask" class="load-mask">' +
-            '<div class="load-mask-panel"><div class="loading-wrapper"><span class="loading-center">' +
-            '       <i class="fa fa-spinner fa-pulse"></i> <span data-role="message"></span></span>' +
-            '   </div>' +
-            '</div></div>',
+            template: template,
             link: this.link
         };
 
         return directive;
     }
 
-    link($scope, element, $attrs, ngModel, transclude) {
+    link($scope, element, $attrs) {
         var elRender = ($attrs.el) ? $attrs.el : 'body';
         var message = ($attrs.message) ? $attrs.message : 'Espere por favor...';
         if ($attrs.id) {

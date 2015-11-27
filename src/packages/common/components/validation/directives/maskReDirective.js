@@ -264,8 +264,7 @@ class MaskReDirective {
             controller: MaskreController,
             controllerAs: 'maskreCtrl',
             bindToController: true,
-            link: this.link,
-            //scope: true
+            link: this.link
         };
 
         return directive;

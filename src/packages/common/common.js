@@ -11,6 +11,7 @@ import './components/util/index';
 import './components/flash/index';
 import './components/validation/index';
 import './components/mask/index';
+import './components/data-view/index';
 
 //Constants
 import './constants/responseTypeConstant';
