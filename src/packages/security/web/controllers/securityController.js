@@ -4,9 +4,8 @@ class SecurityController {
 
     /*ngInject*/
     constructor($state, $window, $location, AuthenticationService, SecurityService, LoadMask) {
-        this.LoadMask = LoadMask;
-        console.log("this.LoadMask", this.LoadMask)
-        this.LoadMask.create('loadMaskData', "Espere por favor, cargando ...", 'body');
+        this.loadMask = LoadMask;
+        this.loadMask.create('loadMaskData', "Espere por favor, cargando ...", 'body');
         this.authentication = AuthenticationService;
         this.security = SecurityService;
         this.$state = $state;
@@ -40,7 +39,7 @@ class SecurityController {
     }
 
     signin(isValid) {
-        this.LoadMask.show('#loadMaskData');
+        this.loadMask.show('#loadMaskData');
         this.error = null;
         if (!isValid) {
             return false;
@@ -49,11 +48,13 @@ class SecurityController {
             .then((response) => {
                 this.authentication.getCredentials().user = response;
 
+                //this.loadMask.hide('#loadMaskData');
                 // And redirect to the previous or home page
                 this.$state.go(this.$state.previous.state.name || 'home', this.$state.previous.params);
             })
             .catch((error) => {
                 console.log("error", error);
+                //this.loadMask.hide('#loadMaskData');
                 this.error = error.message;
             });
     }

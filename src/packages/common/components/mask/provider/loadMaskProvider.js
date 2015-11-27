@@ -1,5 +1,14 @@
 import commonModule from '../../../commonModule';
 
+/**
+ * @ngdoc provider
+ * @name LoadMask
+ * @author Alien Fernandez Fuentes <alienfernandez85@gmail.com>
+ * @version 1.0.0
+ *
+ * @description Provider load mask application
+ *
+ */
 class LoadMaskProvider {
 
     constructor() {
@@ -13,6 +22,8 @@ class LoadMaskProvider {
     /*ngInject*/
     $get($document, $rootScope, lodash, $q, $compile) {
         let _ = lodash;
+        let allExecPromises;
+
         return {
             show: (selector) => {
                 if (angular.element(selector)) {
@@ -25,21 +36,15 @@ class LoadMaskProvider {
                 }
             },
             create: (id, message, appendEl, promises) => {
-                console.log('$document', $document)
-                appendEl = appendEl || defaultAppendEl;
+                appendEl = appendEl || this.defaultAppendEl;
                 var selector = "#" + id;
                 var injector = angular.injector(['ng']),
-                    //$compile = injector.get('$compile'),
                     template = angular.element('<load-mask id="' + id + '" el="' + appendEl + '" message="' + message + '"></load-mask>');
                 var loadMaskExist = $document.find(selector);
                 //Check exist mask in DOM
                 if (!loadMaskExist.length) {
                     let compileTpl = $compile(template)($rootScope)
-                    console.log("$compile", $compile)
-                    console.log("compileTpl", compileTpl)
-
-
-                    $document.find(appendEl).prepend($compile(template)($rootScope));
+                    $document.find(appendEl).prepend(compileTpl);
                 }
                 //Check finally promise if apply and hide mask
                 if (promises) {
@@ -51,13 +56,14 @@ class LoadMaskProvider {
             },
             setPromises: (promises) => {
                 allExecPromises = promises;
-            },
-            allPromises: (promises) => {
-                if (_.isArray(promises)) {
-                    return $q.all(promises);
-                }
-                return promises;
             }
+        };
+
+        function allPromises(promises) {
+            if (_.isArray(promises)) {
+                return $q.all(promises);
+            }
+            return promises;
         }
 
     }
