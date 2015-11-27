@@ -5,6 +5,7 @@ class SecurityController {
     /*ngInject*/
     constructor($state, $window, $location, AuthenticationService, SecurityService, LoadMask) {
         this.LoadMask = LoadMask;
+        console.log("this.LoadMask", this.LoadMask)
         this.LoadMask.create('loadMaskData', "Espere por favor, cargando ...", 'body');
         this.authentication = AuthenticationService;
         this.security = SecurityService;

@@ -19,8 +19,7 @@ class LoadMaskDirective {
             '       <i class="fa fa-spinner fa-pulse"></i> <span data-role="message"></span></span>' +
             '   </div>' +
             '</div></div>',
-            link: this.link,
-            //scope: true
+            link: this.link
         };
 
         return directive;

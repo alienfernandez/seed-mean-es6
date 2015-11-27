@@ -286,12 +286,10 @@ class MaskReDirective {
         };
 
         $element.bind('keypress', (event) => {
-            console.info("scope: ", scope);
             scope.maskreCtrl.validationMaskReCheck(event, $element, ngModelCtrl, options);
         });
 
         $element.bind('paste', (event) => {
-            console.info("scope: ", scope);
             scope.maskreCtrl.validationOnPaste(event, $element, ngModelCtrl, options);
         });
     }
