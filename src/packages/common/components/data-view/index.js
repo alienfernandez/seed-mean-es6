@@ -1,4 +1,9 @@
-import './directives/dataView.css!';
+import './assets/css/data-view.css!';
+
+//Import react components as value
+import './factory/dataViewValue';
+import './factory/dataItemValue';
+import './factory/dataItemModuleValue';
 
 //Import controller
 import './controller/dataViewController';
@@ -7,4 +12,4 @@ import './controller/dataViewController';
 import './directives/dataViewDirective';
 
 //Import factories
-import './factory/dataViewFactory';
+import './factory/dataViewApiFactory';

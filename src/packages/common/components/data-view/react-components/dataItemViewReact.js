@@ -1,34 +1,40 @@
 export default class DataItem extends React.Component {
 
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.state = {};
     }
 
     getDefaultProps() {
         return {
-            selectItemCls: 'dv-view-item-focused',
-            overItemCls: 'dv-view-item-focused',
+            selectItemCls: 'dv-item-selected',
+            overItemCls: 'dv-view-over'
         };
     }
 
+    /**
+     * Render component
+     * @returns {*|Long|Timestamp}
+     */
     render() {
-        let mouseOverClass = (true === this.state.mouseOver) ? 'dv-view-over' : '';
-        this.props.className += mouseOverClass;
+        //Get class item
+        let _classItem = {'dv-thumb-wrap': true};
+        _classItem[this.props.selectItemCls] = this.props.selected;
+        _classItem[this.props.overItemCls] = this.state.mouseOver;
+        var classItem = classNames(_classItem);
         return React.DOM.div({
-                className: 'dv-thumb-wrap ' + this.props.className,
-
+                className: classItem,
                 onClick: (function (index, event) {
-                    this.props.dataView.setState({active: index});
+                    this.props.dataView.setState({selected: index});
                     this.props.onClick(this.props.item, this.props.dataView, index, event);
                 }).bind(this, this.props.index),
 
                 onMouseOver: (function (event) {
-                    //this.setState({mouseOver: true});
+                    this.setState({mouseOver: true});
                 }).bind(this),
 
                 onMouseOut: (function (event) {
-                    //this.setState({mouseOver: false});
+                    this.setState({mouseOver: false});
                 }).bind(this)
             },
             React.DOM.div({className: 'dv-thumb'},

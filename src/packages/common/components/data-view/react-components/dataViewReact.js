@@ -1,60 +1,94 @@
-import DataItem from './dataItemViewReact';
-import ItemTemplateReact from './itemTemplateReact';
 import DataGroupingViewReact from './dataGroupingViewReact';
+import DataViewApi from "../factory/dataViewApiFactory"
+import _ from 'lodash';
 
 export default class DataView extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {active: 0};
-    }
-
-    getInitialState() {
-        return {active: 0};
-    }
-
-    getDefaultProps() {
-        return {
-            selectItemCls: 'dv-view-item-focused', //dv-item-selected
-            overItemCls: 'dv-view-item-focused',
+    constructor() {
+        super();
+        this.state = {
+            selected: 0
         };
     }
 
-    activeItem(active) {
-        return (active == this.props.active) ? "dv-item-selected" : "";
+    getInitialState() {
+        return {selected: 0};
     }
 
-    onClick(item, dataView, index, event) {
-        dataView.state.active = index;
-        //event.preventDefault();
+    getDefaultProps() {
+        return {api: {}};
     }
 
+    select(index) {
+        console.log(this.props.items[index]);
+    }
+
+    /**
+     * Render component
+     * @returns {*|Long|Timestamp}
+     */
     render() {
-        var self = this;
-        var items = [];
-        this.props.store.forEach((dataItem, index) => {
-            let className = (index == this.state.active) ? this.props.selectItemCls : '';
-            //Create data item
-            DataItem.propTypes = {active: React.PropTypes.number};
-            DataItem.defaultProps = {active: 0};
-            var item;
-            if (this.props.template) {
-                var optionsTpl = this.props.template.options;
-                optionsTpl.className = className;
-                optionsTpl.index = index;
-                optionsTpl.dataView = self;
-                optionsTpl.item = dataItem;
-                for (let data in dataItem) {
-                    optionsTpl[data] = dataItem[data];
-                }
-                //optionsTpl.onClick = this.onClick.bind(this);
-                item = React.createElement(DataItem, optionsTpl);
-            }
-            items.push(item);
-        });
-        if (this.props.groupBy) {
-
+        let itemsShow = [], items = [];
+        if (_.isEmpty(this.props.groupBy)) {
+            this.props.store.forEach((dataItem, index) => {
+                itemsShow.push(this.createItem(dataItem, index));
+            });
+            items = itemsShow;
         }
-        return React.DOM.div({className: 'dv-main'}, items);
+        else {
+            let groupKey = this.props.groupBy.key;
+            let groupItems = _.chain(this.props.store).groupBy(groupKey).value();
+            let index = 0;
+            for (let key in groupItems) {
+                let itemsGroup = [];
+                let dataGroup = {};
+                groupItems[key].forEach((dataItem) => {
+                    itemsGroup.push(this.createItem(dataItem, index));
+                    //Group data
+                    dataGroup.name = dataItem[this.props.groupBy.name];
+                    dataGroup.iconCls = dataItem[this.props.groupBy.iconCls];
+                    dataGroup.key = dataItem[this.props.groupBy.key];
+                    index++;
+                });
+                dataGroup.items = itemsGroup;
+                items = itemsGroup.concat(items);
+                itemsShow.push(this.createGroupingItem(dataGroup));
+            }
+        }
+        this.props.items = items;
+        return React.DOM.div({className: 'dv-main'}, itemsShow);
+    }
+
+    /**
+     * Create grouping item
+     * @param dataGroup
+     * @returns {*}
+     */
+    createGroupingItem(dataGroup) {
+        return React.createElement(DataGroupingViewReact, dataGroup);
+    }
+
+    /**
+     * Create item data view
+     * @param dataItem
+     * @param index
+     * @returns {*}
+     */
+    createItem(dataItem, index) {
+        var item;
+        if (this.props.template) {
+            var optionsTpl = this.props.template.listeners;
+            optionsTpl.selected = (index == this.state.selected);
+            optionsTpl.index = index;
+            optionsTpl.selectItemCls = this.props.selectItemCls;
+            optionsTpl.overItemCls = this.props.overItemCls;
+            optionsTpl.dataView = this;
+            optionsTpl.item = dataItem;
+            for (let data in dataItem) {
+                optionsTpl[data] = dataItem[data];
+            }
+            item = React.createElement(this.props.template.component, optionsTpl);
+        }
+        return item;
     }
 }

@@ -3,7 +3,8 @@ import securityModule from '../../securityModule';
 class SecurityController {
 
     /*ngInject*/
-    constructor($state, $window, $location, AuthenticationService, SecurityService, LoadMask) {
+    constructor($state, $window, $location, AuthenticationService, SecurityService, LoadMask,
+                DataItemModule, DataItem) {
         this.loadMask = LoadMask;
         this.loadMask.create('loadMaskData', "Espere por favor, cargando ...", 'body');
         this.authentication = AuthenticationService;
@@ -20,36 +21,66 @@ class SecurityController {
 
         this.options = {
             store: [
-                {name: "Alien", age: 30, grupo: 1},
-                {name: "PEdro", age: 34, grupo: 1},
-                {name: "Juan", age: 34, grupo: 1},
-                {name: "Jorge", age: 34, grupo: 1},
-                {name: "Lolo", age: 34, grupo: 3},
-                {name: "Hernan", age: 34, grupo: 2},
-                {name: "Gabriel", age: 34, grupo: 2},
-                {name: "Gabriel", age: 34, grupo: 2},
-                {name: "Gabriel", age: 34, grupo: 2},
-                {name: "Gabriel", age: 34, grupo: 2},
+                {name: "Modulo de seguridad", group: 1, groupName: "Grupo de seguridad", iconCls: 'fa fa-key', description: "Modulo de seguridad"},
+                {name: "Modulo de portal", group: 2, groupName: "Grupo de portal", iconCls: 'fa fa-home', description: "Modulo de portal"},
+                {name: "Modulo de Inventario", group: 3,  groupName: "Grupo de Logistica", iconCls: 'fa fa-university', description: 1},
+                {name: "Modulo de facturacion", group: 3,  groupName: "Grupo de Logistica", iconCls: 'fa fa-university', description: "Modulo de facturacion"},
+                {name: "Modulo de recursos humanos", group: 4, groupName: "Grupo de recursos humanos", iconCls: 'fa fa-user', description: "Modulo de recursos humanos"},
+                {name: "Modulo de pruebas productos", group: 3, groupName: "Grupo de Logistica", iconCls: 'fa fa-university',  description: "Modulo de pruebas"},
+                {name: "Modulo de activos fijos", group: 3, groupName: "Grupo de Logistica", iconCls: 'fa fa-university', description: "Modulo de activos fijos"},
+                {name: "Modulo de control asistencia", group: 4, groupName: "Grupo de recursos humanos", iconCls: 'fa fa-user', description: "Modulo de control",},
+                {name: "Modulo de estructura y composicion", group: 5, groupName: "Grupo de estructura y composicion", iconCls: 'fa fa-tree',  description: "Modulo de estructura y composicion",},
+                {name: "Modulo de configuracion", group: 6, groupName: "Grupo de configuracion", iconCls: 'fa fa-cogs', description: "Modulo de configuracion"},
             ],
             itemSelector: 'div.dv-thumb-wrap',
             overItemCls: 'dv-view-over',
-            selectItemCls: 'dv-view-item-focused',
-            multiSelect : false,
-            groupBy : 'grupo',
+            selectItemCls: 'dv-item-selected', //dv-view-item-focused
+            multiSelect: false,
+            groupBy: {
+                key : 'group',
+                name : 'groupName',
+                iconCls: 'iconCls'
+            },
             template: {
-                component: 'DataItem',
-                options: {
+                component: DataItemModule,
+                listeners: {
                     onClick: (item, dataView, index, event) => {
-                        console.log("item", item);
                         console.log("dataView", dataView);
-                        console.log("index", index);
-                        console.log("event", event);
                     }
                 }
             }
-        }
+        };
 
+
+        this.options1 = {
+            store: [
+                {name: "Modulo de seguridad", group: 1, groupName: "Grupo de seguridad", iconCls: 'fa fa-key', description: "Modulo de seguridad"},
+                {name: "Modulo de portal", group: 2, groupName: "Grupo de portal", iconCls: 'fa fa-home', description: "Modulo de portal"},
+                {name: "Modulo de Inventario", group: 3,  groupName: "Grupo de Logistica", iconCls: 'fa fa-university', description: 1},
+                {name: "Modulo de facturacion", group: 3,  groupName: "Grupo de Logistica", iconCls: 'fa fa-university', description: "Modulo de facturacion"},
+                {name: "Modulo de recursos humanos", group: 4, groupName: "Grupo de recursos humanos", iconCls: 'fa fa-user', description: "Modulo de recursos humanos"},
+                {name: "Modulo de pruebas productos", group: 3, groupName: "Grupo de Logistica", iconCls: 'fa fa-university',  description: "Modulo de pruebas"},
+                {name: "Modulo de activos fijos", group: 3, groupName: "Grupo de Logistica", iconCls: 'fa fa-university', description: "Modulo de activos fijos"},
+                {name: "Modulo de control asistencia", group: 4, groupName: "Grupo de recursos humanos", iconCls: 'fa fa-user', description: "Modulo de control",},
+                {name: "Modulo de estructura y composicion", group: 5, groupName: "Grupo de estructura y composicion", iconCls: 'fa fa-tree',  description: "Modulo de estructura y composicion",},
+                {name: "Modulo de configuracion", group: 6, groupName: "Grupo de configuracion", iconCls: 'fa fa-cogs', description: "Modulo de configuracion"},
+            ],
+            itemSelector: 'div.dv-thumb-wrap',
+            overItemCls: 'dv-view-over',
+            selectItemCls: 'dv-item-selected',
+            multiSelect: false,
+            template: {
+                component: DataItem,
+                listeners: {
+                    onClick: (item, dataView, index, event) => {
+                        console.log("item", item);
+                    }
+                }
+            }
+        };
     }
+
+
 
     signup(isValid) {
         this.error = null;

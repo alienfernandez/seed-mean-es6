@@ -96,6 +96,7 @@ System.config({
     "babel-runtime": "npm:babel-runtime@5.7.0",
     "bootstrap": "github:twbs/bootstrap@3.3.5",
     "bower-ui-grid": "github:angular-ui/bower-ui-grid@3.0.6",
+    "classNames": "github:JedWatson/classnames@2.2.0",
     "core-js": "npm:core-js@0.9.18",
     "css": "github:systemjs/plugin-css@0.1.19",
     "driftyco/ionicons": "github:driftyco/ionicons@2.0.1",
@@ -106,6 +107,7 @@ System.config({
     "jquery": "github:components/jquery@2.1.4",
     "jquery/jquery-ui": "github:jquery/jquery-ui@1.11.4",
     "json": "github:systemjs/plugin-json@0.1.0",
+    "lodash": "npm:lodash@3.10.1",
     "moment": "github:moment/moment@2.10.6",
     "mongoose": "github:Automattic/mongoose@4.2.1",
     "ng-file-upload": "github:danialfarid/ng-file-upload-bower@7.0.17",
@@ -118,6 +120,7 @@ System.config({
     "plugin-json": "github:systemjs/plugin-json@0.1.0",
     "pouchdb/pouchdb": "github:pouchdb/pouchdb@4.0.1",
     "react": "github:facebook/react@0.14.3",
+    "requirejs": "npm:requirejs@2.1.22",
     "toastr": "github:johnpapa/toastr-bower@2.1.2",
     "ui-grid": "github:angular-ui/bower-ui-grid@3.0.6",
     "ui-router-extras": "npm:ui-router-extras@0.0.14",
@@ -140,11 +143,29 @@ System.config({
       "angular-aria": "github:angular/bower-angular-aria@1.4.7",
       "css": "github:systemjs/plugin-css@0.1.19"
     },
+    "github:jspm/nodelibs-assert@0.1.0": {
+      "assert": "npm:assert@1.3.0"
+    },
+    "github:jspm/nodelibs-path@0.1.0": {
+      "path-browserify": "npm:path-browserify@0.0.0"
+    },
     "github:jspm/nodelibs-process@0.1.1": {
       "process": "npm:process@0.10.1"
     },
+    "github:jspm/nodelibs-process@0.1.2": {
+      "process": "npm:process@0.11.2"
+    },
+    "github:jspm/nodelibs-util@0.1.0": {
+      "util": "npm:util@0.10.3"
+    },
+    "github:jspm/nodelibs-vm@0.1.0": {
+      "vm-browserify": "npm:vm-browserify@0.0.4"
+    },
     "github:twbs/bootstrap@3.3.5": {
       "jquery": "github:components/jquery@2.1.4"
+    },
+    "npm:assert@1.3.0": {
+      "util": "npm:util@0.10.3"
     },
     "npm:babel-runtime@5.7.0": {
       "process": "github:jspm/nodelibs-process@0.1.1"
@@ -157,11 +178,36 @@ System.config({
     "npm:font-awesome@4.4.0": {
       "css": "github:systemjs/plugin-css@0.1.19"
     },
+    "npm:inherits@2.0.1": {
+      "util": "github:jspm/nodelibs-util@0.1.0"
+    },
+    "npm:lodash@3.10.1": {
+      "process": "github:jspm/nodelibs-process@0.1.2"
+    },
     "npm:ng-lodash@0.2.3": {
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
+    "npm:path-browserify@0.0.0": {
+      "process": "github:jspm/nodelibs-process@0.1.2"
+    },
+    "npm:process@0.11.2": {
+      "assert": "github:jspm/nodelibs-assert@0.1.0"
+    },
+    "npm:requirejs@2.1.22": {
+      "fs": "github:jspm/nodelibs-fs@0.1.2",
+      "path": "github:jspm/nodelibs-path@0.1.0",
+      "process": "github:jspm/nodelibs-process@0.1.2",
+      "vm": "github:jspm/nodelibs-vm@0.1.0"
+    },
     "npm:ui-router-extras@0.0.14": {
       "process": "github:jspm/nodelibs-process@0.1.1"
+    },
+    "npm:util@0.10.3": {
+      "inherits": "npm:inherits@2.0.1",
+      "process": "github:jspm/nodelibs-process@0.1.2"
+    },
+    "npm:vm-browserify@0.0.4": {
+      "indexof": "npm:indexof@0.0.1"
     }
   }
 });

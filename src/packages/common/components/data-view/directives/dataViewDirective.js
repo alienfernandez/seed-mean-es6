@@ -36,8 +36,14 @@ class DataViewDirective {
             link: ($scope, $element, $attrs, ngModel, transclude) => {
                 //console.log("$scope", $scope);
                 //Render component with options
+                var opt = $scope.options;
+                //React.render(
+                //    <DataView options={opt} />,
+                //    $element.find('#testt')[0]
+                //);
                 React.render(
-                    React.createElement(DataView, $scope.options), $element.find('#testt')[0]
+                    React.createElement(DataView, $scope.options),
+                    $element.find('#testt')[0]
                 );
             }
         };
