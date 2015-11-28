@@ -22,6 +22,7 @@ var constants = {
     }
 }
 
+
 const appConstant = new Constant(constants);
 
 commonModule.constant('$appConstants', appConstant);

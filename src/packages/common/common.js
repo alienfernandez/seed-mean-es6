@@ -1,23 +1,22 @@
-//Importando recursos del modulo
+//Import resources
 import commonModule from './commonModule';
 
 //provider
 import './providers/lagoProvider';
 
-//Services
-import './services/loadingService';
+//Import factories
+import './components/util/index';
 
 //Directives
 import './components/flash/index';
 import './components/validation/index';
+import './components/mask/index';
+import './components/data-view/index';
 
 //Constants
-import './constants/mimeTypeConstant';
 import './constants/responseTypeConstant';
 import './constants/appConstant.development';
-//import './constants/appConstant';
 
 import routing from './providers/routing';
-import './services/dataService';
 
 export {routing, commonModule};

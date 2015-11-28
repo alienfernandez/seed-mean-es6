@@ -3,10 +3,8 @@ import mainModule from '../../mainModule';
 class HeaderController {
 
     /*ngInject*/
-    constructor($state, dataService, $stateParams) {
-        this.status = "";
+    constructor($state, $stateParams) {
         this.$state = $state;
-        this.dataService = dataService;
         this.$stateParams = $stateParams;
     }
 

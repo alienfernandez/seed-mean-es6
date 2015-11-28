@@ -1,19 +1,17 @@
 import mainModule from '../../mainModule';
-import debug from 'debug';
 
 class MainService {
 
     /*ngInject*/
-    constructor(mainBaseService) {
-        this._mainBaseService = mainBaseService;
-        this._log = debug(`cor:${this.constructor.name}`);
+    constructor(HttpService) {
+        this.http = HttpService;
     }
 
     getListEmployee() {
         var url = "http://localhost:8080/ws/service";
-        
+
         return new Promise((resolve, reject) => {
-            this._mainBaseService.jsonp(url)
+            this.http.jsonp(url)
                 .then((data) => {
                     resolve(data);
                 })

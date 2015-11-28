@@ -1,8 +1,0 @@
-[
-  {
-    "stateName": "main",
-    "urlPrefix": "/",
-    "type": "load",
-    "src": "packages/main"
-  }
-]

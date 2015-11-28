@@ -4,7 +4,6 @@ import mainModule from './mainModule';
 //import './../common/constants/appConstant';
 
 //Services
-import './web/services/baseService';
 import './web/services/mainService';
 
 //Factories

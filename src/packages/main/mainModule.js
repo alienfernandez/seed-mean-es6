@@ -1,4 +1,7 @@
 import angular from 'angular';
+//Import libs react
+import 'react-js';
+//import 'ngReact';
 import debug from 'debug';
 
 import LayoutTemplate from './web/views/layout/layout.tpl';
@@ -9,18 +12,13 @@ import ContentTemplate from './web/views/content.tpl';
 import './web/assets/css/theme.css!';
 import cliMessage from './web/assets/messages/cliMessage.json!';
 import {commonModule} from 'commons';
-import 'bower-ui-grid';
-import 'ui-select';
-import 'v-accordion';
 
 let mainModule = angular.module('app.main', [
     HeaderTemplate.name,
     SideBarTemplate.name,
     ContentTemplate.name,
     LayoutTemplate.name,
-    commonModule.name,
-    'ui.grid', 'ui.grid.exporter', 'ui.grid.pagination', 'ui.grid.pinning', 'ui.grid.selection', 'ui.grid.autoResize',
-    'ui.select', 'vAccordion'
+    commonModule.name
 ])
     .config(($stateProvider) => {
         $stateProvider
@@ -51,18 +49,8 @@ let mainModule = angular.module('app.main', [
             });
     });
 
-mainModule.run((comLoadingService, configFactory, comAlertMessageFactory, i18nService) => {
-    i18nService.setCurrentLang('es');
-    comAlertMessageFactory.registryDefinitionMessage(cliMessage);
-    debug.enable('cor:*');
-    comLoadingService.show();
-    configFactory.loadConfigHost()
-        .then(()=> {
-            comLoadingService.hide();
-        })
-        .catch((error) => {
-            comAlertMessageFactory.showError([error.men]);
-        });
+mainModule.run((comAlertMessageFactory) => {
+    //comAlertMessageFactory.registryDefinitionMessage(cliMessage);
 });
 
 export default mainModule;

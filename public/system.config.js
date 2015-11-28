@@ -14,9 +14,12 @@ System.config({
     "commons": "app/packages/common/common.js",
     "debug": "assets/js/debug.js",
     "pouchdb": "assets/js/pouchdb.js",
+    "react-js": "assets/js/react.js",
     "fancybox-plus": "assets/js/fancybox-plus.js",
     "validations-rules": "assets/js/validations-rules.js",
-    "jquery-fancybox-plus": "assets/js/jquery.fancybox-plus.js"
+    "jquery-fancybox-plus": "assets/js/jquery.fancybox-plus.js",
+    "dashboard": "assets/js/dashboard.min.js",
+    "dashboard-demo": "assets/js/dashboard-demo.js"
   },
 
   meta: {
@@ -65,6 +68,16 @@ System.config({
       "deps": [
         "github:twbs/bootstrap@3.3.5/css/bootstrap.min.css!"
       ]
+    },
+    "npm:font-awesome@4.4.0": {
+      "deps": [
+        "npm:font-awesome@4.4.0/css/font-awesome.min.css!"
+      ]
+    },
+    "github:igorlino/angular-fancybox-plus@1.0.2": {
+      "deps": [
+        "github:igorlino/angular-fancybox-plus@1.0.2/css/jquery.fancybox-plus.css!"
+      ]
     }
   },
 
@@ -84,11 +97,11 @@ System.config({
     "bootstrap": "github:twbs/bootstrap@3.3.5",
     "bower-ui-grid": "github:angular-ui/bower-ui-grid@3.0.6",
     "core-js": "npm:core-js@0.9.18",
-    "css": "github:systemjs/plugin-css@0.1.18",
+    "css": "github:systemjs/plugin-css@0.1.19",
     "driftyco/ionicons": "github:driftyco/ionicons@2.0.1",
     "elevateweb/elevatezoom": "github:elevateweb/elevatezoom@2.2.3",
     "fancybox-plus": "github:igorlino/fancybox-plus@1.3.6",
-    "font-awesome": "github:FortAwesome/Font-Awesome@4.4.0",
+    "font-awesome": "npm:font-awesome@4.4.0",
     "image": "github:systemjs/plugin-image@0.1.0",
     "jquery": "github:components/jquery@2.1.4",
     "jquery/jquery-ui": "github:jquery/jquery-ui@1.11.4",
@@ -97,12 +110,14 @@ System.config({
     "mongoose": "github:Automattic/mongoose@4.2.1",
     "ng-file-upload": "github:danialfarid/ng-file-upload-bower@7.0.17",
     "ng-lodash": "npm:ng-lodash@0.2.3",
+    "ngReact": "github:ngReact/ngReact@0.2.0",
     "ngStorage": "github:gsklee/ngStorage@0.3.9",
     "ocLazyLoad": "github:ocombe/ocLazyLoad@1.0.3",
-    "plugin-css": "github:systemjs/plugin-css@0.1.18",
+    "plugin-css": "github:systemjs/plugin-css@0.1.19",
     "plugin-image": "github:systemjs/plugin-image@0.1.0",
     "plugin-json": "github:systemjs/plugin-json@0.1.0",
     "pouchdb/pouchdb": "github:pouchdb/pouchdb@4.0.1",
+    "react": "github:facebook/react@0.14.3",
     "toastr": "github:johnpapa/toastr-bower@2.1.2",
     "ui-grid": "github:angular-ui/bower-ui-grid@3.0.6",
     "ui-router-extras": "npm:ui-router-extras@0.0.14",
@@ -123,7 +138,7 @@ System.config({
       "angular": "github:angular/bower-angular@1.4.5",
       "angular-animate": "github:angular/bower-angular-animate@1.4.7",
       "angular-aria": "github:angular/bower-angular-aria@1.4.7",
-      "css": "github:systemjs/plugin-css@0.1.18"
+      "css": "github:systemjs/plugin-css@0.1.19"
     },
     "github:jspm/nodelibs-process@0.1.1": {
       "process": "npm:process@0.10.1"
@@ -138,6 +153,9 @@ System.config({
       "fs": "github:jspm/nodelibs-fs@0.1.2",
       "process": "github:jspm/nodelibs-process@0.1.1",
       "systemjs-json": "github:systemjs/plugin-json@0.1.0"
+    },
+    "npm:font-awesome@4.4.0": {
+      "css": "github:systemjs/plugin-css@0.1.19"
     },
     "npm:ng-lodash@0.2.3": {
       "process": "github:jspm/nodelibs-process@0.1.1"

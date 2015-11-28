@@ -5,6 +5,7 @@
  */
 var config = require('../config'),
     express = require('express'),
+    cors = require('cors'),
     morgan = require('morgan'),
     logger = require('./logger'),
     bodyParser = require('body-parser'),
@@ -142,15 +143,15 @@ module.exports.initHelmetHeaders = function (app) {
 /**
  * Configure the modules static routes
  */
-//module.exports.initModulesClientRoutes = function (app) {
-//    // Setting the app router and static folder
-//    app.use('/', express.static(path.resolve('./public')));
-//
-//    // Globbing static routing
-//    config.folders.client.forEach(function (staticPath) {
-//        app.use(staticPath, express.static(path.resolve('./' + staticPath)));
-//    });
-//};
+module.exports.initModulesClientRoutes = function (app) {
+    // Setting the app router and static folder
+    app.use('/', express.static(path.resolve('./public')));
+
+    // Globbing static routing
+    //config.folders.client.forEach(function (staticPath) {
+    //    app.use(staticPath, express.static(path.resolve('./' + staticPath)));
+    //});
+};
 
 /**
  * Configure the modules ACL policies
@@ -227,10 +228,10 @@ module.exports.init = function (db) {
     this.initHelmetHeaders(app);
 
     // Initialize modules static client routes
-    //this.initModulesClientRoutes(app);
+    this.initModulesClientRoutes(app);
 
     // Initialize modules server authorization policies
-    this.initModulesServerPolicies(app);
+    //this.initModulesServerPolicies(app);
 
     // Initialize modules server routes
     this.initModulesServerRoutes(app);
@@ -240,6 +241,9 @@ module.exports.init = function (db) {
 
     // Configure Socket.io
     //app = this.configureSocketIO(app, db);
+
+    //Enable cors
+    app.use(cors());
 
     return app;
 };
