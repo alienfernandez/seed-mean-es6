@@ -2,12 +2,12 @@
 
 module.exports = {
     app: {
-        title: 'MEAN.ES6',
-        description: 'Full-Stack JavaScript with MongoDB, Express, AngularJS, and Node.js',
-        keywords: 'MongoDB, Express, AngularJS, Node.js',
+        title: 'MEANRR.ES6',
+        description: 'Full-Stack JavaScript with MongoDB, Express, AngularJS, Node.js and React.js',
+        keywords: 'MongoDB, Express, AngularJS, Node.js, React.js',
         googleAnalyticsTrackingID: process.env.GOOGLE_ANALYTICS_TRACKING_ID || 'GOOGLE_ANALYTICS_TRACKING_ID'
     },
-    port: process.env.PORT || 8003,
+    port: process.env.PORT || 8005,
     templateEngine: 'swig',
     // Session Cookie settings
     sessionCookie: {

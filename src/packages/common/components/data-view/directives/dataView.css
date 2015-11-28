@@ -42,5 +42,10 @@
 }
 
 .dv-item-selected span {
-    color:#1A4D8F;
+    color: #1A4D8F;
+}
+
+.dv-grouping {
+    border-bottom: 2px solid #dddddd;
+    display: block;
 }

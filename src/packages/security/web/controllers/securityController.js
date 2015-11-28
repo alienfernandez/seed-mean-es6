@@ -18,6 +18,37 @@ class SecurityController {
             //$state.transitionTo('main');
         }
 
+        this.options = {
+            store: [
+                {name: "Alien", age: 30, grupo: 1},
+                {name: "PEdro", age: 34, grupo: 1},
+                {name: "Juan", age: 34, grupo: 1},
+                {name: "Jorge", age: 34, grupo: 1},
+                {name: "Lolo", age: 34, grupo: 3},
+                {name: "Hernan", age: 34, grupo: 2},
+                {name: "Gabriel", age: 34, grupo: 2},
+                {name: "Gabriel", age: 34, grupo: 2},
+                {name: "Gabriel", age: 34, grupo: 2},
+                {name: "Gabriel", age: 34, grupo: 2},
+            ],
+            itemSelector: 'div.dv-thumb-wrap',
+            overItemCls: 'dv-view-over',
+            selectItemCls: 'dv-view-item-focused',
+            multiSelect : false,
+            groupBy : 'grupo',
+            template: {
+                component: 'DataItem',
+                options: {
+                    onClick: (item, dataView, index, event) => {
+                        console.log("item", item);
+                        console.log("dataView", dataView);
+                        console.log("index", index);
+                        console.log("event", event);
+                    }
+                }
+            }
+        }
+
     }
 
     signup(isValid) {

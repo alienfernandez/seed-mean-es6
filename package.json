@@ -6,7 +6,7 @@
   "scripts": {
     "watch-gulp": "gulp",
     "watch-gulp-prod": "gulp compile",
-    "watch-server": "nodemon --ignore public/app/**/web/**/*.js --ignore src/**/web/**/*.js server.js",
+    "watch-server": "nodemon server.js",
     "start": "npm run watch-gulp & npm run watch-server",
     "prod": "npm run watch-gulp-prod & npm run watch-server",
     "test": "echo \"Error: no test specified\" && exit 1"
