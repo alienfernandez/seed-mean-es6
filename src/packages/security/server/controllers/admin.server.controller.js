@@ -15,6 +15,23 @@ exports.read = function (req, res) {
     res.json(req.model);
 };
 
+
+/**
+ * Create a user
+ */
+exports.create = function (req, res) {
+    var user = new User(req.body);
+    user.save(function (err) {
+        if (err) {
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            res.json(user);
+        }
+    });
+};
+
 /**
  * Update a User
  */

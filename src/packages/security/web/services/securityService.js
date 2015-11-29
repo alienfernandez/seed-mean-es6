@@ -6,7 +6,7 @@ class SecurityService {
     constructor($window, SecurityBaseService) {
         this.$window = $window;
         this.http = SecurityBaseService;
-        this.serverUrlBase = 'http://localhost:8003';
+        this.serverUrlBase = 'http://localhost:8006';
     }
 
     static instance($window, SecurityBaseService) {

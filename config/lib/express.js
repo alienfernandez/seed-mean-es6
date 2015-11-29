@@ -18,6 +18,8 @@ var config = require('../config'),
     helmet = require('helmet'),
     flash = require('connect-flash'),
     consolidate = require('consolidate'),
+    //redisClient = require('./redis'),
+    //RedisStore = require('connect-redis')(express),
     path = require('path');
 /**
  * Initialize local variables
@@ -105,7 +107,11 @@ module.exports.initSession = function (app, db) {
             httpOnly: config.sessionCookie.httpOnly,
             secure: config.sessionCookie.secure && config.secure.ssl
         },
-        key: config.sessionKey,
+        //key: config.sessionKey,
+        //store: new RedisStore({
+        //    secret: config.redisSessionSecret,
+        //    client: redisClient
+        //})
         store: new MongoStore({
             mongooseConnection: db.connection,
             collection: config.sessionCollection

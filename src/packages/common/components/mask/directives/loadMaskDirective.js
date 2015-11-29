@@ -1,4 +1,5 @@
 import commonModule from '../../../commonModule';
+import LoadMask from '../react-components/loadMaskReact';
 
 /**
  * @ngdoc directive
@@ -11,19 +12,10 @@ import commonModule from '../../../commonModule';
  */
 class LoadMaskDirective {
     constructor() {
-        let template = `
-          <div data-role="loadMask" class="load-mask">
-            <div class="load-mask-panel"><div class="loading-wrapper"><span class="loading-center">
-                   <i class="fa fa-spinner fa-pulse"></i> <span data-role="message"></span></span>
-               </div>
-            </div>
-          </div>
-        `;
-
         let directive = {
             restrict: 'E',
             replace: true,
-            template: template,
+            template: '<div data-role="loadMask" class="load-mask"></div>',
             link: this.link
         };
 
@@ -31,13 +23,17 @@ class LoadMaskDirective {
     }
 
     link($scope, element, $attrs) {
-        var elRender = ($attrs.el) ? $attrs.el : 'body';
-        var message = ($attrs.message) ? $attrs.message : 'Espere por favor...';
-        if ($attrs.id) {
-            element.find('div[data-role="loadMask"]').attr('id', $attrs.id);
+        let elRender  = ($attrs.el) ? $attrs.el : 'body';
+        var options = {
+            message: ($attrs.message) ? $attrs.message : 'Espere por favor...',
+            id: $attrs.id
         }
-        element.find('span[data-role="message"]').html(message);
-        element.prependTo(elRender);
+        React.render(
+            React.createElement(LoadMask, options), element[0]
+        );
+        //ReactRenderer.append(
+        //    React.createElement(LoadMask, options), $('#testttttt')[0]
+        //);
     }
 }
 

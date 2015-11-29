@@ -1,4 +1,4 @@
-import './directives/loadMask.css!';
+import './assets/css/load-mask.css!';
 
 //Import directives
 import './directives/loadMaskDirective';

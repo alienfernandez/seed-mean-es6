@@ -1,5 +1,6 @@
 import 'jquery';
 import angular from 'angular';
+import 'angular-resource';
 /**
  * Import theme
  */
@@ -22,7 +23,7 @@ import futureRoutes from './routes.json!';
 
 let app = angular.module('app', ['ui.router',
     'ui.router.stateHelper',
-    'oc.lazyLoad'
+    'oc.lazyLoad', 'ngResource'
 ]);
 
 /*Config Theme*/

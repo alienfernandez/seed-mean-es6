@@ -12,6 +12,10 @@ module.exports = {
         // Enable mongoose debug mode
         debug: process.env.MONGODB_DEBUG || false
     },
+    redis: {
+        "ip": "127.0.0.1",
+        "port": 6379
+    },
     log: {
         // Can specify one of 'combined', 'common', 'dev', 'short', 'tiny'
         format: 'dev',

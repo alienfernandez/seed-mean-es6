@@ -26,6 +26,7 @@ module.exports = {
     // sessionKey is set to the generic sessionId key used by PHP applications
     // for obsecurity reasons
     sessionKey: 'sessionId',
+    redisSessionSecret: 'eVCbCFxUUG1kq3x5U9tuzUOkg',
     sessionCollection: 'sessions',
     logo: 'modules/core/client/img/brand/logo.png',
     favicon: 'modules/core/client/img/brand/favicon.ico'
