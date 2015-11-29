@@ -1,5 +1,5 @@
 
-MEANRR.ES6 is a full-stack JavaScript open-source solution based in new version of javascript, which provides a solid starting point for [MongoDB](http://www.mongodb.org/), [Node.js](http://www.nodejs.org/), [Express](http://expressjs.com/), and [AngularJS](http://angularjs.org/) based applications. The idea is to solve the common issues with connecting those frameworks, build a robust framework to support daily development needs, and help developers use better practices while working with popular JavaScript components.
+MEANRR.ES6 is a full-stack JavaScript open-source solution based in new version of javascript, which provides a solid starting point for [MongoDB](http://www.mongodb.org/), [Node.js](http://www.nodejs.org/), [Express](http://expressjs.com/), [React.js](https://facebook.github.io/react/), [Redis](http://redis.io/) and [AngularJS](http://angularjs.org/) based applications. The idea is to solve the common issues with connecting those frameworks, build a robust framework to support daily development needs, and help developers use better practices while working with popular JavaScript components.
 
 ## Before You Begin
 Before you begin we recommend you read about the basic building blocks that assemble a MEAN.ES6 application:
@@ -83,6 +83,7 @@ $ npm run prod
 
 * explore `config/env/production.js` for production environment configuration options
 
+The sample application is a simple Articles create, read, update and destroy (CRUD) web site.
 ## Client-side
 
 * [AngularJS](http://angularjs.org/)
@@ -92,13 +93,17 @@ $ npm run prod
 ## Server-side
 
 * [Express](http://expressjs.com/) JSON API
-* [Passport](http://passportjs.org/) authentication middleware
+* [Passport](http://passportjs.org/) Authentication middleware
 
 ## Data Storage
 
-* [MongoDB](http://www.mongodb.org/) - data storage
-* [Redis](http://redis.io/) - session storage
+* [MongoDB](http://www.mongodb.org/) - Data storage
+* [Redis](http://redis.io/) Session storage
 
+## Tools
+
+* [Gulp](http://gulpjs.com/) Automate and enhance your workflow
+* [Jspm](http://jspm.io//) Frictionless browser package management
 
 ## Credits
 
