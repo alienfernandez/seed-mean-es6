@@ -23,8 +23,15 @@ let securityModule = angular.module('app.security',
         UserListTemplate.name
     ])
     .config(($stateProvider, $httpProvider) => {
-        $stateProvider.state('login', {
-            url: '/login',
+        $stateProvider.state('authentication', {
+            abstract: true
+        }).state('authentication.signin', {
+            url: '/signin?err',
+            controller: 'SecurityController',
+            controllerAs: 'secCtrl',
+            templateUrl: SigninTemplate.name
+        }).state('authentication.signup', {
+            url: '/signup',
             controller: 'SecurityController',
             controllerAs: 'secCtrl',
             templateUrl: SigninTemplate.name
@@ -53,7 +60,7 @@ let securityModule = angular.module('app.security',
                         switch (rejection.status) {
                             case 401:
                                 // Deauthenticate the global user
-                                AuthenticationService.getCredentials().user = null;
+                                AuthenticationService.user = null;
 
                                 // Redirect to signin page
                                 $location.path('login');
