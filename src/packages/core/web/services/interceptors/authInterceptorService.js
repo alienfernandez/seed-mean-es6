@@ -1,4 +1,4 @@
-import coreModule from '../../coreModule';
+import coreModule from '../../../coreModule';
 
 class AuthInterceptorService {
 
@@ -9,6 +9,7 @@ class AuthInterceptorService {
     }
 
     responseError(rejection) {
+        console.log("rejection", rejection)
         if (!rejection.config.ignoreAuthModule) {
             switch (rejection.status) {
                 case 401:

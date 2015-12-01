@@ -24,7 +24,8 @@ let securityModule = angular.module('app.security',
     ])
     .config(($stateProvider, $httpProvider) => {
         $stateProvider.state('authentication', {
-            abstract: true
+            abstract: true,
+            template: '<ui-view/>'
         }).state('authentication.signin', {
             url: '/signin?err',
             controller: 'SecurityController',
@@ -57,13 +58,14 @@ let securityModule = angular.module('app.security',
             function ($q, $location, AuthenticationService) {
                 return {
                     responseError: function (rejection) {
+                        console.log("rejection", rejection);
                         switch (rejection.status) {
                             case 401:
                                 // Deauthenticate the global user
                                 AuthenticationService.user = null;
 
                                 // Redirect to signin page
-                                $location.path('login');
+                                $location.path('signin');
                                 break;
                             case 403:
                                 // Add unauthorized behaviour

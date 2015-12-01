@@ -1,13 +1,13 @@
 [
   {
-    "stateName": "main",
+    "stateName": "home",
     "urlPrefix": "/",
     "type": "load",
-    "src": "packages/main"
+    "src": "packages/core"
   },
   {
     "stateName": "authentication",
-    "urlPrefix": "/authentication",
+    "urlPrefix": "/",
     "type": "load",
     "src": "packages/security"
   },

@@ -6,25 +6,15 @@ import 'angular-resource';
  */
 import 'font-awesome';
 import 'bootstrap';
-
-import 'dashboard';
-/**
- * TODO delete dashboard demo
- */
-import 'dashboard-demo';
-
 import 'angular-ui-router';
 import 'ocLazyLoad';
 import 'ui-router-stateHelper';
 
-//Importanto recursos comunes
+//Import resources
 import {routing} from 'commons';
 import futureRoutes from './routes.json!';
 
-let app = angular.module('app', ['ui.router',
-    'ui.router.stateHelper',
-    'oc.lazyLoad', 'ngResource'
-]);
+let app = angular.module('app', ['ui.router', 'ui.router.stateHelper', 'oc.lazyLoad', 'ngResource']);
 
 /*Config Theme*/
 app.config(() => {
@@ -45,13 +35,8 @@ app.config(($urlRouterProvider, $locationProvider, $stateProvider, $httpProvider
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
 });
 
-/*@ngInject*/
-/*app.run((comLoadingService) => {
- comLoadingService.show();
- });*/
-
 /**
- * La siguiente funcion hace que se ejecute la aplicacion
+ * Execute app
  */
 angular.element(document).ready(function () {
     angular.bootstrap(document.body, [app.name], {
