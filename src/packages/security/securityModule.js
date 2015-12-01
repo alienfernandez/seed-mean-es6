@@ -54,8 +54,8 @@ let securityModule = angular.module('app.security',
         });
 
         // Set the httpProvider "not authorized" interceptor
-        $httpProvider.interceptors.push(['$q', '$location', 'AuthenticationService',
-            function ($q, $location, AuthenticationService) {
+        $httpProvider.interceptors.push(['$q', '$location', '$injector', 'AuthenticationService',
+            function ($q, $location, $injector, AuthenticationService) {
                 return {
                     responseError: function (rejection) {
                         console.log("rejection", rejection);
@@ -69,6 +69,7 @@ let securityModule = angular.module('app.security',
                                 break;
                             case 403:
                                 // Add unauthorized behaviour
+                                $injector.get('$state').transitionTo('forbidden');
                                 break;
                         }
 

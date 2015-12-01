@@ -1,6 +1,8 @@
 import 'jquery';
 import angular from 'angular';
 import 'angular-resource';
+import coreModule from './packages/core/index';
+//console.log("coreModule", coreModule)
 /**
  * Import theme
  */
@@ -14,12 +16,10 @@ import 'ui-router-stateHelper';
 import {routing} from 'commons';
 import futureRoutes from './routes.json!';
 
-let app = angular.module('app', ['ui.router', 'ui.router.stateHelper', 'oc.lazyLoad', 'ngResource']);
+var appModuleName = 'app';
+var appModuleVendorDependencies = ['ui.router', 'ui.router.stateHelper', 'oc.lazyLoad', 'ngResource'];
 
-/*Config Theme*/
-app.config(() => {
-
-});
+let app = angular.module(appModuleName, appModuleVendorDependencies);
 
 /**
  * Agregando las rutas del JSON
@@ -35,10 +35,33 @@ app.config(($urlRouterProvider, $locationProvider, $stateProvider, $httpProvider
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
 });
 
+app.run(() => {
+
+});
+
+// Add the module to the AngularJS configuration file
+//app.requires.push("app.core");
+
 /**
  * Execute app
  */
 angular.element(document).ready(function () {
+    //Fixing facebook bug with redirect
+    if (window.location.hash && window.location.hash === '#_=_') {
+        if (window.history && history.pushState) {
+            window.history.pushState('', document.title, window.location.pathname);
+        } else {
+            // Prevent scrolling by storing the page's current scroll offset
+            var scroll = {
+                top: document.body.scrollTop,
+                left: document.body.scrollLeft
+            };
+            window.location.hash = '';
+            // Restore the scroll offset, should be flicker free
+            document.body.scrollTop = scroll.top;
+            document.body.scrollLeft = scroll.left;
+        }
+    }
     angular.bootstrap(document.body, [app.name], {
         // strictDi: true
     });
