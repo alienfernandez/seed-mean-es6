@@ -21,32 +21,7 @@ let mainModule = angular.module('app.main', [
     commonModule.name
 ])
     .config(($stateProvider) => {
-        $stateProvider
-            .state('main', {
-                url: '/',
-                controller: 'mainController',
-                controllerAs: 'mainCtrl',
-                templateUrl: LayoutTemplate.name,
-            }).state('main.layout', {
-                views: {
-                    'headBar': {
-                        controller: 'headerController',
-                        controllerAs: 'headerCtrl',
-                        templateUrl: HeaderTemplate.name
-                    }
-                    ,
-                    'sideBar': {
-                        controller: 'mainSidebarController',
-                        controllerAs: 'sidebarCtrl',
-                        templateUrl: SideBarTemplate.name
-                    },
-                    'content': {
-                        controller: 'mainContentController',
-                        controllerAs: 'contentCtrl',
-                        templateUrl: ContentTemplate.name
-                    }
-                },
-            });
+
     });
 
 mainModule.run((comAlertMessageFactory) => {

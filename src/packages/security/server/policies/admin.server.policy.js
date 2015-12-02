@@ -29,9 +29,9 @@ exports.invokeRolesPolicies = function () {
  */
 exports.isAllowed = function (req, res, next) {
     //TODO delete
-    return next();
+    //return next();
     var roles = (req.user) ? req.user.roles : ['guest'];
-
+    console.log("roles", roles)
     // Check for user roles
     acl.areAnyRolesAllowed(roles, req.route.path, req.method.toLowerCase(), function (err, isAllowed) {
         if (err) {

@@ -12,7 +12,7 @@ class SecurityController {
         this.$window = $window;
 
         // If user is signed in then redirect back home
-        var credentials = this.authentication.getCredentials();
+        var credentials = this.authentication;
         if (credentials && credentials.user) {
             $location.path('/');
             //$state.transitionTo('main');
@@ -26,10 +26,10 @@ class SecurityController {
         }
         this.security.signup(this.credentials)
             .then((response) => {
-                this.authentication.getCredentials().user = response;
+                this.authentication.user = response;
                 // And redirect to the previous or home page
                 //this.$state.go(this.$state.previous.state.name || 'main', this.$state.previous.params);
-                this.$state.transitionTo('main');
+                this.$state.transitionTo('home');
             })
             .catch((error) => {
                 this.error = error.message;
@@ -45,12 +45,12 @@ class SecurityController {
         this.loadMask.show('#loadMaskData');
         this.security.signin(this.credentials)
             .then((response) => {
-                this.authentication.getCredentials().user = response;
+                this.authentication.user = response;
 
                 this.loadMask.hide('#loadMaskData');
                 // And redirect to the previous or home page
                 //this.$state.go(this.$state.previous.state.name || 'home', this.$state.previous.params);
-                this.$state.transitionTo('main');
+                this.$state.transitionTo('home');
             })
             .catch((error) => {
                 console.log("error", error);

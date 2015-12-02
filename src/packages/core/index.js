@@ -4,13 +4,9 @@ import coreModule from './coreModule';
 //import './../common/constants/appConstant';
 
 //Services
-//import './web/services/baseService';
-//import './web/services/mainService';
-//
-////Factories
-//import './web/factories/configFactory';
-//
-////Controllers
-//import './web/controllers/securityController';
+import './web/services/interceptors/authInterceptorService';
+
+//Controllers
+import './web/controllers/homeController';
 
 export default coreModule;

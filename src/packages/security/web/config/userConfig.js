@@ -11,7 +11,7 @@ class PasswordController {
         this.$stateParams = $stateParams;
 
         // If user is signed in then redirect back home
-        if (this.authentication.getCredentials().user) {
+        if (this.authentication.user) {
             $location.path('/');
             //$state.transitionTo('main');
         }
@@ -45,7 +45,7 @@ class PasswordController {
                 this.passwordDetails = null;
 
                 // Attach user profile
-                this.authentication.getCredentials().user = response;
+                this.authentication.user = response;
                 // And redirect to the index page
                 this.$location.path('/password/reset/success');
             })

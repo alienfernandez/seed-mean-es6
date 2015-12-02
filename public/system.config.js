@@ -17,9 +17,7 @@ System.config({
     "react-js": "assets/js/react.js",
     "fancybox-plus": "assets/js/fancybox-plus.js",
     "validations-rules": "assets/js/validations-rules.js",
-    "jquery-fancybox-plus": "assets/js/jquery.fancybox-plus.js",
-    "dashboard": "assets/js/dashboard.min.js",
-    "dashboard-demo": "assets/js/dashboard-demo.js"
+    "jquery-fancybox-plus": "assets/js/jquery.fancybox-plus.js"
   },
 
   meta: {
