@@ -1,8 +1,7 @@
 import 'jquery';
 import angular from 'angular';
 import 'angular-resource';
-import coreModule from './packages/core/index';
-//console.log("coreModule", coreModule)
+
 /**
  * Import theme
  */
@@ -13,6 +12,8 @@ import 'ocLazyLoad';
 import 'ui-router-stateHelper';
 
 //Import resources
+
+import {commonModule} from 'commons';
 import {routing} from 'commons';
 import futureRoutes from './routes.json!';
 

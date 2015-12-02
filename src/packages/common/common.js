@@ -1,6 +1,12 @@
 //Import resources
 import commonModule from './commonModule';
 
+//service
+import './services/interceptors/authInterceptorService';
+
+//controllers
+import './controllers/homeController';
+
 //provider
 import './providers/lagoProvider';
 

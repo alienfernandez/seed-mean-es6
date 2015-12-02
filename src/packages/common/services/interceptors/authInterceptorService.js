@@ -1,11 +1,15 @@
-import coreModule from '../../../coreModule';
+import commonModule from '../../commonModule';
 
-class AuthInterceptorService1 {
+class AuthInterceptorFactory {
 
-    /*ngInject*/
     constructor($q, $injector) {
         this.$q = $q;
         this.$injector = $injector;
+    }
+
+    /*ngInject*/
+    static instance($q, $injector) {
+        return new AuthInterceptorFactory($q, $injector);
     }
 
     responseError(rejection) {
@@ -21,10 +25,10 @@ class AuthInterceptorService1 {
             }
         }
         // otherwise, default behaviour
-        return $q.reject(rejection);
+        return this.$q.reject(rejection);
     }
 }
 
-coreModule.factory('AuthInterceptor1', AuthInterceptorService1);
+commonModule.factory('AuthInterceptor', AuthInterceptorFactory.instance);
 
-export default coreModule;
+export default commonModule;

@@ -22,6 +22,8 @@ jspm_packages/npm/process@0.10.1.js
 jspm_packages/npm/ui-router-extras@0.0.14.js
 app/packages/common/common.js
 app/packages/common/commonModule.js
+app/packages/core/index.js
+app/packages/core/coreModule.js
 jspm_packages/github/angular-ui/ui-router@0.2.15.js
 jspm_packages/github/angular/bower-angular-animate@1.4.5.js
 jspm_packages/github/angular/bower-angular-aria@1.4.5.js
@@ -849,12 +851,6 @@ jspm_packages/npm/ui-router-extras@0.0.14/release/modular/ct-ui-router-extras.st
 jspm_packages/npm/ui-router-extras@0.0.14/release/modular/ct-ui-router-extras.sticky.min.js
 jspm_packages/npm/ui-router-extras@0.0.14/release/modular/ct-ui-router-extras.transition.js
 jspm_packages/npm/ui-router-extras@0.0.14/release/modular/ct-ui-router-extras.transition.min.js
-app/packages/common/components/comAlertMessage/controllers/alertMessageController.js
-app/packages/common/components/comAlertMessage/factories/alertMessageFactory.js
-app/packages/common/components/comAlertMessage/views/alertMessage.tpl.js
-app/packages/common/components/comFileModel/directives/comFileModelDirective.js
-app/packages/common/components/comInputFileFolder/directives/comInputFileFolderDirective.js
-app/packages/common/components/comToolButton/directives/comToolButtonDirective.js
 jspm_packages/github/ocombe/ocLazyLoad@1.0.2/dist/modules/ocLazyLoad.core.js
 jspm_packages/github/ocombe/ocLazyLoad@1.0.2/dist/modules/ocLazyLoad.directive.js
 jspm_packages/github/ocombe/ocLazyLoad@1.0.2/dist/modules/ocLazyLoad.loaders.common.js
@@ -1340,7 +1336,6 @@ jspm_packages/github/angular/bower-material@0.11.0/angular-material.css
 jspm_packages/github/angular/bower-material@0.11.0/angular-material.min.css
 jspm_packages/github/systemjs/plugin-css@0.1.16/test.css
 jspm_packages/github/angular/bower-material@0.11.0/modules/css/angular-material-layout.css
-app/packages/common/components/comAlertMessage/assets/css/alertMessage.css
 jspm_packages/github/angular/bower-material@0.11.0/modules/closure/autocomplete/autocomplete-default-theme.css
 jspm_packages/github/angular/bower-material@0.11.0/modules/closure/autocomplete/autocomplete-default-theme.min.css
 jspm_packages/github/angular/bower-material@0.11.0/modules/closure/autocomplete/autocomplete.css
