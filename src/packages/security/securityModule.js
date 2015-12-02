@@ -40,7 +40,10 @@ let securityModule = angular.module('app.security',
             url: '/users/create',
             controller: 'UserController',
             controllerAs: 'userCtrl',
-            templateUrl: AddUserTemplate.name
+            templateUrl: AddUserTemplate.name,
+            data: {
+                roles: ['user', 'admin']
+            }
         }).state('userlist', {
             url: '/users/list',
             controller: 'UserController',
@@ -50,7 +53,10 @@ let securityModule = angular.module('app.security',
             url: '/users/edit/:userId',
             controller: 'UserController',
             controllerAs: 'userCtrl',
-            templateUrl: UserEditTemplate.name
+            templateUrl: UserEditTemplate.name,
+            data: {
+                roles: ['user', 'admin']
+            }
         });
 
         // Set the httpProvider "not authorized" interceptor
@@ -81,7 +87,7 @@ let securityModule = angular.module('app.security',
     });
 
 securityModule.run(() => {
-
+    console.log("run securityyyyy");
 });
 
 export default securityModule;
