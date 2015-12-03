@@ -36,15 +36,18 @@ module.exports.start = function start(callback) {
         // Start the app by listening on <port>
         app.listen(config.port, function () {
             // Logging initialization
-            console.log('---- Started express server ----');
-            console.log(chalk.green(config.app.title));
+            console.log('---- Started express web server ----');
+            console.log(chalk.bold.green(config.app.title));
             console.log(chalk.green('Environment:\t\t' + process.env.NODE_ENV));
             console.log(chalk.green('Port:\t\t\t' + config.port));
             console.log(chalk.green('Database:\t\t' + config.db.uri));
             if (process.env.NODE_ENV === 'secure') {
                 console.log(chalk.green('HTTPs:\t\t\ton'));
             }
-            console.log('------------------------------');
+            console.log(chalk.green('App version:\t\t' + config.meanrr.version));
+            if (config.meanrr['meanrr-version'])
+                console.log(chalk.green('MEANRR version:\t\t' + config.meanrr['meanrr-version']));
+            console.log('------------------------------------');
 
             if (callback) callback(app, db, config);
         });

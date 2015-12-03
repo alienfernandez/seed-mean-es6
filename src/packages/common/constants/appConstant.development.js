@@ -1,5 +1,7 @@
 import commonModule from '../commonModule';
 import Constant from '../lib/core/Constant';
+//import config from '../../../../config/config';
+//console.log("config", config)
 
 var constants = {
     DB: {
@@ -21,7 +23,6 @@ var constants = {
         }
     }
 }
-
 
 const appConstant = new Constant(constants);
 commonModule.constant('$appConstants', appConstant);
