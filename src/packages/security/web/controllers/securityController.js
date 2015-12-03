@@ -28,8 +28,8 @@ class SecurityController {
             .then((response) => {
                 this.authentication.user = response;
                 // And redirect to the previous or home page
-                //this.$state.go(this.$state.previous.state.name || 'main', this.$state.previous.params);
-                this.$state.transitionTo('home');
+                this.$state.transitionTo(this.$state.previous.state.name || 'home', this.$state.previous.params);
+                //this.$state.transitionTo('home');
             })
             .catch((error) => {
                 this.error = error.message;
@@ -49,8 +49,8 @@ class SecurityController {
 
                 this.loadMask.hide('#loadMaskData');
                 // And redirect to the previous or home page
-                //this.$state.go(this.$state.previous.state.name || 'home', this.$state.previous.params);
-                this.$state.transitionTo('home');
+                this.$state.transitionTo(this.$state.previous.state.name || 'home', this.$state.previous.params);
+                //this.$state.transitionTo('home');
             })
             .catch((error) => {
                 console.log("error", error);

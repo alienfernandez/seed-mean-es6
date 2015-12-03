@@ -1,29 +1,27 @@
+//Import resources
 import 'jquery';
 import angular from 'angular';
 import 'angular-resource';
-
-/**
- * Import theme
- */
 import 'font-awesome';
 import 'bootstrap';
 import 'angular-ui-router';
 import 'ocLazyLoad';
 import 'ui-router-stateHelper';
 
-//Import resources
-
+//Import common and routing module
 import {commonModule} from 'commons';
 import {routing} from 'commons';
 import futureRoutes from './routes.json!';
+//Import core module
+import core from './packages/core';
 
 var appModuleName = 'app';
-var appModuleVendorDependencies = ['ui.router', 'ui.router.stateHelper', 'oc.lazyLoad', 'ngResource'];
+var appModuleVendorDependencies = ['ui.router', 'ui.router.stateHelper', 'oc.lazyLoad', 'ngResource', 'common', 'app.core'];
 
 let app = angular.module(appModuleName, appModuleVendorDependencies);
 
 /**
- * Agregando las rutas del JSON
+ * Add future routes
  */
 app.config(routing(app, futureRoutes));
 
@@ -39,9 +37,6 @@ app.config(($urlRouterProvider, $locationProvider, $stateProvider, $httpProvider
 app.run(() => {
 
 });
-
-// Add the module to the AngularJS configuration file
-//app.requires.push("app.core");
 
 /**
  * Execute app

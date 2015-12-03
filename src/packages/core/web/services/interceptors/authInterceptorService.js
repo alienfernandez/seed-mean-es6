@@ -1,15 +1,18 @@
 import coreModule from '../../../coreModule';
 
-class AuthInterceptorService1 {
+class AuthInterceptorFactory {
 
-    /*ngInject*/
     constructor($q, $injector) {
         this.$q = $q;
         this.$injector = $injector;
     }
 
-    responseError(rejection) {
-        console.log("rejection", rejection)
+    /*ngInject*/
+    static instance($q, $injector) {
+        return new AuthInterceptorFactory($q, $injector);
+    }
+
+    static responseError(rejection) {
         if (!rejection.config.ignoreAuthModule) {
             switch (rejection.status) {
                 case 401:
@@ -21,10 +24,10 @@ class AuthInterceptorService1 {
             }
         }
         // otherwise, default behaviour
-        return $q.reject(rejection);
+        return this.$q.reject(rejection);
     }
 }
 
-coreModule.factory('AuthInterceptor1', AuthInterceptorService1);
+coreModule.factory('AuthInterceptor', AuthInterceptorFactory.instance);
 
 export default coreModule;

@@ -3,10 +3,11 @@ import securityModule from '../../securityModule';
 class SecurityService {
 
     /*ngInject*/
-    constructor($window, SecurityBaseService) {
+    constructor($window, SecurityBaseService, $appConstants) {
+        console.log("$appConstants", $appConstants)
         this.$window = $window;
         this.http = SecurityBaseService;
-        this.serverUrlBase = 'http://localhost:8006';
+        this.serverUrlBase = 'http://localhost:8001';
     }
 
     static instance($window, SecurityBaseService) {

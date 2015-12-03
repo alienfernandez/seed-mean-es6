@@ -1,6 +1,4 @@
 import angular from 'angular';
-//Import libs react
-import 'react-js';
 
 import debug from 'debug';
 
@@ -87,7 +85,7 @@ let securityModule = angular.module('app.security',
     });
 
 securityModule.run(() => {
-    console.log("run securityyyyy");
+    console.log("Run security module");
 });
 
 export default securityModule;

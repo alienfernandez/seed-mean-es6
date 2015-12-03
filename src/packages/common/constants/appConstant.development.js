@@ -10,7 +10,7 @@ var constants = {
     ID_HOST: 'localhost',
     REMOTE_HOST: {
         server: 'localhost',
-        port: 9001,
+        port: 8001,
         context: 'json'
     },
     LOCAL_STORE: {
@@ -24,7 +24,6 @@ var constants = {
 
 
 const appConstant = new Constant(constants);
-
 commonModule.constant('$appConstants', appConstant);
 
 export default commonModule;
