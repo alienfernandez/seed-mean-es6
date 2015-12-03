@@ -25,7 +25,7 @@ export default class ContentView extends React.Component {
                 <div>
                     <h2>Congrats! You've configured and run the sample application.</h2>
 
-                    <p>MEAN.JS is a web application boilerplate, which means you should start changing everything
+                    <p>MEANRR.JS is a web application boilerplate, which means you should start changing everything
                         :-)</p>
 
                     <p>This sample application tracks users and articles.</p>
@@ -39,13 +39,10 @@ export default class ContentView extends React.Component {
                             <em></em> files.
                         </li>
                         <li>
-                            Edit your users module.
+                            Edit your security module.
                         </li>
                         <li>
                             Add new CRUD modules.
-                        </li>
-                        <li>
-                            Have fun...
                         </li>
                     </ul>
                 </div>

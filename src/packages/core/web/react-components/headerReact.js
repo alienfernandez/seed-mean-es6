@@ -36,7 +36,7 @@ export default class HeaderView extends React.Component {
                 </div>
                 <div className="row">
                     <p>
-                        <a className="btn btn-primary btn-lg" href="#" target="_blank">Learn more</a>
+                        <a className="btn btn-success btn-lg" href="#" target="_blank">Learn more</a>
                     </p>
                 </div>
             </div>
