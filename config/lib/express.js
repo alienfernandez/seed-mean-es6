@@ -10,7 +10,8 @@ var config = require('../config'),
     logger = require('./logger'),
     bodyParser = require('body-parser'),
     session = require('express-session'),
-    MongoStore = require('connect-mongo')(session),
+    //MongoStore = require('connect-mongo')(session),
+    RedisStore = require('connect-redis')(session),
     favicon = require('serve-favicon'),
     compress = require('compression'),
     methodOverride = require('method-override'),
@@ -18,8 +19,7 @@ var config = require('../config'),
     helmet = require('helmet'),
     flash = require('connect-flash'),
     consolidate = require('consolidate'),
-    //redisClient = require('./redis'),
-    //RedisStore = require('connect-redis')(express),
+    redisClient = require('./redis'),
     path = require('path');
 /**
  * Initialize local variables
@@ -107,15 +107,15 @@ module.exports.initSession = function (app, db) {
             httpOnly: config.sessionCookie.httpOnly,
             secure: config.sessionCookie.secure && config.secure.ssl
         },
-        //key: config.sessionKey,
-        //store: new RedisStore({
-        //    secret: config.redisSessionSecret,
-        //    client: redisClient
-        //})
-        store: new MongoStore({
-            mongooseConnection: db.connection,
-            collection: config.sessionCollection
+        key: config.sessionKey,
+        store: new RedisStore({
+            secret: config.redisSessionSecret,
+            client: redisClient
         })
+        //store: new MongoStore({
+        //    mongooseConnection: db.connection,
+        //    collection: config.sessionCollection
+        //})
     }));
 };
 
@@ -237,7 +237,7 @@ module.exports.init = function (db) {
     this.initModulesClientRoutes(app);
 
     // Initialize modules server authorization policies
-    //this.initModulesServerPolicies(app);
+    this.initModulesServerPolicies(app);
 
     // Initialize modules server routes
     this.initModulesServerRoutes(app);

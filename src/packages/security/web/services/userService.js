@@ -17,17 +17,6 @@ class UserService {
     static instance($resource) {
         return new UserService($resource);
     }
-
-    //
-    //getUserResource(uri = 'api/users/:userId') {
-    //    return this.$resource(uri, {
-    //        userId: '@_id'
-    //    }, {
-    //        update: {
-    //            method: 'PUT'
-    //        }
-    //    });
-    //}
 }
 
 securityModule.service('UserService', UserService.instance);

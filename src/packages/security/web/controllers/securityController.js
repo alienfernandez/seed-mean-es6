@@ -36,6 +36,12 @@ class SecurityController {
             });
     }
 
+    signout() {
+        this.security.signout().then((response) => {
+            this.authentication.user = null;
+        });
+    }
+
     signin(isValid) {
         this.error = null;
         if (!isValid) {
@@ -43,20 +49,18 @@ class SecurityController {
         }
         //Show loading
         this.loadMask.show('#loadMaskData');
-        this.security.signin(this.credentials)
-            .then((response) => {
-                this.authentication.user = response;
+        this.security.signin(this.credentials).then((response) => {
+            this.authentication.user = response;
 
-                this.loadMask.hide('#loadMaskData');
-                // And redirect to the previous or home page
-                this.$state.transitionTo(this.$state.previous.state.name || 'home', this.$state.previous.params);
-                //this.$state.transitionTo('home');
-            })
-            .catch((error) => {
-                console.log("error", error);
-                this.loadMask.hide('#loadMaskData');
-                this.error = error.message;
-            });
+            this.loadMask.hide('#loadMaskData');
+            // And redirect to the previous or home page
+            this.$state.transitionTo(this.$state.previous.state.name || 'home', this.$state.previous.params);
+            //this.$state.transitionTo('home');
+        }).catch((error) => {
+            console.log("error", error);
+            this.loadMask.hide('#loadMaskData');
+            this.error = error.message;
+        });
     }
 
     callOauthProvider() {
