@@ -8,7 +8,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var plumber = require('gulp-plumber');
 
 gulp.task('sass', function () {
-  return gulp.src(config.path.inputSass)
+  return gulp.src(config.path.sass)
     .pipe(cache('sass'))
     .pipe(plumber())
     .pipe(changed(config.path.output, {extension: '.css'}))

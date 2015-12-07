@@ -9,10 +9,10 @@ var wrench = require('wrench'),
  * Esto cargara archivos que se encuentran dentro del directorio
  * gulp in el oreden de las tareas de gulp
  */
-wrench.readdirSyncRecursive('./gulp').filter(function (file) {
+wrench.readdirSyncRecursive('./tasks').filter(function (file) {
     return (/\.(js|coffe)$/i).test(file);
 }).map(function (file) {
-    require('./gulp/' + file);
+    require('./tasks/' + file);
 });
 
 // Set NODE_ENV to 'test'
@@ -33,10 +33,15 @@ gulp.task('env:prod', function () {
 //gulp.task('default', ['watch']);
 // Run the project in development mode
 gulp.task('default', function (done) {
-    runSequence('env:dev', 'lint', 'watch', done);//'lint',
+    runSequence('env:dev', 'lint', ['nodemon'], done);
+});
+
+// Lint project files and minify them into two production files.
+gulp.task('build', function (done) {
+    runSequence('env:dev', 'lint', 'compile', ['uglify', 'cssmin'], done);
 });
 
 // Run the project in production mode
 gulp.task('prod', function (done) {
-    runSequence('compile', 'env:prod', done);
+    runSequence('build', 'env:prod', 'lint', ['nodemon'], done);
 });

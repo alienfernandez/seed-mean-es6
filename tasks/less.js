@@ -10,7 +10,7 @@ var lessPluginCleanCSS = require("less-plugin-clean-css");
 var cleancss = new lessPluginCleanCSS({advanced: true});
 
 gulp.task('less', function () {
-  return gulp.src(config.path.imputLess)
+  return gulp.src(config.path.less)
     .pipe(cache('less'))
     .pipe(plumber())
     .pipe(changed(config.path.output, {extension: '.css'}))

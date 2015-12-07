@@ -7,9 +7,7 @@ class HeaderController {
         this.$state = $state;
         this.$stateParams = $stateParams;
     }
-
 }
 
 mainModule.controller('headerController', HeaderController);
-
 export default mainModule;

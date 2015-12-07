@@ -28,7 +28,12 @@ module.exports = {
             'src/packages/**/web/*.js',
             'src/packages/**/web/**/*.js'
         ],
-        views: ['src/packages/**/web/views/**/*.html']
+        publicJs: [
+            'public/app/packages/**/web/*.js',
+            'public/app/packages/**/web/**/*.js'
+        ],
+        views: ['src/packages/**/web/views/**/*.html'],
+        allJS: ['app/packages/**/web/**/*.js']
     },
     server: {
         gulpConfig: 'gulpfile.js',
