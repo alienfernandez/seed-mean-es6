@@ -38,10 +38,12 @@ gulp.task('default', function (done) {
 
 // Lint project files and minify them into two production files.
 gulp.task('build', function (done) {
-    runSequence('env:dev', 'lint', 'compile', ['uglify', 'cssmin'], done);
+    //runSequence('env:dev', 'lint', 'compile', ['uglify', 'cssmin'], done);
+    runSequence('env:dev', 'compile', ['uglify', 'cssmin'], done);
 });
 
 // Run the project in production mode
 gulp.task('prod', function (done) {
-    runSequence('build', 'env:prod', 'lint', ['nodemon'], done);
+    //runSequence('build', 'env:prod', 'lint', ['nodemon'], done);
+    runSequence('build', 'env:prod', ['nodemon'], done);
 });

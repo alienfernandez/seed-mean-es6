@@ -122,7 +122,7 @@ System.config({
     "pouchdb/pouchdb": "github:pouchdb/pouchdb@4.0.1",
     "react": "github:facebook/react@0.14.3",
     "react-renderer": "npm:react-renderer@0.1.4",
-    "requirejs": "npm:requirejs@2.1.22",
+    "requirejs": "github:jrburke/requirejs@2.1.22",
     "toastr": "github:johnpapa/toastr-bower@2.1.2",
     "ui-grid": "github:angular-ui/bower-ui-grid@3.0.6",
     "ui-router-extras": "npm:ui-router-extras@0.0.14",
@@ -174,9 +174,6 @@ System.config({
     },
     "github:jspm/nodelibs-util@0.1.0": {
       "util": "npm:util@0.10.3"
-    },
-    "github:jspm/nodelibs-vm@0.1.0": {
-      "vm-browserify": "npm:vm-browserify@0.0.4"
     },
     "github:twbs/bootstrap@3.3.5": {
       "jquery": "github:components/jquery@2.1.4"
@@ -262,12 +259,6 @@ System.config({
       "stream-browserify": "npm:stream-browserify@1.0.0",
       "string_decoder": "npm:string_decoder@0.10.31"
     },
-    "npm:requirejs@2.1.22": {
-      "fs": "github:jspm/nodelibs-fs@0.1.2",
-      "path": "github:jspm/nodelibs-path@0.1.0",
-      "process": "github:jspm/nodelibs-process@0.1.2",
-      "vm": "github:jspm/nodelibs-vm@0.1.0"
-    },
     "npm:source-map@0.1.31": {
       "amdefine": "npm:amdefine@1.0.0",
       "fs": "github:jspm/nodelibs-fs@0.1.2",
@@ -292,9 +283,6 @@ System.config({
     "npm:util@0.10.3": {
       "inherits": "npm:inherits@2.0.1",
       "process": "github:jspm/nodelibs-process@0.1.2"
-    },
-    "npm:vm-browserify@0.0.4": {
-      "indexof": "npm:indexof@0.0.1"
     }
   }
 });
