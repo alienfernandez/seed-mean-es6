@@ -4,7 +4,6 @@ class SecurityService {
 
     /*ngInject*/
     constructor($window, SecurityBaseService, $appConstants) {
-        console.log("$appConstants", $appConstants)
         this.$window = $window;
         this.http = SecurityBaseService;
         this.serverUrlBase = 'http://localhost:8001';
@@ -55,7 +54,7 @@ class SecurityService {
     signout() {
         var url = this.serverUrlBase + '/api/auth/signout';
         return new Promise((resolve, reject) => {
-            this.http.post(url, credentials)
+            this.http.post(url, {})
                 .then((data) => {
                     resolve(data);
                 })

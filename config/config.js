@@ -52,8 +52,6 @@ var getGlobbedPaths = function (globPatterns, excludes) {
  * Validate NODE_ENV existence
  */
 var validateEnvironmentVariable = function () {
-    //TODO delete
-    process.env.NODE_ENV = 'development';
     var environmentFiles = glob.sync('./config/env/' + process.env.NODE_ENV + '.js');
     console.log();
     if (!environmentFiles.length) {

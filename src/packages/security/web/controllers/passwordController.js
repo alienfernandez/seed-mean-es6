@@ -49,7 +49,7 @@ class PasswordController {
                 // And redirect to the index page
                 this.$location.path('/password/reset/success');
             })
-            .catch(function (error) {
+            .catch(function (response) {
                 this.error = response.message;
             });
     }
