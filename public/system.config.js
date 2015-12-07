@@ -18,7 +18,8 @@ System.config({
     "react-js": "assets/js/react.js",
     "fancybox-plus": "assets/js/fancybox-plus.js",
     "validations-rules": "assets/js/validations-rules.js",
-    "jquery-fancybox-plus": "assets/js/jquery.fancybox-plus.js"
+    "jquery-fancybox-plus": "assets/js/jquery.fancybox-plus.js",
+    "require_js": "assets/js/require.js"
   },
 
   meta: {
@@ -122,7 +123,6 @@ System.config({
     "pouchdb/pouchdb": "github:pouchdb/pouchdb@4.0.1",
     "react": "github:facebook/react@0.14.3",
     "react-renderer": "npm:react-renderer@0.1.4",
-    "requirejs": "github:jrburke/requirejs@2.1.22",
     "toastr": "github:johnpapa/toastr-bower@2.1.2",
     "ui-grid": "github:angular-ui/bower-ui-grid@3.0.6",
     "ui-router-extras": "npm:ui-router-extras@0.0.14",
