@@ -28,6 +28,6 @@ module.exports = {
     sessionKey: 'sessionId',
     redisSessionSecret: 'eVCbCFxUUG1kq3x5U9tuzUOkg',
     sessionCollection: 'sessions',
-    logo: 'modules/core/client/img/brand/logo.png',
-    favicon: 'modules/core/client/img/brand/favicon.ico'
+    logo: 'public/app/packages/core/web/assets/img/brand/logo.png',
+    favicon: 'public/app/packages/core/web/assets/img/brand/favicon.ico'
 };
