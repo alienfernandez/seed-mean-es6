@@ -18,6 +18,7 @@ var path = {
     themes: ['app/assets/dark.css', 'app/assets/light.css'],
     themesOutput: 'public/assets/',
     output: 'public/app',
+    outputConfig: 'public/app/packages/common/config/env',
     outputCss: 'public/assets/css/',
     css: ['src/**/*.css', '!app/assets/**/*.css'],
 };

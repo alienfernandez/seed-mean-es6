@@ -3,7 +3,7 @@ import securityModule from '../../securityModule';
 class SecurityController {
 
     /*ngInject*/
-    constructor($state, $window, $location, AuthenticationService, SecurityService, LoadMask) {
+    constructor($state, $window, $location, AuthenticationService, SecurityService, LoadMask, $appConstants) {
         this.loadMask = LoadMask;
         this.loadMask.create('loadMaskData', "Espere por favor, autenticando ...", 'body');
         this.authentication = AuthenticationService;

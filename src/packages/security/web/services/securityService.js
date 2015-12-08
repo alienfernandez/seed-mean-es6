@@ -2,15 +2,16 @@ import securityModule from '../../securityModule';
 
 class SecurityService {
 
-    /*ngInject*/
-    constructor($window, SecurityBaseService, $appConstants) {
+    constructor($window, BaseHttpService) {
         this.$window = $window;
-        this.http = SecurityBaseService;
-        this.serverUrlBase = 'http://localhost:8001';
+        this.http = BaseHttpService;
+        this.serverUri = this.http.config.serverUri;
+        console.log("serverUri: ", this.serverUri);
     }
 
-    static instance($window, SecurityBaseService) {
-        return new SecurityService($window, SecurityBaseService);
+    /*ngInject*/
+    static instance($window, BaseHttpService) {
+        return new SecurityService($window, BaseHttpService);
     }
 
     /**
@@ -20,7 +21,7 @@ class SecurityService {
      * @returns {Promise}
      */
     signup(credentials, uri = '/api/auth/signup') {
-        var url = this.serverUrlBase + uri;
+        var url = this.serverUri + uri;
         return new Promise((resolve, reject) => {
             this.http.post(url, credentials)
                 .then((data) => {
@@ -39,7 +40,7 @@ class SecurityService {
      * @returns {Promise}
      */
     signin(credentials, uri = '/api/auth/signin') {
-        var url = this.serverUrlBase + uri;
+        var url = this.serverUri + uri;
         return new Promise((resolve, reject) => {
             this.http.post(url, credentials)
                 .then((data) => {
@@ -52,7 +53,7 @@ class SecurityService {
     }
 
     signout() {
-        var url = this.serverUrlBase + '/api/auth/signout';
+        var url = this.serverUri + '/api/auth/signout';
         return new Promise((resolve, reject) => {
             this.http.post(url, {})
                 .then((data) => {
@@ -65,7 +66,7 @@ class SecurityService {
     }
 
     askForPasswordReset(credentials, uri = '/api/auth/forgot') {
-        var url = this.serverUrlBase + uri;
+        var url = this.serverUri + uri;
         return new Promise((resolve, reject) => {
             this.http.post(url, credentials)
                 .then((data) => {
@@ -84,7 +85,7 @@ class SecurityService {
      * @returns {Promise}
      */
     resetUserPassword(passwordDetails, uri) {
-        var url = this.serverUrlBase + uri;
+        var url = this.serverUri + uri;
         return new Promise((resolve, reject) => {
             this.http.post(url, passwordDetails)
                 .then((data) => {

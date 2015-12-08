@@ -7,6 +7,7 @@ import 'bootstrap';
 import 'angular-ui-router';
 import 'ocLazyLoad';
 import 'ui-router-stateHelper';
+import 'angular-local-storage';
 
 //Import common and routing module
 import {commonModule} from 'commons';
@@ -16,7 +17,8 @@ import futureRoutes from './routes.json!';
 import core from './packages/core';
 
 var appModuleName = 'app';
-var appModuleVendorDependencies = ['ui.router', 'ui.router.stateHelper', 'oc.lazyLoad', 'ngResource', 'common', 'app.core'];
+var appModuleVendorDependencies = ['ui.router', 'ui.router.stateHelper', 'oc.lazyLoad', 'ngResource',
+    'LocalStorageModule', 'common', 'app.core'];
 
 let app = angular.module(appModuleName, appModuleVendorDependencies);
 
@@ -32,10 +34,6 @@ app.config(($urlRouterProvider, $locationProvider, $stateProvider, $httpProvider
 
     $httpProvider.defaults.useXDomain = true;
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
-});
-
-app.run(() => {
-
 });
 
 /**

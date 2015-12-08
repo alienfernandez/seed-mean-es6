@@ -23,8 +23,7 @@ module.exports = {
     },
     // sessionSecret should be changed for security measures and concerns
     sessionSecret: 'MEANRR_ES6',
-    // sessionKey is set to the generic sessionId key used by PHP applications
-    // for obsecurity reasons
+    // sessionKey is set to the generic sessionId key used by PHP applications for obsecurity reasons
     sessionKey: 'sessionId',
     redisSessionSecret: 'eVCbCFxUUG1kq3x5U9tuzUOkg',
     sessionCollection: 'sessions',

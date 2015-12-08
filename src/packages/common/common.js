@@ -3,13 +3,17 @@ import commonModule from './commonModule';
 
 //Constants
 import './constants/responseTypeConstant';
-import './constants/appConstant.development';
+import './constants/development';
+//import './constants/production';
 
 //provider
 import './providers/lagoProvider';
 
 //Import factories
 import './components/util/index';
+
+//Import services
+import './services/baseHttpService';
 
 //Directives
 import './components/flash/index';

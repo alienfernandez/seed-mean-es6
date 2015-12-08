@@ -57,10 +57,7 @@ coreModule.config(($stateProvider, $locationProvider, $httpProvider, $urlRouterP
 });
 
 coreModule.run(($rootScope, $state, AuthenticationService) => {
-    console.log("Run core module");
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
-        console.log('toState', toState)
-        console.log('toParams', toParams)
         if (toState.data && toState.data.roles && toState.data.roles.length > 0) {
             var allowed = false;
             toState.data.roles.forEach(function (role) {
