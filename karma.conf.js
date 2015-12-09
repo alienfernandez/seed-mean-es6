@@ -1,88 +1,76 @@
-'use strict';
-
-/**
- * Module dependencies.
- */
-var _ = require('lodash'),
-    defaultAssets = require('./config/assets/default'),
-    testAssets = require('./config/assets/test'),
-    testConfig = require('./config/env/test'),
-    karmaReporters = ['progress'];
-
-if (testConfig.coverage) {
-    karmaReporters.push('coverage');
-}
-
 // Karma configuration
-module.exports = function (karmaConfig) {
-    karmaConfig.set({
-        // Frameworks to use
-        frameworks: ['jasmine'],
-        preprocessors: {
-            'src/packages/*/web/views/**/*.html': ['ng-html2js'],
-            'src/packages/*/web/*.js': ['coverage'],
-            'src/packages/*/web/controllers/*.js': ['coverage'],
-            'src/packages/*/web/directives/*.js': ['coverage'],
-            'src/packages/*/web/services/*.js': ['coverage']
-        },
-        ngHtml2JsPreprocessor: {
-            moduleName: 'meanrr',
+// ulimit -n 10480
+module.exports = function (config) {
+    config.set({
 
-            cacheIdFromPath: function (filepath) {
-                return filepath;
-            },
-        },
-        // List of files / patterns to load in the browser
-        files: _.union(defaultAssets.client.lib.js, defaultAssets.client.lib.tests, defaultAssets.client.js,
-            testAssets.tests.client, defaultAssets.client.views),
+        // base path that will be used to resolve all patterns (eg. files, exclude)
+        basePath: '',
 
-        // Test results reporter to use
-        // Possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'
-        reporters: karmaReporters,
+        // frameworks to use
+        // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
+        frameworks: ['jspm', 'jasmine'],
 
-        // Configure the coverage reporter
-        coverageReporter: {
-            dir: 'coverage/client',
-            reporters: [
-                // Reporters not supporting the `file` property
-                {type: 'html', subdir: 'report-html'},
-                {type: 'lcov', subdir: 'report-lcov'},
-                // Output coverage to console
-                {type: 'text'}
+        // start these browsers
+        // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
+        browsers: ['Chrome'],
+
+        // test results reporter to use
+        // possible values: 'dots', 'progress'
+        // available reporters: https://npmjs.org/browse/keyword/karma-reporter
+        reporters: ['progress', 'coverage'],
+
+        // Continuous Integration mode
+        // if true, Karma captures browsers, runs the tests and exits
+        singleRun: true,
+
+        // enable / disable colors in the output (reporters and logs)
+        colors: true,
+
+        // list of files / patterns to load in the browser
+        files: [],
+
+        jspm: {
+            // Edit this to your needs
+            config: 'public/system.config.js',
+            loadFiles: [
+                'src/packages/**/test/**/*.js'
             ],
-            instrumenterOptions: {
-                istanbul: {noCompact: true}
+            serveFiles: [
+                'public/**/**'
+            ]
+        },
+
+        //proxies: {
+        //  '/base/app': '/base/dist/app',
+        //  '/base/common': '/base/dist/common',
+        //  '/jspm_packages': '/base/jspm_packages'
+        //},
+
+        // list of files to exclude
+        exclude: [],
+
+        // level of logging
+        // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
+        logLevel: config.LOG_INFO,
+
+        // preprocess matching files before serving them to the browser
+        // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
+        preprocessors: {
+            'src/**/tests/web/*.js': ['babel', 'coverage']
+        },
+
+        'babelPreprocessor': {
+            options: {
+                sourceMap: 'inline',
+                modules: 'system'
             }
         },
 
-        // Web server port
-        port: 9876,
+        // optionally, configure the reporter
+        coverageReporter: {
+            type: 'html',
+            dir: 'coverage/'
+        }
 
-        // Enable / disable colors in the output (reporters and logs)
-        colors: true,
-
-        // Level of logging
-        // Possible values: karmaConfig.LOG_DISABLE || karmaConfig.LOG_ERROR || karmaConfig.LOG_WARN || karmaConfig.LOG_INFO || karmaConfig.LOG_DEBUG
-        logLevel: karmaConfig.LOG_INFO,
-
-        // Enable / disable watching file and executing tests whenever any file changes
-        autoWatch: true,
-
-        // Start these browsers, currently available:
-        // - Chrome
-        // - ChromeCanary
-        // - Firefox
-        // - Opera
-        // - Safari (only Mac)
-        // - PhantomJS
-        // - IE (only Windows)
-        browsers: ['Chrome', 'Firefox'],
-
-        // If browser does not capture in given timeout [ms], kill it
-        captureTimeout: 60000,
-
-        // Continuous Integration mode
-        // If true, it capture browsers, run tests and exit
-        singleRun: true
     });
 };

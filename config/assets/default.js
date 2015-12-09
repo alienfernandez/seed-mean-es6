@@ -8,10 +8,12 @@ module.exports = {
                 'public/jspm_packages/github/twbs/bootstrap@3.3.5/css/bootstrap-theme.css'
             ],
             js: [
+                'public/jspm_packages/system.js',
+                'public/system.config.js',
                 'public/jspm_packages/github/angular/bower-angular@1.4.8/angular.js',
                 'public/jspm_packages/github/angular/bower-angular-resource@1.4.8/angular-resource.js',
                 'public/jspm_packages/github/angular/bower-angular-animate@1.4.7/angular-animate.js',
-                'public/jspm_packages/github/angular-ui/ui-router@0.2.15/angular-ui-router.js'
+                'public/jspm_packages/github/angular-ui/ui-router@0.2.15/angular-ui-router.js',
             ],
             tests: ['public/jspm_packages/github/angular/bower-angular-mocks@1.4.8/angular-mocks.js']
         },
@@ -25,7 +27,7 @@ module.exports = {
             'src/packages/**/web/assets/sass/*.scss'
         ],
         js: [
-            'src/packages/**/web/*.js',
+            'src/packages/**/*.js',
             'src/packages/**/web/**/*.js'
         ],
         publicJs: [
@@ -33,6 +35,7 @@ module.exports = {
             'public/app/packages/**/web/**/*.js'
         ],
         views: ['src/packages/**/web/views/**/*.html'],
+        publicViews: ['public/app/packages/**/web/views/**/*.html'],
         allJS: ['app/packages/**/web/**/*.js']
     },
     server: {

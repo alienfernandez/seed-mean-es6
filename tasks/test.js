@@ -8,7 +8,10 @@ var gulp = require('gulp'),
     eslint = require('gulp-eslint'),
     defaultAssets = require('../config/assets/default'),
     testAssets = require('../config/assets/test'),
-    runSequence = require('run-sequence');
+    runSequence = require('run-sequence'),
+    mocha = require('gulp-mocha');
+
+var KarmaServer = require('karma').Server;
 
 // CSS linting task
 gulp.task('csslint', function (done) {
@@ -67,7 +70,7 @@ gulp.task('mocha', function (done) {
         mongoose.loadModels();
         // Run the tests
         gulp.src(testAssets.tests.server)
-            .pipe(plugins.mocha({
+            .pipe(mocha({
                 reporter: 'spec',
                 timeout: 10000
             }))
@@ -87,12 +90,10 @@ gulp.task('mocha', function (done) {
 
 // Karma test runner task
 gulp.task('karma', function (done) {
-    return gulp.src([])
-        .pipe(plugins.karma({
-            configFile: '../karma.conf.js',
-            action: 'run',
-            singleRun: true
-        }));
+    new KarmaServer({
+        configFile: __dirname + '/../karma.conf.js',
+        singleRun: true
+    }, done).start();
 });
 
 // Lint CSS and JavaScript files.
