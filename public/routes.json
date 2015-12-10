@@ -1,8 +1,26 @@
 [
   {
-    "stateName": "main",
+    "stateName": "home",
     "urlPrefix": "/",
     "type": "load",
-    "src": "packages/main"
+    "src": "packages/core"
+  },
+  {
+    "stateName": "authentication",
+    "urlPrefix": "/",
+    "type": "load",
+    "src": "packages/security"
+  },
+  {
+    "stateName": "user",
+    "urlPrefix": "/users/:userId",
+    "type": "load",
+    "src": "packages/security"
+  },
+  {
+    "stateName": "articles",
+    "urlPrefix": "/articles/:userId",
+    "type": "load",
+    "src": "packages/blog"
   }
 ]

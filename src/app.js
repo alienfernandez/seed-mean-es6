@@ -10,6 +10,8 @@ import 'ocLazyLoad';
 import 'ui-router-stateHelper';
 import 'angular-local-storage';
 import 'toastr';
+import 'angular-validation';
+//import 'validations-rules';
 
 //Import common and routing module
 import {commonModule} from 'commons';
@@ -20,7 +22,7 @@ import core from './packages/core';
 
 var appModuleName = 'app';
 var appModuleVendorDependencies = ['ui.router', 'ui.router.stateHelper', 'oc.lazyLoad', 'ngResource', 'ngAnimate',
-    'toastr', 'LocalStorageModule', 'common', 'app.core'];
+    'toastr', 'validation', 'validation.rule', 'LocalStorageModule', 'common', 'app.core'];
 
 let app = angular.module(appModuleName, appModuleVendorDependencies);
 
@@ -29,13 +31,32 @@ let app = angular.module(appModuleName, appModuleVendorDependencies);
  */
 app.config(routing(app, futureRoutes));
 
-app.config(($urlRouterProvider, $locationProvider, $stateProvider, $httpProvider, toastrConfig) => {
+app.config(($urlRouterProvider, $locationProvider, $stateProvider, $httpProvider,
+            toastrConfig, $validationProvider) => {
     //$locationProvider.html5Mode(true);
     $httpProvider.useApplyAsync(true);
     $urlRouterProvider.otherwise('/');
 
     $httpProvider.defaults.useXDomain = true;
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
+
+    //----------- Validators config ---------------------------
+    angular.extend($validationProvider, {
+        validCallback: function (element) {
+            //$(element).closest('div.form-group').find('label.has-error').hide();
+            $(element).parents('.form-group:first').removeClass('has-error');
+        },
+        invalidCallback: function (element) {
+            //Mover error para el tag con class form-group
+            $(element).parents('.form-group:first').addClass('has-error');
+        }
+    });
+
+    $validationProvider.setErrorHTML(function (msg) {
+        return '<p class="control-label pull-left has-error">' + msg + '</p>';
+    });
+    $validationProvider.showSuccessMessage = false;
+    //-------------------------------------------------------
 
     //Config toastr
     angular.extend(toastrConfig, {
