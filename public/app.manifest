@@ -346,10 +346,9 @@ jspm_packages/npm/core-js@0.9.18/modules/web.immediate.js
 jspm_packages/npm/core-js@0.9.18/modules/web.timers.js
 jspm_packages/npm/ui-router-extras@0.0.14/release/ct-ui-router-extras.js
 jspm_packages/npm/ui-router-extras@0.0.14/release/ct-ui-router-extras.min.js
-app/packages/common/components/flash/index.js
 app/packages/common/components/validation/index.js
-app/packages/common/lib/http/HttpService.js
-app/packages/common/lib/core/Constant.js
+app/packages/common/components/http-util/HttpService.js
+app/packages/common/components/core/Constant.js
 jspm_packages/github/gsklee/ngStorage@0.3.7/test/spec.js
 jspm_packages/github/ocombe/ocLazyLoad@1.0.2/dist/ocLazyLoad.js
 jspm_packages/github/ocombe/ocLazyLoad@1.0.2/dist/ocLazyLoad.min.js

@@ -1,5 +1,5 @@
 import commonModule from '../commonModule';
-import Constant from '../lib/core/Constant';
+import Constant from '../components/core/Constant';
 
 var devConstants = {
     app: {

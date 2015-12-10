@@ -12,7 +12,7 @@ import './providers/lagoProvider';
 import './components/util/index';
 
 //Import services
-import './services/baseHttpService';
+import './components/http-util/services/baseHttpService';
 
 //Directives
 import './components/validation/index';

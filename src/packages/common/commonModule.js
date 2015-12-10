@@ -1,5 +1,5 @@
 import angular from 'angular';
-import Constant from './lib/core/Constant';
+import Constant from './components/core/Constant';
 //Import lodash
 import 'ng-lodash';
 

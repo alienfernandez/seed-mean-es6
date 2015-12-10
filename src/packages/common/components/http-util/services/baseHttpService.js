@@ -1,5 +1,5 @@
-import commonModule from '../commonModule';
-import {HttpService} from '../lib';
+import commonModule from '../../../commonModule';
+import HttpService from '../HttpService';
 
 class BaseHttpService extends HttpService {
     /*ngInject*/

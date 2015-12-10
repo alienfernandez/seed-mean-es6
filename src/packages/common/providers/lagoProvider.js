@@ -5,19 +5,19 @@ let _parent = '';
 
 class lagoProvider {
 
-  constructor() {
+    constructor() {
 
-  }
+    }
 
-  parent(newParent) {
-    return arguments.length ? (_parent = newParent) : _parent + '.';
-  }
+    parent(newParent) {
+        return arguments.length ? (_parent = newParent) : _parent + '.';
+    }
 
-  $get() {
-    return {
-      parent: _parent + '.'
-    };
-  }
+    $get() {
+        return {
+            parent: _parent + '.'
+        };
+    }
 }
 
 commonModule.provider('lago', lagoProvider);
