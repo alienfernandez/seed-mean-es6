@@ -3,7 +3,10 @@ import securityModule from '../../securityModule';
 class SecurityController {
 
     /*ngInject*/
-    constructor($state, $window, $location, AuthenticationService, SecurityService, LoadMask, $appConstants) {
+    constructor($state, $window, $location, AuthenticationService, SecurityService, LoadMask, toastr) {
+        console.log("toastr", toastr)
+        toastr.info('You are open signin page', 'Information');
+        toastr.error('Error example toast', 'Error');
         this.loadMask = LoadMask;
         this.loadMask.create('loadMaskData', "Espere por favor, autenticando ...", 'body');
         this.authentication = AuthenticationService;

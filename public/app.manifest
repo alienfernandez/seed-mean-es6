@@ -64,8 +64,6 @@ jspm_packages/npm/core-js@0.9.18/shim.js
 jspm_packages/npm/core-js@0.9.18/web.js
 jspm_packages/npm/process@0.10.1/browser.js
 jspm_packages/npm/process@0.10.1/index.js
-app/packages/common/constants/mimeTypeConstant.js
-app/packages/common/constants/responseTypeConstant.js
 app/packages/common/lib/index.js
 app/packages/common/providers/lagoProvider.js
 app/packages/common/providers/routing.js

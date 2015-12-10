@@ -2,7 +2,6 @@
 import commonModule from './commonModule';
 
 //Constants
-import './constants/responseTypeConstant';
 import './constants/development';
 //import './constants/production';
 
@@ -16,7 +15,6 @@ import './components/util/index';
 import './services/baseHttpService';
 
 //Directives
-import './components/flash/index';
 import './components/validation/index';
 import './components/mask/index';
 import './components/data-view/index';

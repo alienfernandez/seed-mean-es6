@@ -1,6 +1,7 @@
 //Import resources
 import 'jquery';
 import angular from 'angular';
+import 'angular-animate';
 import 'angular-resource';
 import 'font-awesome';
 import 'bootstrap';
@@ -8,6 +9,7 @@ import 'angular-ui-router';
 import 'ocLazyLoad';
 import 'ui-router-stateHelper';
 import 'angular-local-storage';
+import 'toastr';
 
 //Import common and routing module
 import {commonModule} from 'commons';
@@ -17,8 +19,8 @@ import futureRoutes from './routes.json!';
 import core from './packages/core';
 
 var appModuleName = 'app';
-var appModuleVendorDependencies = ['ui.router', 'ui.router.stateHelper', 'oc.lazyLoad', 'ngResource',
-    'LocalStorageModule', 'common', 'app.core'];
+var appModuleVendorDependencies = ['ui.router', 'ui.router.stateHelper', 'oc.lazyLoad', 'ngResource', 'ngAnimate',
+    'toastr', 'LocalStorageModule', 'common', 'app.core'];
 
 let app = angular.module(appModuleName, appModuleVendorDependencies);
 
@@ -27,13 +29,41 @@ let app = angular.module(appModuleName, appModuleVendorDependencies);
  */
 app.config(routing(app, futureRoutes));
 
-app.config(($urlRouterProvider, $locationProvider, $stateProvider, $httpProvider) => {
+app.config(($urlRouterProvider, $locationProvider, $stateProvider, $httpProvider, toastrConfig) => {
     //$locationProvider.html5Mode(true);
     $httpProvider.useApplyAsync(true);
     $urlRouterProvider.otherwise('/');
 
     $httpProvider.defaults.useXDomain = true;
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
+
+    //Config toastr
+    angular.extend(toastrConfig, {
+        autoDismiss: false,
+        allowHtml: true,
+        closeButton: true,
+        containerId: 'toast-container',
+        maxOpened: 0,
+        newestOnTop: true,
+        positionClass: 'toast-bottom-right',
+        preventDuplicates: false,
+        preventOpenDuplicates: false,
+        target: 'body',
+        closeHtml: '<button>&times;</button>',
+        onHidden: null,
+        onShown: null,
+        onTap: null,
+        iconClasses: {
+            error: 'toast-error',
+            info: 'toast-info',
+            success: 'toast-success',
+            warning: 'toast-warning'
+        },
+        progressBar: true,
+        timeOut: 5000,
+        titleClass: 'toast-title',
+        toastClass: 'toast'
+    });
 });
 
 /**

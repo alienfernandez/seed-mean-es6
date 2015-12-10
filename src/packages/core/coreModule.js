@@ -1,5 +1,4 @@
 import angular from 'angular';
-
 import {commonModule} from 'commons';
 
 import security from '../security';
