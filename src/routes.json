@@ -22,5 +22,11 @@
     "urlPrefix": "/articles/:userId",
     "type": "load",
     "src": "packages/blog"
+  },
+  {
+    "stateName": "blog-state",
+    "urlPrefix": "/blog",
+    "type": "load",
+    "src": "packages/blog"
   }
 ]

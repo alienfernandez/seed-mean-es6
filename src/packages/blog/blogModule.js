@@ -1,15 +1,19 @@
 import angular from 'angular';
 
+//Admin views
 import AddArticleTemplate from './web/views/admin/add-article-view.tpl';
 import EditArticleTemplate from './web/views/admin/edit-article-view.tpl';
 import ArticleListTemplate from './web/views/admin/article-list-view.tpl';
+//Blog views
+import BlogArticleListTemplate from './web/views/blog/article-list-view.tpl';
 
 import {commonModule} from 'commons';
 
 let blogModule = angular.module('app.blog', [
     AddArticleTemplate.name,
     EditArticleTemplate.name,
-    ArticleListTemplate.name
+    ArticleListTemplate.name,
+    BlogArticleListTemplate.name
 ])
     .config(($stateProvider) => {
         $stateProvider.state('add-article', {
@@ -33,6 +37,11 @@ let blogModule = angular.module('app.blog', [
             data: {
                 roles: ['user', 'admin']
             }
+        }).state('blog-article-list', {
+            url: '/blog',
+            controller: 'BlogController',
+            controllerAs: 'blogCtrl',
+            templateUrl: BlogArticleListTemplate.name
         });
     });
 
