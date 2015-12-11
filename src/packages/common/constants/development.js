@@ -4,8 +4,8 @@ import Constant from '../components/core/Constant';
 var devConstants = {
     app: {
         title: 'MEANRR.ES6',
-        description: 'Full-Stack JavaScript with MongoDB, Express, AngularJS, Node.js and React.js',
-        keywords: 'MongoDB, Express, AngularJS, Node.js, React.js'
+        description: 'Full-Stack JavaScript with MongoDB, Express, AngularJS, Node.js, React.js and Redis',
+        keywords: 'MongoDB, Express, AngularJS, Node.js, React.js, Redis'
     },
     port: 8001,
     server: 'http://localhost',

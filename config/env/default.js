@@ -3,8 +3,8 @@
 module.exports = {
     app: {
         title: 'MEANRR.ES6',
-        description: 'Full-Stack JavaScript with MongoDB, Express, AngularJS, Node.js and React.js',
-        keywords: 'MongoDB, Express, AngularJS, Node.js, React.js',
+        description: 'Full-Stack JavaScript with MongoDB, Express, AngularJS, Node.js, React.js and Redis',
+        keywords: 'MongoDB, Express, AngularJS, Node.js, React.js, Redis',
         googleAnalyticsTrackingID: process.env.GOOGLE_ANALYTICS_TRACKING_ID || 'GOOGLE_ANALYTICS_TRACKING_ID'
     },
     port: process.env.PORT || 8001,
@@ -28,5 +28,13 @@ module.exports = {
     redisSessionSecret: 'eVCbCFxUUG1kq3x5U9tuzUOkg',
     sessionCollection: 'sessions',
     logo: 'public/app/packages/core/web/assets/img/brand/logo.png',
-    favicon: 'public/app/packages/core/web/assets/img/brand/favicon.ico'
+    favicon: 'public/app/packages/core/web/assets/img/brand/favicon.ico',
+    uploads: {
+        profileUpload: {
+            dest: './public/app/packages/security/web/img/profile/uploads/', // Profile upload destination path
+            limits: {
+                fileSize: 1 * 1024 * 1024 // Max file size in bytes (1 MB)
+            }
+        }
+    }
 };

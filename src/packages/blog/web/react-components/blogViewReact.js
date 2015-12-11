@@ -25,9 +25,12 @@ export default class BlogView extends React.Component {
     render() {
         let itemsShow = [];
         console.log("this.props.store", this.props.store)
-        this.props.store.forEach((dataItem, index) => {
+        angular.forEach(this.props.store, (dataItem, index) => {
             itemsShow.push(this.createItem(dataItem, index));
         });
+        //this.props.store.forEach((dataItem, index) => {
+        //    itemsShow.push(this.createItem(dataItem, index));
+        //});
         this.props.items = itemsShow;
         return React.DOM.div({}, itemsShow);
     }
