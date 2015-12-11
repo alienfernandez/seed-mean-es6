@@ -11,6 +11,9 @@ class BlogController {
 
     find() {
         this.articles = this.articleResource.query();
+        this.options = {
+            store: this.articles
+        }
     }
 
     // Find existing Article
