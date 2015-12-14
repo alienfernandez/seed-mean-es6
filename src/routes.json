@@ -28,5 +28,11 @@
     "urlPrefix": "/blog",
     "type": "load",
     "src": "packages/blog"
+  },
+  {
+    "stateName": "chat",
+    "urlPrefix": "/chat",
+    "type": "load",
+    "src": "packages/chat"
   }
 ]

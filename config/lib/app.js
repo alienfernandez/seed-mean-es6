@@ -35,17 +35,18 @@ module.exports.start = function start(callback) {
     var _this = this;
 
     _this.init(function (app, db, config) {
+        var secure = (config.secure && config.secure.ssl) ? true : false;
         //Https server
-        var secure = false;
-        if (config.secure && config.secure.ssl) {
-            secure = true;
-            var httpsConfig = {
-                key: fs.readFileSync(config.secure.privateKey),
-                cert: fs.readFileSync(config.secure.certificate)
-            };
-            app = https.createServer(httpsConfig, app);
-            config.port = 443;
-        }
+        //var secure = false;
+        //if (config.secure && config.secure.ssl) {
+        //    secure = true;
+        //    var httpsConfig = {
+        //        key: fs.readFileSync(config.secure.privateKey),
+        //        cert: fs.readFileSync(config.secure.certificate)
+        //    };
+        //    app = https.createServer(httpsConfig, app);
+        //    config.port = 443;
+        //}
         // Start the app by listening on <port>
         app.listen(config.port, function () {
             // Logging initialization

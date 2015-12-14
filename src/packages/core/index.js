@@ -2,6 +2,7 @@ import coreModule from './coreModule';
 
 //Services
 import './web/services/interceptors/authInterceptorService';
+import './web/services/socketIoService';
 
 //Controllers
 import './web/controllers/homeController';

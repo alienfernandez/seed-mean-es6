@@ -10,7 +10,7 @@ var config = require('../config'),
     logger = require('./logger'),
     bodyParser = require('body-parser'),
     session = require('express-session'),
-    //MongoStore = require('connect-mongo')(session),
+//MongoStore = require('connect-mongo')(session),
     RedisStore = require('connect-redis')(session),
     favicon = require('serve-favicon'),
     compress = require('compression'),
@@ -195,13 +195,21 @@ module.exports.initErrorRoutes = function (app) {
 /**
  * Configure Socket.io
  */
-//module.exports.configureSocketIO = function (app, db) {
-//    // Load the Socket.io configuration
-//    var server = require('./socket.io')(app, db);
-//
-//    // Return server object
-//    return server;
-//};
+module.exports.configureSocketIO = function (app, db) {
+    // Load the Socket.io configuration
+    var server = require('./socket.io')(app, db);
+
+    // Return server object
+    return server;
+};
+
+/**
+ * Configure cors
+ */
+module.exports.initCors = function (app) {
+    //Enable cors
+    app.use(cors());
+};
 
 /**
  * Initialize the Express application
@@ -240,11 +248,11 @@ module.exports.init = function (db) {
     // Initialize error routes
     this.initErrorRoutes(app);
 
-    // Configure Socket.io
-    //app = this.configureSocketIO(app, db);
+    // Initialize cors
+    this.initCors(app);
 
-    //Enable cors
-    app.use(cors());
+    // Configure Socket.io
+    app = this.configureSocketIO(app, db);
 
     return app;
 };
