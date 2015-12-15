@@ -5,11 +5,13 @@
  */
 var config = require('../config'),
     express = require('express'),
+    cors = require('cors'),
     morgan = require('morgan'),
     logger = require('./logger'),
     bodyParser = require('body-parser'),
     session = require('express-session'),
-    MongoStore = require('connect-mongo')(session),
+//MongoStore = require('connect-mongo')(session),
+    RedisStore = require('connect-redis')(session),
     favicon = require('serve-favicon'),
     compress = require('compression'),
     methodOverride = require('method-override'),
@@ -17,6 +19,7 @@ var config = require('../config'),
     helmet = require('helmet'),
     flash = require('connect-flash'),
     consolidate = require('consolidate'),
+    redisClient = require('./redis'),
     path = require('path');
 /**
  * Initialize local variables
@@ -65,7 +68,7 @@ module.exports.initMiddleware = function (app) {
     }));
 
     // Initialize favicon middleware
-    //app.use(favicon(app.locals.favicon));
+    app.use(favicon(app.locals.favicon));
 
     // Enable logger (morgan)
     app.use(morgan(logger.getFormat(), logger.getOptions()));
@@ -105,10 +108,14 @@ module.exports.initSession = function (app, db) {
             secure: config.sessionCookie.secure && config.secure.ssl
         },
         key: config.sessionKey,
-        store: new MongoStore({
-            mongooseConnection: db.connection,
-            collection: config.sessionCollection
+        store: new RedisStore({
+            secret: config.redisSessionSecret,
+            client: redisClient
         })
+        //store: new MongoStore({
+        //    mongooseConnection: db.connection,
+        //    collection: config.sessionCollection
+        //})
     }));
 };
 
@@ -142,15 +149,10 @@ module.exports.initHelmetHeaders = function (app) {
 /**
  * Configure the modules static routes
  */
-//module.exports.initModulesClientRoutes = function (app) {
-//    // Setting the app router and static folder
-//    app.use('/', express.static(path.resolve('./public')));
-//
-//    // Globbing static routing
-//    config.folders.client.forEach(function (staticPath) {
-//        app.use(staticPath, express.static(path.resolve('./' + staticPath)));
-//    });
-//};
+module.exports.initModulesClientRoutes = function (app) {
+    // Setting the app router and static folder
+    app.use('/', express.static(path.resolve('./public')));
+};
 
 /**
  * Configure the modules ACL policies
@@ -193,13 +195,21 @@ module.exports.initErrorRoutes = function (app) {
 /**
  * Configure Socket.io
  */
-//module.exports.configureSocketIO = function (app, db) {
-//    // Load the Socket.io configuration
-//    var server = require('./socket.io')(app, db);
-//
-//    // Return server object
-//    return server;
-//};
+module.exports.configureSocketIO = function (app, db) {
+    // Load the Socket.io configuration
+    var server = require('./socket.io')(app, db);
+
+    // Return server object
+    return server;
+};
+
+/**
+ * Configure cors
+ */
+module.exports.initCors = function (app) {
+    //Enable cors
+    app.use(cors());
+};
 
 /**
  * Initialize the Express application
@@ -227,7 +237,7 @@ module.exports.init = function (db) {
     this.initHelmetHeaders(app);
 
     // Initialize modules static client routes
-    //this.initModulesClientRoutes(app);
+    this.initModulesClientRoutes(app);
 
     // Initialize modules server authorization policies
     this.initModulesServerPolicies(app);
@@ -238,8 +248,11 @@ module.exports.init = function (db) {
     // Initialize error routes
     this.initErrorRoutes(app);
 
+    // Initialize cors
+    this.initCors(app);
+
     // Configure Socket.io
-    //app = this.configureSocketIO(app, db);
+    app = this.configureSocketIO(app, db);
 
     return app;
 };

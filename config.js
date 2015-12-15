@@ -8,15 +8,17 @@ var compilerOptions = {
 
 var path = {
     source: ['src/**/*.js', '!src/**/server/**/*.js'],
+    allJsSource: ['src/**/*.js'],
     sourceES5: ['src/**/server/**/*.js'],
     html: '**/*.html',
     json: 'src/**/*.json',
     templates: 'src/**/*.html',
-    imputLess: 'src/assets/less/*.less',
-    inputSass: 'src/assets/sass/main.scss',
+    less: 'src/assets/less/*.less',
+    sass: 'src/assets/sass/main.scss',
     themes: ['app/assets/dark.css', 'app/assets/light.css'],
     themesOutput: 'public/assets/',
     output: 'public/app',
+    outputConfig: 'public/app/packages/common/config/env',
     outputCss: 'public/assets/css/',
     css: ['src/**/*.css', '!app/assets/**/*.css'],
 };

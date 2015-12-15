@@ -3,9 +3,10 @@ import commonModule from '../../../commonModule';
 class MaskreController {
 
     /*ngInject*/
-    constructor(lodash) {
+    constructor(lodash, StringUtil) {
         //Vars
         this._ = lodash;
+        this.stringUtil = StringUtil;
         this.flags = 'm';
         this.PASTE_EVENT = 'paste';
         this.KEYPRESS_EVENT = 'keypress';
@@ -33,7 +34,7 @@ class MaskreController {
                 event.preventDefault();
                 var selectionStart = 0;
                 if (event.type == this.KEYPRESS_EVENT) {
-                    strShow = (!options.checkAtLength) ? getTextValue($element, value, options) : value;
+                    strShow = (!options.checkAtLength) ? this.getTextValue($element, value, options) : value;
                     if (!this._.isEqual(strShow, $element.val())) {
                         selectionStart = $element[0].selectionStart + 1;
                     }
@@ -66,7 +67,7 @@ class MaskreController {
         }
         //Clean special chars
         if (options.cleanSpecialChars) {
-            textValue = cleanUpSpecialChars(textValue);
+            textValue = this.stringUtil.cleanUpSpecialChars(textValue);
         }
 
         //Selection start component
@@ -111,23 +112,24 @@ class MaskreController {
         if (options.maskRe) {
             var regExp = new RegExp(options.maskRe, this.flags);
             var pasteData = event.originalEvent.clipboardData.getData('text');
-            var valueDataPaste = getTextValue($element, pasteData, options);
-            //console.log('Regex: ' + regExp.test(pasteData) + " | pasteData: " + pasteData + " | length: " + valueData.length)
+            var valueDataPaste = this.getTextValue($element, pasteData, options);
+            console.log("event", event)
+            //console.log('Regex: ' + regExp.test(valueDataPaste) + " | pasteData: " + valueDataPaste + " | length: " + valueDataPaste.length)
             if (!regExp.test(valueDataPaste)) {
                 event.preventDefault();
             }
             //Verify length
-            if (!regExp.test(valueDataPaste) && !verifyLength(valueDataPaste, options.maxLength)) {
+            if (!regExp.test(valueDataPaste) && !this.verifyLength(valueDataPaste, options.maxLength)) {
                 event.preventDefault();
             } else {
-                if (!verifyLength(valueDataPaste, options.maxLength)) {
+                if (!this.verifyLength(valueDataPaste, options.maxLength)) {
                     event.preventDefault();
-                    changeTextValue(event, $element, ngModelCtrl, options, valueDataPaste);
+                    this.changeTextValue(event, $element, ngModelCtrl, options, valueDataPaste);
                 } else {
                     if (!regExp.test(valueDataPaste)) {
                         event.preventDefault();
                     } else {
-                        changeTextValue(event, $element, ngModelCtrl, options, valueDataPaste);
+                        this.changeTextValue(event, $element, ngModelCtrl, options, valueDataPaste);
                     }
                 }
             }
@@ -144,12 +146,12 @@ class MaskreController {
     validationMaskReCheck(event, $element, ngModelCtrl, options) {
         //If not Check at length
         if (!options.checkAtLength) {
-            validationMaskRe(event, $element, ngModelCtrl, options);
+            this.validationMaskRe(event, $element, ngModelCtrl, options);
         } else {
             var valElLength = $element.val().length;
             //Verify length of element
             if (options.checkAtLength == valElLength + 1) {
-                validationMaskRe(event, $element, ngModelCtrl, options);
+                this.validationMaskRe(event, $element, ngModelCtrl, options);
             }
         }
     }
@@ -166,24 +168,25 @@ class MaskreController {
             var regExp = new RegExp(options.maskRe, this.flags);
             var keyData = event.keyCode || event.charCode;
             var key = String.fromCharCode(keyData);
-            var strValidate = (!options.checkAtLength) ? key : getTextValue($element, key, options);
+            var strValidate = (!options.checkAtLength) ? key : this.getTextValue($element, key, options);
             //console.log('key-> ' + key + ": Keydata->" + keyData + " : " + "maskre-> " + options.maskRe + " =>" + regExp.test(strValidate));
             //Verify regex
-            if (!regExp.test(strValidate) && !verifyKeyInExcludes(event) && !excludeCombinationKeys(event)) {
+            if (!regExp.test(strValidate) && !this.verifyKeyInExcludes(event) && !this.excludeCombinationKeys(event)) {
                 //keypress
                 event.preventDefault();
-                changeTextValue(event, $element, ngModelCtrl, options);
+                this.changeTextValue(event, $element, ngModelCtrl, options);
             } else {
                 //Verify length
-                if (!verifyKeyInExcludes(event) && !verifyLength($element.val(), options.maxLength) && !excludeCombinationKeys(event)) {
+                if (!this.verifyKeyInExcludes(event) && !this.verifyLength($element.val(), options.maxLength) &&
+                    !this.excludeCombinationKeys(event)) {
                     event.preventDefault();
-                    changeTextValue(event, $element, ngModelCtrl, options, strValidate);
+                    this.changeTextValue(event, $element, ngModelCtrl, options, strValidate);
                 } else {
-                    if (!checkValidKey(event, options)) {
+                    if (!this.checkValidKey(event, options)) {
                         event.preventDefault();
                     } else {
                         //Set text without special chars
-                        changeTextValue(event, $element, ngModelCtrl, options, strValidate);
+                        this.changeTextValue(event, $element, ngModelCtrl, options, strValidate);
                     }
                 }
             }
@@ -237,7 +240,7 @@ class MaskreController {
      * @returns {boolean}
      */
     verifyKeyInExcludes(event, options) {
-        return this._.includes(excludeKeys(), event.keyCode) && !event.shiftKey;
+        return this._.includes(this.excludeKeys(), event.keyCode) && !event.shiftKey;
     }
 
     /**
@@ -261,8 +264,7 @@ class MaskReDirective {
             controller: MaskreController,
             controllerAs: 'maskreCtrl',
             bindToController: true,
-            link: this.link,
-            //scope: true
+            link: this.link
         };
 
         return directive;
@@ -283,12 +285,10 @@ class MaskReDirective {
         };
 
         $element.bind('keypress', (event) => {
-            console.info("scope: ", scope);
             scope.maskreCtrl.validationMaskReCheck(event, $element, ngModelCtrl, options);
         });
 
         $element.bind('paste', (event) => {
-            console.info("scope: ", scope);
             scope.maskreCtrl.validationOnPaste(event, $element, ngModelCtrl, options);
         });
     }

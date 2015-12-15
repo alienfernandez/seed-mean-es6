@@ -1,0 +1,97 @@
+<!-- The chat view -->
+<section class="container">
+    <div class="page-header">
+        <h1>Chat Example</h1>
+    </div>
+    <!-- The message form -->
+    <form class="col-xs-12 col-md-offset-4 col-md-4" ng-submit="chatCtrl.sendMessage();">
+        <fieldset class="row">
+            <div class="input-group">
+                <input type="text" id="messageText" name="messageText" class="form-control"
+                       ng-model="chatCtrl.messageText" placeholder="Enter new message">
+                <span class="input-group-btn">
+                  <button type="submit" class="btn btn-primary" ng-disabled="!chatCtrl.messageText.length">Send</button>
+                </span>
+            </div>
+        </fieldset>
+    </form>
+    <ul class="list-unstyled">
+        <!-- List all messages -->
+        <li class="col-xs-12 col-md-offset-4 col-md-4 chat-message" ng-repeat="message in chatCtrl.messages">
+            <small class="pull-right text-muted" ng-bind="message.created | date:'mediumTime'"></small>
+            <img ng-src="{{message.profileImageURL}}" alt="{{message.username}}" class="pull-left chat-profile-image"/>
+
+            <div class="pull-left chat-message-details">
+                <strong ng-bind="message.username"></strong>
+                <br>
+                <span ng-bind="message.text"></span>
+            </div>
+        </li>
+    </ul>
+
+
+    <!--<div class="row" id="chatContainer">-->
+        <!--<div class="col-md-12">-->
+            <!--<div class="panel panel-primary">-->
+                <!--<div class="panel-heading">-->
+                    <!--<span class="glyphicon glyphicon-comment"></span> Chat-->
+                    <!--<div class="btn-group pull-right">-->
+                        <!--<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">-->
+                            <!--<span class="glyphicon glyphicon-chevron-down"></span>-->
+                        <!--</button>-->
+                        <!--<ul class="dropdown-menu slidedown">-->
+                            <!--<li><a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-refresh">-->
+                            <!--</span>Refresh</a></li>-->
+                            <!--<li><a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-ok-sign">-->
+                            <!--</span>Available</a></li>-->
+                            <!--<li><a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-remove">-->
+                            <!--</span>Busy</a></li>-->
+                            <!--<li><a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-time"></span>-->
+                                <!--Away</a></li>-->
+                            <!--<li class="divider"></li>-->
+                            <!--<li><a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-off"></span>-->
+                                <!--Sign Out</a></li>-->
+                        <!--</ul>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="panel-body">-->
+                    <!--<ul class="chat">-->
+                        <!--<li class="left clearfix" ng-repeat="message in chatCtrl.messages">-->
+                            <!--<span class="chat-img pull-left">-->
+                                <!--<img ng-src="{{message.profileImageURL}}" alt="{{message.username}}"-->
+                                     <!--class="img-circle"/>-->
+                            <!--</span>-->
+
+                            <!--<div class="chat-body clearfix">-->
+                                <!--<div class="header">-->
+                                    <!--<strong class="primary-font">{{message.username}}</strong>-->
+                                    <!--<small class="pull-right text-muted">-->
+                                        <!--<span class="glyphicon glyphicon-time"></span> {{message.created |-->
+                                        <!--date:'mediumTime'}}-->
+                                    <!--</small>-->
+                                <!--</div>-->
+                                <!--<p>-->
+                                    <!--{{message.text}}-->
+                                <!--</p>-->
+                            <!--</div>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+                <!--<div class="panel-footer">-->
+                    <!--<div class="input-group">-->
+                        <!--<form class="col-xs-12 col-md-offset-4 col-md-4" ng-submit="chatCtrl.sendMessage();">-->
+                            <!--<input id="btn-input" type="text" class="form-control input-sm"-->
+                                   <!--ng-model="chatCtrl.messageText" placeholder="Type your message here..."/>-->
+                            <!--<span class="input-group-btn">-->
+                                <!--<button type="submit" class="btn btn-warning btn-sm" id="btn-chat"-->
+                                        <!--ng-disabled="!chatCtrl.messageText.length">-->
+                                    <!--Send-->
+                                <!--</button>-->
+                            <!--</span>-->
+                        <!--</form>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+</section>

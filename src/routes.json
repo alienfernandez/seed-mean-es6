@@ -1,8 +1,38 @@
 [
   {
-    "stateName": "main",
+    "stateName": "home",
     "urlPrefix": "/",
     "type": "load",
-    "src": "packages/main"
+    "src": "packages/core"
+  },
+  {
+    "stateName": "authentication",
+    "urlPrefix": "/",
+    "type": "load",
+    "src": "packages/security"
+  },
+  {
+    "stateName": "user",
+    "urlPrefix": "/users/:userId",
+    "type": "load",
+    "src": "packages/security"
+  },
+  {
+    "stateName": "article",
+    "urlPrefix": "/articles/:userId",
+    "type": "load",
+    "src": "packages/blog"
+  },
+  {
+    "stateName": "blog-state",
+    "urlPrefix": "/blog",
+    "type": "load",
+    "src": "packages/blog"
+  },
+  {
+    "stateName": "chat",
+    "urlPrefix": "/chat",
+    "type": "load",
+    "src": "packages/chat"
   }
 ]

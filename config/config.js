@@ -52,8 +52,6 @@ var getGlobbedPaths = function (globPatterns, excludes) {
  * Validate NODE_ENV existence
  */
 var validateEnvironmentVariable = function () {
-    //TODO delete
-    process.env.NODE_ENV = 'development';
     var environmentFiles = glob.sync('./config/env/' + process.env.NODE_ENV + '.js');
     console.log();
     if (!environmentFiles.length) {
@@ -153,6 +151,10 @@ var initGlobalConfig = function () {
 
     // Merge config files
     var config = _.merge(defaultConfig, environmentConfig);
+
+    // read package.json for MEANRR project information
+    var pkg = require(path.resolve('./package.json'));
+    config.meanrr = pkg;
 
     // We only extend the config object with the local.js custom/local environment if we are on
     // production or development environment. If test environment is used we don't merge it with local.js

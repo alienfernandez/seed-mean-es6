@@ -8,13 +8,17 @@ module.exports = {
     },
     port: process.env.PORT || 8443,
     db: {
-        uri: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://' + (process.env.DB_1_PORT_27017_TCP_ADDR || 'localhost') + '/mean',
+        uri: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://' + (process.env.DB_1_PORT_27017_TCP_ADDR || 'localhost') + '/mean_prod',
         options: {
             user: '',
             pass: ''
         },
         // Enable mongoose debug mode
         debug: process.env.MONGODB_DEBUG || false
+    },
+    redis: {
+        "ip": "127.0.0.1",
+        "port": 6379
     },
     log: {
         // Can specify one of 'combined', 'common', 'dev', 'short', 'tiny'

@@ -2,9 +2,9 @@
 
 module.exports = {
     app: {
-        title: 'MEAN.ES6',
-        description: 'Full-Stack JavaScript with MongoDB, Express, AngularJS, and Node.js',
-        keywords: 'MongoDB, Express, AngularJS, Node.js',
+        title: 'MEANRR.ES6',
+        description: 'Full-Stack JavaScript with MongoDB, Express, AngularJS, Node.js, React.js and Redis',
+        keywords: 'MongoDB, Express, AngularJS, Node.js, React.js, Redis',
         googleAnalyticsTrackingID: process.env.GOOGLE_ANALYTICS_TRACKING_ID || 'GOOGLE_ANALYTICS_TRACKING_ID'
     },
     port: process.env.PORT || 8000,
@@ -22,11 +22,19 @@ module.exports = {
         secure: false
     },
     // sessionSecret should be changed for security measures and concerns
-    sessionSecret: 'MEAN_ES6',
-    // sessionKey is set to the generic sessionId key used by PHP applications
-    // for obsecurity reasons
+    sessionSecret: 'MEANRR_ES6',
+    // sessionKey is set to the generic sessionId key used by PHP applications for obsecurity reasons
     sessionKey: 'sessionId',
+    redisSessionSecret: 'eVCbCFxUUG1kq3x5U9tuzUOkg',
     sessionCollection: 'sessions',
-    logo: 'modules/core/client/img/brand/logo.png',
-    favicon: 'modules/core/client/img/brand/favicon.ico'
+    logo: 'public/app/packages/core/web/assets/img/brand/logo.png',
+    favicon: 'public/app/packages/core/web/assets/img/brand/favicon.ico',
+    uploads: {
+        profileUpload: {
+            dest: './public/app/packages/security/web/img/profile/uploads/', // Profile upload destination path
+            limits: {
+                fileSize: 1 * 1024 * 1024 // Max file size in bytes (1 MB)
+            }
+        }
+    }
 };
