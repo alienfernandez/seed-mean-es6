@@ -17,7 +17,7 @@ Make sure you have installed all of the following prerequisites on your developm
 * *Node.js* - [Download & Install Node.js](https://nodejs.org/en/download/) and the npm package manager. If you encounter any problems, you can also use this [GitHub Gist](https://gist.github.com/isaacs/579814) to install Node.js. 
 * *MongoDB* - [Download & Install MongoDB](http://www.mongodb.org/downloads), and make sure it's running on the default port (27017).
 * *Redis* - [Download & Install Redis](http://redis.io/), and make sure it's running on the default port (6379).
-* *Git* - Get git using a package manager or <a href="http://git-scm.com/downloads">download</a> it.
+* *Git* - Get git using a package manager or [download](http://git-scm.com/downloads/) it.
 
 If you're using ubuntu, this is the preferred repository to use...
 
@@ -30,13 +30,13 @@ $ sudo apt-get install nodejs
 ### Windows
 * *Node.js* - [Download & Install Node.js](https://nodejs.org/en/download/) and the npm package manager. If you encounter any problems, you can also use this [GitHub Gist](https://gist.github.com/isaacs/579814) to install Node.js. 
 * *MongoDB* - [Download & Install MongoDB](http://www.mongodb.org/downloads), and make sure it's running on the default port (27017).
-* *Git* - The easiest way to install git and then run the rest of the commands through the *git bash* application (via command prompt) is by downloading and installing <a href="http://git-scm.com/download/win">Git for Windows</a>
+* *Git* - The easiest way to install git and then run the rest of the commands through the *git bash* application (via command prompt) is by downloading and installing [Git for Windows](http://git-scm.com/download/win/)
 * *Redis* - [Download & Install Redis](http://redis.io/), and make sure it's running on the default port (6379).
 
 ### OSX
-* *Node.js* -  <a href="http://nodejs.org/download/">Download</a> and Install Node.js or use the packages within brew or macports.
-* *MongoDB* - Follow the tutorial here - <a href="https://docs.mongodb.org/manual/tutorial/install-mongodb-on-os-x/">Install mongodb on OSX</a>
-* *git* - Get git <a href="http://git-scm.com/download/mac">from here</a>.
+* *Node.js* -  [Download](http://nodejs.org/download/) and Install Node.js or use the packages within brew or macports.
+* *MongoDB* - Follow the tutorial here - [Install mongodb on OSX](https://docs.mongodb.org/manual/tutorial/install-mongodb-on-os-x/)
+* *git* - Get git [from here](http://git-scm.com/download/mac/).
 
 You should have a MongoDB and Redis servers running. The default address for these in `config/env/development.json` is set to `localhost`
 
