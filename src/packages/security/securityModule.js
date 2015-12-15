@@ -1,13 +1,9 @@
 import angular from 'angular';
 
-import debug from 'debug';
+//Import all module templates
+import * as Templates from './templates';
 
-//Import templates
-import SigninTemplate from './web/views/authentication/signinView.tpl';
-import UserEditTemplate from './web/views/admin/editUserView.tpl';
-import AddUserTemplate from './web/views/admin/addUserView.tpl';
-import UserListTemplate from './web/views/admin/userListView.tpl';
-
+//Import common module
 import {commonModule} from 'commons';
 
 /**
@@ -15,10 +11,8 @@ import {commonModule} from 'commons';
  */
 let securityModule = angular.module('app.security',
     [
-        SigninTemplate.name,
-        UserEditTemplate.name,
-        AddUserTemplate.name,
-        UserListTemplate.name
+        Templates.SigninTemplate.name, Templates.UserEditTemplate.name, Templates.AddUserTemplate.name,
+        Templates.UserListTemplate.name, Templates.UserSettingsTemplate.name
     ])
     .config(($stateProvider, $httpProvider) => {
         $stateProvider.state('authentication', {
@@ -28,17 +22,17 @@ let securityModule = angular.module('app.security',
             url: '/signin?err',
             controller: 'SecurityController',
             controllerAs: 'secCtrl',
-            templateUrl: SigninTemplate.name
+            templateUrl: Templates.SigninTemplate.name
         }).state('authentication.signup', {
             url: '/signup',
             controller: 'SecurityController',
             controllerAs: 'secCtrl',
-            templateUrl: SigninTemplate.name
+            templateUrl: Templates.SigninTemplate.name
         }).state('useradd', {
             url: '/users/create',
             controller: 'UserController',
             controllerAs: 'userCtrl',
-            templateUrl: AddUserTemplate.name,
+            templateUrl: Templates.AddUserTemplate.name,
             data: {
                 roles: ['user', 'admin']
             }
@@ -46,15 +40,32 @@ let securityModule = angular.module('app.security',
             url: '/users/list',
             controller: 'UserController',
             controllerAs: 'userCtrl',
-            templateUrl: UserListTemplate.name
+            templateUrl: Templates.UserListTemplate.name
         }).state('useredit', {
             url: '/users/edit/:userId',
             controller: 'UserController',
             controllerAs: 'userCtrl',
-            templateUrl: UserEditTemplate.name,
+            templateUrl: Templates.UserEditTemplate.name,
             data: {
                 roles: ['user', 'admin']
             }
+        }).state('settings', {
+            abstract: true,
+            url: '/settings',
+            templateUrl: Templates.UserSettingsTemplate.name,
+            data: {
+                roles: ['user', 'admin']
+            }
+        }).state('settings.profile', {
+            url: '/profile',
+            templateUrl: Templates.UserProfileTemplate.name,
+            controller: 'ProfileController',
+            controllerAs: 'profileCtrl',
+        }).state('settings.password', {
+            url: '/password',
+            templateUrl: Templates.ChangePasswordTemplate.name,
+            controller: 'PasswordController',
+            controllerAs: 'passwordCtrl',
         });
 
         // Set the httpProvider "not authorized" interceptor

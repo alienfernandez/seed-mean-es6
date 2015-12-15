@@ -3,19 +3,13 @@ import {commonModule} from 'commons';
 
 import security from '../security';
 
-import Template400 from './web/views/400.tpl';
-import Template403 from './web/views/403.tpl';
-import Template404 from './web/views/404.tpl';
-import HomeTemplate from './web/views/home.tpl';
+//Import all module templates
+import * as Templates from './templates';
 
 let coreModule = angular.module("app.core", [
-    Template400.name,
-    Template403.name,
-    Template404.name,
-    HomeTemplate.name,
-    'app.security'
+    Templates.Template400.name, Templates.Template403.name, Templates.Template404.name,
+    Templates.HomeTemplate.name, 'app.security'
 ]);
-
 
 coreModule.config(($stateProvider, $locationProvider, $httpProvider, $urlRouterProvider) => {
     //$locationProvider.html5Mode(true).hashPrefix('!');
@@ -30,25 +24,25 @@ coreModule.config(($stateProvider, $locationProvider, $httpProvider, $urlRouterP
     $stateProvider
         .state('home', {
             url: '/',
-            templateUrl: HomeTemplate.name
+            templateUrl: Templates.HomeTemplate.name
         })
         .state('not-found', {
             url: '/not-found',
-            templateUrl: Template404.name,
+            templateUrl: Templates.Template404.name,
             data: {
                 ignoreState: true
             }
         })
         .state('bad-request', {
             url: '/bad-request',
-            templateUrl: Template400.name,
+            templateUrl: Templates.Template400.name,
             data: {
                 ignoreState: true
             }
         })
         .state('forbidden', {
             url: '/forbidden',
-            templateUrl: Template403.name,
+            templateUrl: Templates.Template403.name,
             data: {
                 ignoreState: true
             }

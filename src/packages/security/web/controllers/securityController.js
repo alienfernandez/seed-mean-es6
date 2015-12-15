@@ -4,7 +4,6 @@ class SecurityController {
 
     /*ngInject*/
     constructor($state, $window, $location, AuthenticationService, SecurityService, LoadMask, toastr) {
-        console.log("toastr", toastr)
         toastr.info('You are open signin page', 'Information');
         toastr.error('Error example toast', 'Error');
         this.loadMask = LoadMask;

@@ -1,20 +1,19 @@
 import angular from 'angular';
 
-//Admin views
-import ChatTemplate from './web/views/chat-view.tpl';
+//Import all module templates
+import * as Templates from './templates';
 
 import {commonModule} from 'commons';
 
 let chatModule = angular.module('app.blog', [
-    'common',
-    ChatTemplate.name
+    'common', Templates.ChatTemplate.name
 ])
     .config(($stateProvider) => {
         $stateProvider.state('chat', {
             url: '/chat',
             controller: 'ChatController',
             controllerAs: 'chatCtrl',
-            templateUrl: ChatTemplate.name,
+            templateUrl: Templates.ChatTemplate.name,
             data: {
                 roles: ['user', 'admin']
             }
