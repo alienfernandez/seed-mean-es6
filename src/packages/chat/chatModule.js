@@ -4,24 +4,18 @@ import angular from 'angular';
 import * as Templates from './templates';
 
 import {commonModule} from 'commons';
+//Import config module class
+import ChatConfig from './web/config/chat.config';
 
 let chatModule = angular.module('app.blog', [
-    'common', Templates.ChatTemplate.name
-])
-    .config(($stateProvider) => {
-        $stateProvider.state('chat', {
-            url: '/chat',
-            controller: 'ChatController',
-            controllerAs: 'chatCtrl',
-            templateUrl: Templates.ChatTemplate.name,
-            data: {
-                roles: ['user', 'admin']
-            }
-        });
-    });
+    'common', Templates.ChatTpl.name
+]).config(($stateProvider) => {
+    //Init module routes
+    new ChatConfig($stateProvider, Templates).initModuleRoutes();
+});
 
 /**
- * Run blog module
+ * Run module
  */
 chatModule.run(() => {
 

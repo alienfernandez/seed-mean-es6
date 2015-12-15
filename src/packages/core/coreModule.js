@@ -1,10 +1,12 @@
 import angular from 'angular';
 import {commonModule} from 'commons';
 
+//Import security module
 import security from '../security';
-
 //Import all module templates
 import * as Templates from './templates';
+//Import config module class
+import CoreConfig from './web/config/core.config';
 
 let coreModule = angular.module("app.core", [
     Templates.Template400.name, Templates.Template403.name, Templates.Template404.name,
@@ -20,33 +22,8 @@ coreModule.config(($stateProvider, $locationProvider, $httpProvider, $urlRouterP
             location: false
         });
     });
-    // Home state routing
-    $stateProvider
-        .state('home', {
-            url: '/',
-            templateUrl: Templates.HomeTemplate.name
-        })
-        .state('not-found', {
-            url: '/not-found',
-            templateUrl: Templates.Template404.name,
-            data: {
-                ignoreState: true
-            }
-        })
-        .state('bad-request', {
-            url: '/bad-request',
-            templateUrl: Templates.Template400.name,
-            data: {
-                ignoreState: true
-            }
-        })
-        .state('forbidden', {
-            url: '/forbidden',
-            templateUrl: Templates.Template403.name,
-            data: {
-                ignoreState: true
-            }
-        });
+    //Init module routes
+    new CoreConfig($stateProvider, Templates).initModuleRoutes();
 });
 
 coreModule.run(($rootScope, $state, AuthenticationService) => {
@@ -90,7 +67,6 @@ coreModule.run(($rootScope, $state, AuthenticationService) => {
             };
         }
     }
-})
-
+});
 
 export default coreModule;
