@@ -85,7 +85,7 @@ $ jspm install
 This command does a few things:
 * First it will install the dependencies needed for the application to run.
 * If you're running in a development environment, it will then also install development dependencies needed for testing and running your application.
-* Finally, when the install process is over, npm will initiate a bower install command to install all the front-end modules needed for the application
+* Finally, when the install process is over, npm will initiate a jspm install command to install all the front-end modules needed for the application
 
 ## Running Your Application
 After the install process is over, you'll be able to run your application using npm, just run:
@@ -114,7 +114,7 @@ During installation depending on your os and prerequisite versions you may encou
 
 Most issues can be solved by one of the following tips, but if you are unable to find a solution feel free to contact us via the repository issue tracker or the links provided below.
 
-#### Update NPM, Bower or Gulp
+#### Update NPM, Jspm or Gulp
 Sometimes you may find there is a weird error during install like npm's *Error: ENOENT*. Usually updating those tools to the latest version solves the issue.
 
 * Updating NPM:
@@ -146,28 +146,31 @@ $ npm cache clean
 $ jspm cache-clear
 ```
 
+## Sample Application
+ 
 The sample application is a simple Articles create, read, update and destroy (CRUD) web site.
 
 ## Client-side
 
-* [AngularJS](http://angularjs.org/)
-* [Bootstrap 3](http://getbootstrap.com/)
-* [React.js](https://facebook.github.io/react/)
+* [AngularJS](http://angularjs.org/) -  Single Page Applications (SPAs), declarative templates with data-binding, MVW, MVVM, MVC.
+* [Bootstrap 3](http://getbootstrap.com/) - Powerful mobile first front-end framework for faster and easier web development.
+* [React.js](https://facebook.github.io/react/) - Building user interfaces, use React as the V in MVC.
 
 ## Server-side
 
-* [Express](http://expressjs.com/) JSON API
-* [Passport](http://passportjs.org/) Authentication middleware
+* [Express](http://expressjs.com/) Fast, unopinionated, minimalist web framework server-side for Node.js.
+* [Passport](http://passportjs.org/) Authentication middleware for Node.js, extremely flexible and modular.
 
 ## Data Storage
 
-* [MongoDB](http://www.mongodb.org/) - Data storage
-* [Redis](http://redis.io/) Session storage
+* [MongoDB](http://www.mongodb.org/) - Data storage, next-generation database that lets you create applications never before possible.
+* [Redis](http://redis.io/) - Session storage, In-memory data structure store used as database.
 
 ## Tools
 
-* [Gulp](http://gulpjs.com/) Automate and enhance your workflow
-* [Jspm](http://jspm.io//) Frictionless browser package management
+* [Gulp](http://gulpjs.com/) - Build system automating tasks: minification and copying of all JavaScript files, static images, etc.
+* [Jspm](http://jspm.io/) - Package manager for the SystemJS universal module loader.
+* [Babel](https://babeljs.io/) - Transpiler for JavaScript best known for its ability to turn ES6.
 
 ## Credits
 
