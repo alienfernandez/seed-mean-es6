@@ -9,10 +9,10 @@ import futureRoutes from './routes.json!';
 import core from './packages/core';
 
 var appModuleName = 'app';
-var appModuleVendorDependencies = ['ui.router', 'ui.router.stateHelper', 'oc.lazyLoad', 'ngResource', 'ngAnimate',
-    'toastr', 'validation', 'validation.rule', 'LocalStorageModule', 'common', 'app.core'];
+var appDependencies = ['ui.router', 'ui.router.stateHelper', 'oc.lazyLoad', 'ngResource', 'ngAnimate',
+    'toastr', 'validation', 'validation.rule', 'LocalStorageModule', 'pascalprecht.translate', 'common', 'app.core'];
 
-let app = angular.module(appModuleName, appModuleVendorDependencies);
+let app = angular.module(appModuleName, appDependencies);
 
 /**
  * Add future routes
@@ -20,13 +20,25 @@ let app = angular.module(appModuleName, appModuleVendorDependencies);
 app.config(routing(app, futureRoutes));
 
 app.config(($urlRouterProvider, $locationProvider, $stateProvider, $httpProvider,
-            toastrConfig, $validationProvider) => {
+            toastrConfig, $validationProvider, $translateProvider) => {
     //$locationProvider.html5Mode(true);
+    //------------- $httpProvider config ---------------
     $httpProvider.useApplyAsync(true);
     $urlRouterProvider.otherwise('/');
 
     $httpProvider.defaults.useXDomain = true;
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
+    //-------------------------------------------------------
+
+    //------------- $translateProvider i18n config ---------------
+    $translateProvider.useSanitizeValueStrategy('escapeParameters');
+    $translateProvider.registerAvailableLanguageKeys(['en', 'es'], {
+        'en': 'en', 'en_GB': 'en', 'en_US': 'en',
+        'es': 'es', 'es_ES': 'es'
+    });
+    //Default language
+    $translateProvider.preferredLanguage('en');
+    //-------------------------------------------------------
 
     //----------- Validators config ---------------------------
     angular.extend($validationProvider, {

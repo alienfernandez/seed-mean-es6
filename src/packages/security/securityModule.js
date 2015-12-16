@@ -1,4 +1,8 @@
 import angular from 'angular';
+//Import angular translate (i18n for your Angular app)
+import 'angular-translate';
+import 'angular-translate-loader-static';
+import 'ng-file-upload';
 
 //Import all module templates
 import * as Templates from './templates';
@@ -12,12 +16,22 @@ import {commonModule} from 'commons';
  * Security module
  */
 let securityModule = angular.module('app.security', [
+    'ngFileUpload', 'pascalprecht.translate',
+
+    //Templates
     Templates.SigninTpl.name, Templates.UserEditTpl.name, Templates.AddUserTpl.name,
     Templates.UserListTpl.name, Templates.UserSettingsTpl.name, Templates.UserProfileTpl.name,
     Templates.ChangePasswordTpl.name, Templates.ForgotPasswordTpl.name, Templates.ResetPasswordTpl.name
-]).config(($stateProvider, $httpProvider) => {
+]).config(($stateProvider, $httpProvider, $translateProvider) => {
     //Init module routes
     new SecurityConfig($stateProvider, Templates).initModuleRoutes();
+
+    //------------- $translateProvider i18n config ---------------
+    $translateProvider.useStaticFilesLoader({
+        prefix: 'app/packages/security/web/locales/locale-',
+        suffix: '.json'
+    });
+    //-------------------------------------------------------
 
     // Set the httpProvider "not authorized" interceptor
     $httpProvider.interceptors.push(['$q', '$location', '$injector', 'AuthenticationService',

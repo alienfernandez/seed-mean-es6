@@ -11,5 +11,8 @@ import 'ui-router-stateHelper';
 import 'angular-local-storage';
 import 'toastr';
 import 'angular-validation';
+//Import angular translate (i18n for your Angular app)
+import 'angular-translate';
+import 'angular-translate-loader-static';
 
 export {angular};

@@ -7,7 +7,7 @@ var devConstants = {
         description: 'Full-Stack JavaScript with MongoDB, Express, AngularJS, Node.js, React.js and Redis',
         keywords: 'MongoDB, Express, AngularJS, Node.js, React.js, Redis'
     },
-    port: 8001,
+    port: 8000,
     server: 'http://localhost',
     local_store: {
         prefix: 'app_storage',

@@ -71,6 +71,11 @@ class SecurityConfig {
             templateUrl: this.Templates.ChangePasswordTpl.name,
             controller: 'PasswordController',
             controllerAs: 'passwordCtrl'
+        }).state('settings.picture', {
+            url: '/picture',
+            templateUrl: this.Templates.ChangePictureTpl.name,
+            controller: 'ProfileController',
+            controllerAs: 'profileCtrl'
         }).state('password', {
             abstract: true,
             url: '/password',
