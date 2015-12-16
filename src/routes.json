@@ -18,6 +18,12 @@
     "src": "packages/security"
   },
   {
+    "stateName": "settings",
+    "urlPrefix": "/settings",
+    "type": "load",
+    "src": "packages/security"
+  },
+  {
     "stateName": "article",
     "urlPrefix": "/articles/:userId",
     "type": "load",

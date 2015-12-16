@@ -10,7 +10,7 @@ class ProfileController {
         this.user = this.authentication.user;
         this.imageURL = this.user.profileImageURL;
         // If user is signed in then redirect back home
-        if (this.authentication.user) {
+        if (!this.authentication.user) {
             $location.path('/');
         }
     }
@@ -31,7 +31,7 @@ class ProfileController {
     /**
      * Change user profile picture
      */
-    uploadProfilePicture() {
+    uploadProfilePicture(file) {
         // Start upload
         this.Upload.upload({
             url: 'api/users/picture',

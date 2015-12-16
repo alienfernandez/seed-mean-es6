@@ -22,7 +22,8 @@ let securityModule = angular.module('app.security', [
     //Templates
     Templates.SigninTpl.name, Templates.UserEditTpl.name, Templates.AddUserTpl.name,
     Templates.UserListTpl.name, Templates.UserSettingsTpl.name, Templates.UserProfileTpl.name,
-    Templates.ChangePasswordTpl.name, Templates.ForgotPasswordTpl.name, Templates.ResetPasswordTpl.name
+    Templates.ChangePasswordTpl.name, Templates.ForgotPasswordTpl.name, Templates.ResetPasswordTpl.name,
+    Templates.ChangePictureTpl.name, Templates.SocialAccountTpl.name
 ]).config(($stateProvider, $httpProvider, $translateProvider) => {
     //Init module routes
     new SecurityConfig($stateProvider, Templates).initModuleRoutes();
