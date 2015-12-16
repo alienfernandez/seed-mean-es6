@@ -2,6 +2,7 @@ import angular from 'angular';
 //Import angular translate (i18n for your Angular app)
 import 'angular-translate';
 import 'angular-translate-loader-static';
+
 import 'ng-file-upload';
 
 //Import all module templates

@@ -31,7 +31,7 @@ class ChatController {
 
     sendMessage() {
         // Create a new message object
-        var message = {
+        let message = {
             text: this.messageText
         };
 

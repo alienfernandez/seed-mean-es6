@@ -4,14 +4,13 @@ class SecurityController {
 
     /*ngInject*/
     constructor($state, $window, $location, AuthenticationService, SecurityService, LoadMask, toastr) {
-        toastr.info('You are open signin page', 'Information');
-        toastr.error('Error example toast', 'Error');
         this.loadMask = LoadMask;
         this.loadMask.create('loadMaskData', "Espere por favor, autenticando ...", 'body');
         this.authentication = AuthenticationService;
         this.security = SecurityService;
         this.$state = $state;
         this.$window = $window;
+        this.toastr = toastr;
 
         // If user is signed in then redirect back home
         var credentials = this.authentication;
@@ -35,6 +34,7 @@ class SecurityController {
             })
             .catch((error) => {
                 this.error = error.message;
+                this.toastr.error(error.message.message, 'Error');
             });
     }
 
@@ -57,11 +57,9 @@ class SecurityController {
             this.loadMask.hide('#loadMaskData');
             // And redirect to the previous or home page
             this.$state.transitionTo(this.$state.previous.state.name || 'home', this.$state.previous.params);
-            //this.$state.transitionTo('home');
         }).catch((error) => {
-            console.log("error", error);
             this.loadMask.hide('#loadMaskData');
-            this.error = error.message;
+            this.toastr.error(error.message.message, 'Error');
         });
     }
 

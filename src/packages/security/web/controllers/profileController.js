@@ -19,7 +19,7 @@ class ProfileController {
      * Update a user profile
      */
     updateUserProfile() {
-        var user = new this.UserService(this.authentication.user);
+        let user = new this.UserService(this.authentication.user);
         user.$update(function (response) {
             this.success = true;
             this.authentication.user = response;
