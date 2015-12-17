@@ -3,19 +3,18 @@ import securityModule from '../../securityModule';
 class PasswordController {
 
     /*ngInject*/
-    constructor($state, $window, $stateParams, $location, AuthenticationService, SecurityService) {
+    constructor($state, $http, $stateParams, $location, AuthenticationService, SecurityService, toastr) {
         this.authentication = AuthenticationService;
         this.security = SecurityService;
         this.$state = $state;
-        this.$window = $window;
+        this.$http = $http;
         this.$stateParams = $stateParams;
+        this.toastr = toastr;
 
         // If user is signed in then redirect back home
-        if (this.authentication.user) {
+        if (!this.authentication.user) {
             $location.path('/');
-            //$state.transitionTo('main');
         }
-
     }
 
     askForPasswordReset(isValid) {
@@ -49,10 +48,26 @@ class PasswordController {
                 // And redirect to the index page
                 this.$location.path('/password/reset/success');
             })
-            .catch(function (response) {
+            .catch((response) => {
                 this.error = response.message;
             });
     }
+
+    // Change user password
+    changeUserPassword() {
+        this.$http.post('/api/users/password', this.passwordDetails).success(
+            (response) => {
+                console.log("response", response)
+                // If successful show success message and clear form
+                this.passwordDetails = null;
+                this.toastr.success("Su clave fue cambiada correctamente.", 'Info');
+            }).error((response) => {
+                this.error = response.message;
+                this.toastr.error(this.error, 'Error');
+            });
+    }
+
+;
 
 }
 

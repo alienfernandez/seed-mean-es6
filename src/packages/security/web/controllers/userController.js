@@ -3,24 +3,26 @@ import securityModule from '../../securityModule';
 class UserController {
 
     /*ngInject*/
-    constructor($state, $window, $stateParams, $location, AuthenticationService, UserService) {
+    constructor($state, $window, $stateParams, $location, AuthenticationService, UserService, toastr) {
         this.authentication = AuthenticationService;
         this.userInstance = UserService;
         this.$state = $state;
         this.$stateParams = $stateParams;
         this.$location = $location;
         this.$window = $window;
-
-        this.user = {};
-        this.user.roles = "admin";
-        this.user.email = "alien@gmail.com";
+        this.toastr = toastr;
     }
 
+    /**
+     * Find all user
+     */
     find() {
         this.users = this.userInstance.query();
     }
 
-    // Find existing Article
+    /**
+     * Find existing Article
+     */
     findOne() {
         this.user = this.userInstance.get({
             userId: this.$stateParams.userId
@@ -31,6 +33,10 @@ class UserController {
         this.$state.transitionTo('useredit', user);
     }
 
+    /**
+     * Remove user
+     * @param user
+     */
     remove(user) {
         if (confirm('Are you sure you want to delete this user?')) {
             if (user) {
@@ -45,35 +51,29 @@ class UserController {
         }
     }
 
-    create(isValid) {
-        this.error = null;
-        if (!isValid) {
-            return false;
-        }
-        this.user.provider = "alien";
+    /**
+     * Create new user
+     */
+    create() {
+        this.user.provider = "local";
         var user = new this.userInstance(this.user);
         // Redirect after save
         user.$save((response) => {
-            console.log(response);
             this.$state.transitionTo('userlist');
-            //this.$location.path('users/list');
-        }, function (errorResponse) {
+        }, (errorResponse) => {
             console.log("errorResponse", errorResponse);
-            //this.error = errorResponse.data.message;
+            this.toastr.error(errorResponse.data.message, 'Error');
         });
     }
 
-    update(isValid) {
-        this.error = null;
-        if (!isValid) {
-            return false;
-        }
-
+    /**
+     * Update user
+     */
+    update() {
         this.user.$update(() => {
             this.$state.go('userlist');
         }, (errorResponse) => {
-            this.error = errorResponse.data.message;
-            console.log("errorResponse", errorResponse);
+            this.toastr.error(errorResponse.data.message, 'Error');
         });
     }
 

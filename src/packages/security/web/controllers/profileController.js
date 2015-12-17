@@ -20,11 +20,10 @@ class ProfileController {
      */
     updateUserProfile() {
         let user = new this.UserService(this.authentication.user);
-        user.$update(function (response) {
-            this.success = true;
+        user.$update((response) => {
             this.authentication.user = response;
-        }, function (response) {
-            $scope.error = response.data.message;
+        }, (response) => {
+            this.error = response.data.message;
         });
     }
 

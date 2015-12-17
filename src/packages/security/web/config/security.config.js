@@ -58,6 +58,8 @@ class SecurityConfig {
             abstract: true,
             url: '/settings',
             templateUrl: this.Templates.UserSettingsTpl.name,
+            controller: 'ProfileController',
+            controllerAs: 'profileCtrl',
             data: {
                 roles: ['user', 'admin']
             }

@@ -43,6 +43,7 @@ let securityModule = angular.module('app.security', [
                     console.log("rejection", rejection);
                     switch (rejection.status) {
                         case 401:
+                            console.log("AuthenticationService", AuthenticationService);
                             // Deauthenticate the global user
                             AuthenticationService.user = null;
 

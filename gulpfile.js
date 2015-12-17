@@ -30,7 +30,8 @@ gulp.task('env:prod', function () {
 
 // Run the project in development mode
 gulp.task('default', function (done) {
-    runSequence('env:dev', 'lint', ['nodemon'], done);
+    runSequence('env:dev', ['nodemon'], done);
+    //runSequence('env:dev', 'lint', ['nodemon'], done);
 });
 
 // Run the project in production mode
