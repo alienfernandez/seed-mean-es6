@@ -3,7 +3,8 @@ import securityModule from '../../securityModule';
 class SecurityController {
 
     /*ngInject*/
-    constructor($state, $window, $location, AuthenticationService, SecurityService, LoadMask, toastr) {
+    constructor($state, $window, $location, AuthenticationService, SecurityService, LoadMask, toastr,
+                localStorageService) {
         this.loadMask = LoadMask;
         this.loadMask.create('loadMaskData', "Espere por favor, autenticando ...", 'body');
         this.authentication = AuthenticationService;
@@ -11,6 +12,7 @@ class SecurityController {
         this.$state = $state;
         this.$window = $window;
         this.toastr = toastr;
+        this.localStorageService = localStorageService;
 
         // If user is signed in then redirect back home
         var credentials = this.authentication;
@@ -40,7 +42,9 @@ class SecurityController {
 
     signout() {
         this.security.signout().then((response) => {
+            //Clean user data
             this.authentication.user = null;
+            this.localStorageService.set('user', null);
         });
     }
 
@@ -53,6 +57,8 @@ class SecurityController {
         this.loadMask.show('#loadMaskData');
         this.security.signin(this.credentials).then((response) => {
             this.authentication.user = response;
+            //Storage user
+            this.localStorageService.set('user', response);
 
             this.loadMask.hide('#loadMaskData');
             // And redirect to the previous or home page

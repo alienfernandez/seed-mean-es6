@@ -23,6 +23,8 @@ class CoreConfig {
         this.$stateProvider
             .state('home', {
                 url: '/',
+                controller: 'HomeController',
+                controllerAs: 'homeCtrl',
                 templateUrl: this.Templates.HomeTemplate.name
             })
             .state('not-found', {

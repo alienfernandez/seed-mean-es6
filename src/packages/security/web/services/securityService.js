@@ -55,7 +55,7 @@ class SecurityService {
     signout() {
         var url = this.serverUri + '/api/auth/signout';
         return new Promise((resolve, reject) => {
-            this.http.post(url, {})
+            this.http.get(url, {})
                 .then((data) => {
                     resolve(data);
                 })

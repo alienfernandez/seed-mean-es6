@@ -1,174 +1,263 @@
 <section>
-    <style>
-        .service {
-            overflow: hidden;
-            margin-bottom: 10px;
-            padding: 15px 15px 10px;
-        }
-
-        .service .desc {
-            padding: 0 15px;
-            overflow: hidden;
-        }
-
-        .service .service-icon {
-            float: left;
-            padding: 10px;
-            color: #72c02c;
-            font-size: 35px;
-            text-align: center;
-            -webkit-transition: all 0.4s ease-in-out;
-            -moz-transition: all 0.4s ease-in-out;
-            -o-transition: all 0.4s ease-in-out;
-            transition: all 0.4s ease-in-out;
-        }
-    </style>
-    <div class="col-lg-12">
-        <header></header>
-        <!--<content></content>-->
-        <div class="row margin-bottom-30" style="text-align: justify">
-            <div class="col-md-4">
-                <div class="service">
-                    <img src="app/assets/img/mongodb.png" width="80" height="80" class="service-icon">
-
-                    <div class="desc">
-                        <h4><strong>M</strong>ongoDB</h4>
-
-                        <p><a target="_blank" href="http://mongodb.org/">MongoDB</a> is a NoSQL database. MongoDB's <a
-                                target="_blank" href="http://docs.mongodb.org/manual/">great manual</a> is the place to
-                            get started with NoSQL and MongoDB.</p>
-                    </div>
-                </div>
+    <nav class="navbar navbar-findcond">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#" role="navbar">LOGO</a>
             </div>
-            <div class="col-md-4">
-                <div class="service">
-                    <i class="fa fa-cogs service-icon"></i>
+            <div class="collapse navbar-collapse" id="navbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown" ng-if="homeCtrl.user">
+                        <a href="#" role="navbar" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                            <img ng-src="{{homeCtrl.user.profileImageURL}}" width="16" height="16">
+                            {{homeCtrl.user.firstName | capitalize}} <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <div class="navbar-login">
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <p class="text-center">
+                                                <!--<span class="glyphicon glyphicon-user icon-size"></span>-->
+                                                <img ng-src="{{homeCtrl.user.profileImageURL}}" class="img-responsive">
+                                            </p>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <p class="text-left"><strong>{{homeCtrl.user.firstName |
+                                                capitalize}}</strong></p>
 
-                    <div class="desc">
-                        <h4><strong>E</strong>xpress</h4>
+                                            <p class="text-left small">{{homeCtrl.user.email}}</p>
 
-                        <p><a target="_blank" href="http://expressjs.com/"> Express</a> is a NodeJS server-side
-                            application web framework. Check out
-                            <a target="_blank" href="http://expressjs.com/4x/api.html">The ExpressJS API
-                                reference for more information</a> or
-                            <a target="_blank"
-                               href="http://stackoverflow.com/questions/8144214/learning-express-for-node-js">StackOverflow</a>
-                            for more info.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="service">
-                    <img src="app/assets/img/svg/angular.svg" width="80" height="80" class="service-icon">
-                    <!--<i class="fa fa-rocket service-icon"></i>-->
-
-                    <div class="desc">
-                        <h4><strong>A</strong>ngularJS</h4>
-
-                        <p><a target="_blank" href="http://angularjs.org/">AngularJS</a> is client-side web application
-                            framework.
-                            The <a target="_blank" href="http://www.thinkster.io/">Thinkster Popular Guide</a> and <a
-                                    target="_blank" href="https://egghead.io/">Egghead Videos</a> are great resources.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row margin-bottom-30" style="text-align: justify">
-            <div class="col-md-4">
-                <div class="service">
-                    <img src="app/assets/img/nodejs.png" width="80" height="80" class="service-icon">
-
-                    <div class="desc">
-                        <h4><strong>N</strong>ode.js</h4>
-
-                        <p><a target="_blank" href="http://nodejs.org/">Node.js</a> is a JavaScript run-time, popular
-                            for being a web server platform. Node's website and this
-                            <a target="_blank"
-                               href="http://stackoverflow.com/questions/2353818/how-do-i-get-started-with-node-js">stackOverflow
-                                thread</a> offer excellent starting points to get to grasps with node.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="service">
-                    <img src="app/assets/img/svg/react.svg" width="80" height="80" class="service-icon">
-
-                    <div class="desc">
-                        <h4><strong>R</strong>eact.js</h4>
-
-                        <p><a target="_blank" href="https://facebook.github.io/react/">React.js</a> is a javascript
-                            library for building user interfaces. Lots of people use React as the <strong>V</strong> in
-                            MVC. React abstracts away the DOM from you, giving a simpler programming model and better
-                            performance. React implements one-way reactive data flow which reduces boilerplate and is
-                            easier to reason>about than traditional data binding.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="service">
-                    <img src="app/assets/img/redis.png" width="80" height="80" class="service-icon">
-
-                    <div class="desc">
-                        <h4><strong>R</strong>edis</h4>
-
-                        <p><a target="_blank" href="http://redis.io/">Redis</a> In-memory data structure store used as
-                            database, cache and message broker. It supports data structures such as strings, hashes,
-                            lists, sets, sorted sets with range queries, bitmaps, hyperloglogs and geospatial indexes
-                            with radius queries.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row margin-bottom-30" style="text-align: justify">
-            <div class="col-md-4">
-                <div class="service">
-                    <img src="app/assets/img/svg/es6.svg" width="80" height="80" class="service-icon">
-
-                    <div class="desc">
-                        <h4><strong>E</strong>S6</h4>
-
-                        <p>Adds significant new syntax for writing complex applications,
-                            including classes and modules, but defines them semantically in the same terms as ECMAScript
-                            5 strict mode. Other new features include iterators and for/of loops, Python-style
-                            generators and generator expressions, arrow functions, binary data, collections, and
-                            proxies.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="service">
-                    <img src="app/assets/img/babel.png" width="80" height="80" class="service-icon">
-
-                    <div class="desc">
-                        <h4><strong>B</strong>abel</h4>
-
-                        <p><a target="_blank" href="http://babeljs.io/">Babel</a> is a transpiler for JavaScript best
-                            known for its ability to turn ES6 (The compiler for writing next generation JavaScript) into
-                            code that runs in your browser (or on your server) today. Babel has support for the latest
-                            version of JavaScript through syntax transformers.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="service">
-                    <img src="app/assets/img/svg/jspm.svg" width="80" height="80" class="service-icon">
-
-                    <div class="desc">
-                        <h4><strong>J</strong>spm.io</h4>
-
-                        <p>jspm is a package manager for the
-                            <a target="_blank" href="https://github.com/systemjs/systemjs">SystemJS universal module
-                                loader</a>, built on top of the
-                            dynamic ES6 module loader. Load any module format (ES6, AMD, CommonJS and globals) directly
-                            from any registry such as npm and GitHub with flat versioned dependency management. Any
-                            custom registry endpoints can be created through the Registry API.</p>
-                    </div>
-                </div>
+                                            <p class="text-left">
+                                                <a ui-sref="settings.profile" class="btn btn-info btn-sm">
+                                                    <i class="fa fa-pencil"></i> Update profile
+                                                </a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <div class="navbar-login navbar-login-session">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <p>
+                                                <button ng-click="homeCtrl.signout()" class="btn btn-default btn-block">
+                                                    <i class="fa fa-sign-out"></i> Signout
+                                                </button>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" ng-if="!homeCtrl.user">
+                        <a ui-sref="authentication.signin" role="navbar" role="button" aria-expanded="false">
+                            <i class="fa fa-sign-in"></i> Signin </a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" role="navbar" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-expanded="false"><i class="fa fa-fw fa-bell-o"></i> Notifications <span
+                                class="badge">4</span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#" role="navbar"><i class="fa fa-fw fa-tag"></i> <span
+                                    class="badge">Music</span> page
+                                <span class="badge">Video</span> tagged page</a></li>
+                            <li><a href="#" role="navbar"><i class="fa fa-fw fa-thumbs-o-up"></i> <span class="badge">Music</span>
+                                Your message has been praised in the pages</a></li>
+                            <li><a href="#" role="navbar"><i class="fa fa-fw fa-thumbs-o-up"></i> <span class="badge">Video</span>
+                                Your message has been praised in the pages</a></li>
+                            <li><a href="#" role="navbar"><i class="fa fa-fw fa-thumbs-o-up"></i> <span class="badge">Game</span>
+                                Your message has been praised in the pages</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" role="navbar" role="button" aria-expanded="false">
+                            <i class="fa fa-cogs"></i> Components </a>
+                    </li>
+                </ul>
+                <form class="navbar-form navbar-right search-form" role="search">
+                    <input type="text" class="form-control" placeholder="Search"/>
+                </form>
             </div>
 
         </div>
+    </nav>
+    <div class="row">
+        <div class="col-lg-12">
+            <header></header>
+            <!--<content></content>-->
+            <div class="row margin-bottom-30" style="text-align: justify">
+                <div class="col-md-4">
+                    <div class="service">
+                        <img src="app/assets/img/mongodb.png" width="80" height="80" class="service-icon">
 
+                        <div class="desc">
+                            <h4><strong>M</strong>ongoDB</h4>
+
+                            <p><a target="_blank" href="http://mongodb.org/">MongoDB</a> is a NoSQL database. MongoDB's
+                                <a
+                                        target="_blank" href="http://docs.mongodb.org/manual/">great manual</a> is the
+                                place to
+                                get started with NoSQL and MongoDB.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service">
+                        <i class="fa fa-cogs service-icon"></i>
+
+                        <div class="desc">
+                            <h4><strong>E</strong>xpress</h4>
+
+                            <p><a target="_blank" href="http://expressjs.com/"> Express</a> is a NodeJS server-side
+                                application web framework. Check out
+                                <a target="_blank" href="http://expressjs.com/4x/api.html">The ExpressJS API
+                                    reference for more information</a> or
+                                <a target="_blank"
+                                   href="http://stackoverflow.com/questions/8144214/learning-express-for-node-js">StackOverflow</a>
+                                for more info.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service">
+                        <img src="app/assets/img/svg/angular.svg" width="80" height="80" class="service-icon">
+                        <!--<i class="fa fa-rocket service-icon"></i>-->
+
+                        <div class="desc">
+                            <h4><strong>A</strong>ngularJS</h4>
+
+                            <p><a target="_blank" href="http://angularjs.org/">AngularJS</a> is client-side web
+                                application
+                                framework.
+                                The <a target="_blank" href="http://www.thinkster.io/">Thinkster Popular Guide</a> and
+                                <a
+                                        target="_blank" href="https://egghead.io/">Egghead Videos</a> are great
+                                resources.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-bottom-30" style="text-align: justify">
+                <div class="col-md-4">
+                    <div class="service">
+                        <img src="app/assets/img/nodejs.png" width="80" height="80" class="service-icon">
+
+                        <div class="desc">
+                            <h4><strong>N</strong>ode.js</h4>
+
+                            <p><a target="_blank" href="http://nodejs.org/">Node.js</a> is a JavaScript run-time,
+                                popular
+                                for being a web server platform. Node's website and this
+                                <a target="_blank"
+                                   href="http://stackoverflow.com/questions/2353818/how-do-i-get-started-with-node-js">stackOverflow
+                                    thread</a> offer excellent starting points to get to grasps with node.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service">
+                        <img src="app/assets/img/svg/react.svg" width="80" height="80" class="service-icon">
+
+                        <div class="desc">
+                            <h4><strong>R</strong>eact.js</h4>
+
+                            <p><a target="_blank" href="https://facebook.github.io/react/">React.js</a> is a javascript
+                                library for building user interfaces. Lots of people use React as the <strong>V</strong>
+                                in
+                                MVC. React abstracts away the DOM from you, giving a simpler programming model and
+                                better
+                                performance. React implements one-way reactive data flow which reduces boilerplate and
+                                is
+                                easier to reason>about than traditional data binding.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service">
+                        <img src="app/assets/img/redis.png" width="80" height="80" class="service-icon">
+
+                        <div class="desc">
+                            <h4><strong>R</strong>edis</h4>
+
+                            <p><a target="_blank" href="http://redis.io/">Redis</a> In-memory data structure store used
+                                as
+                                database, cache and message broker. It supports data structures such as strings, hashes,
+                                lists, sets, sorted sets with range queries, bitmaps, hyperloglogs and geospatial
+                                indexes
+                                with radius queries.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-bottom-30" style="text-align: justify">
+                <div class="col-md-4">
+                    <div class="service">
+                        <img src="app/assets/img/svg/es6.svg" width="80" height="80" class="service-icon">
+
+                        <div class="desc">
+                            <h4><strong>E</strong>S6</h4>
+
+                            <p>Adds significant new syntax for writing complex applications,
+                                including classes and modules, but defines them semantically in the same terms as
+                                ECMAScript
+                                5 strict mode. Other new features include iterators and for/of loops, Python-style
+                                generators and generator expressions, arrow functions, binary data, collections, and
+                                proxies.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service">
+                        <img src="app/assets/img/babel.png" width="80" height="80" class="service-icon">
+
+                        <div class="desc">
+                            <h4><strong>B</strong>abel</h4>
+
+                            <p><a target="_blank" href="http://babeljs.io/">Babel</a> is a transpiler for JavaScript
+                                best
+                                known for its ability to turn ES6 (The compiler for writing next generation JavaScript)
+                                into
+                                code that runs in your browser (or on your server) today. Babel has support for the
+                                latest
+                                version of JavaScript through syntax transformers.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service">
+                        <img src="app/assets/img/svg/jspm.svg" width="80" height="80" class="service-icon">
+
+                        <div class="desc">
+                            <h4><strong>J</strong>spm.io</h4>
+
+                            <p>jspm is a package manager for the
+                                <a target="_blank" href="https://github.com/systemjs/systemjs">SystemJS universal module
+                                    loader</a>, built on top of the
+                                dynamic ES6 module loader. Load any module format (ES6, AMD, CommonJS and globals)
+                                directly
+                                from any registry such as npm and GitHub with flat versioned dependency management. Any
+                                custom registry endpoints can be created through the Registry API.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
     </div>
 </section>

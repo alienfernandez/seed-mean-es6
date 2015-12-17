@@ -3,9 +3,30 @@ import coreModule from '../../coreModule';
 class HomeController {
 
     /*ngInject*/
-    constructor(AuthenticationService, $appConstants) {
+    constructor(AuthenticationService, localStorageService, SecurityService, $state) {
         // This provides Authentication context.
         this.authentication = AuthenticationService;
+        this.user = AuthenticationService.user;
+        this.security = SecurityService;
+        this.localStorageService = localStorageService;
+        this.$state = $state;
+    }
+
+    editProfile() {
+        this.$state.transitionTo('settings.profile');
+    }
+
+    signout() {
+        this.security.signout().then((response) => {
+            //Clean user data
+            this.authentication.user = null;
+            this.localStorageService.set('user', null);
+            if (this.$state.current.name === "home") {
+                this.$state.reload();
+            } else {
+                this.$state.transitionTo('home');
+            }
+        });
     }
 
 }

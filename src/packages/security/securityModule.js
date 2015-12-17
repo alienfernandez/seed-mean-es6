@@ -36,8 +36,8 @@ let securityModule = angular.module('app.security', [
     //-------------------------------------------------------
 
     // Set the httpProvider "not authorized" interceptor
-    $httpProvider.interceptors.push(['$q', '$location', '$injector', 'AuthenticationService',
-        function ($q, $location, $injector, AuthenticationService) {
+    $httpProvider.interceptors.push(['$q', '$location', '$injector', 'AuthenticationService', 'localStorageService',
+        function ($q, $location, $injector, AuthenticationService, localStorageService) {
             return {
                 responseError: function (rejection) {
                     console.log("rejection", rejection);
@@ -46,6 +46,8 @@ let securityModule = angular.module('app.security', [
                             console.log("AuthenticationService", AuthenticationService);
                             // Deauthenticate the global user
                             AuthenticationService.user = null;
+                            //Remove storage user
+                            localStorageService.set('user', null);
 
                             // Redirect to signin page
                             $location.path('signin');
