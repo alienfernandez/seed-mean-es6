@@ -1,5 +1,7 @@
 import commonModule from '../../../commonModule';
 
+//import NavBarView from '../react-components/navbarReact';
+
 //Import template
 import NavBarTpl from '../views/navbar-view.tpl';
 
