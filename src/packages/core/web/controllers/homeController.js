@@ -23,7 +23,6 @@ class HomeController {
         this.security.signout().then((response) => {
             //Clean user data
             this.authentication.user = null;
-            this.localStorageService.set('user', null);
             if (this.$state.current.name === "home") {
                 this.$state.reload();
             } else {

@@ -3,15 +3,24 @@ import securityModule from '../../securityModule';
 class AuthenticationService {
 
     constructor($window, localStorageService) {
-        let user = null;
+        this.localStorageService = localStorageService;
+        this.$window = $window;
+        this._user = null;
         if ($window && $window.user) {
-            user = $window.user;
+            this._user = $window.user;
         } else if (localStorageService && localStorageService.get('user')) {
-            user = localStorageService.get('user');
+            this._user = localStorageService.get('user');
         }
-        return {
-            user: user
-        };
+    }
+
+    get user() {
+        return this._user;
+    }
+
+    set user(pUser) {
+        this._user = pUser;
+        this.localStorageService.set('user', pUser);
+        this.$window.user = pUser;
     }
 
     /*ngInject*/

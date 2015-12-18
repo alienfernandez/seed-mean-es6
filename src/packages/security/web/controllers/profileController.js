@@ -3,13 +3,13 @@ import securityModule from '../../securityModule';
 class ProfileController {
 
     /*ngInject*/
-    constructor($location, $scope, AuthenticationService, UserService, Upload, toastr) {
+    constructor($location, $state, AuthenticationService, UserService, Upload, toastr) {
         this.authentication = AuthenticationService;
         this.UserService = UserService;
         this.Upload = Upload;
         this.user = this.authentication.user;
         this.imageURL = this.user.profileImageURL;
-        this.$scope = $scope;
+        this.$state = $state;
         this.toastr = toastr;
         // If user is signed in then redirect back home
         if (!this.authentication.user) {
@@ -41,16 +41,18 @@ class ProfileController {
                 user: this.authentication.user
             }
         }).then((response) => {
-            this.authentication.user = response;
-            this.imageURL = response.profileImageURL;
+            console.log("response", response)
+            this.authentication.user = response.data;
+            this.imageURL = response.data.profileImageURL;
+            //Reload state
+            this.$state.reload();
             this.toastr.success('Success ' + response.config.data.file.name + ' uploaded.', 'Success');
         }, (resp) => {
             console.log('Error status: ' + resp.status);
             this.toastr.error('Error status: ' + resp.status, 'Error');
         }, (evt) => {
-            let progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-            //this.toastr.info('progress: ' + progressPercentage + '% ' + evt.config.data.file.name, 'Info');
-            console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+            //let progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+            //console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
         });
     }
 
