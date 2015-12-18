@@ -33,29 +33,33 @@ class ProfileController {
      * Change user profile picture
      */
     uploadProfilePicture(file) {
-        // Start upload
-        this.Upload.upload({
-            url: 'api/users/picture',
-            data: {
-                file: file,
-                user: this.authentication.user
-            }
-        }).then((response) => {
-            console.log("response", response)
-            this.authentication.user = response.data;
-            this.imageURL = response.data.profileImageURL;
-            //Reload state
-            this.$state.reload();
-            this.toastr.success('Success ' + response.config.data.file.name + ' uploaded.', 'Success');
-        }, (resp) => {
-            console.log('Error status: ' + resp.status);
-            this.toastr.error('Error status: ' + resp.status, 'Error');
-        }, (evt) => {
-            //let progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-            //console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
-        });
-    }
+        if (file) {
+            // Start upload
+            this.Upload.upload({
+                url: 'api/users/picture',
+                data: {
+                    file: file,
+                    user: this.authentication.user
+                }
+            }).then((response) => {
+                console.log("response", response)
+                this.authentication.user = response.data;
+                this.imageURL = response.data.profileImageURL;
+                //Reload state
+                this.$state.reload();
+                this.toastr.success('Success ' + response.config.data.file.name + ' uploaded.', 'Success');
+            }, (responseError) => {
+                console.log('Error: ', responseError);
+                this.toastr.error('Error status: ' + responseError.status, 'Error');
+            }, (evt) => {
+                //let progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                //console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+            });
+        } else {
+            this.toastr.warning('La imagen no cumple con los requisitos.', 'Info');
+        }
 
+    }
 }
 
 securityModule.controller('ProfileController', ProfileController);
