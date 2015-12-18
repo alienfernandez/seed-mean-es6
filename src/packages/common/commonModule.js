@@ -3,10 +3,13 @@ import Constant from './components/core/Constant';
 //Import lodash
 import 'ng-lodash';
 
+//Import all module templates
+import * as Templates from './templates';
+
 /**
  * Module common
  */
-let commonModule = angular.module('common', ['ngLodash']);
+let commonModule = angular.module('common', ['ngLodash', Templates.NavBarTpl.name]);
 
 commonModule.config((localStorageServiceProvider, $appConstants) => {
     //Updating prefix and storage type of localStorage

@@ -11,7 +11,7 @@ import NavBarView from '../react-components/navbarReact';
  * @description Directive navbar
  *
  */
-class NavBarDirective {
+class NavBar1Directive {
 
     constructor() {
         let directive = {
@@ -31,6 +31,6 @@ class NavBarDirective {
     }
 }
 
-coreModule.directive('navbar', () => new NavBarDirective());
+coreModule.directive('navbar1', () => new NavBar1Directive());
 
 export default coreModule;

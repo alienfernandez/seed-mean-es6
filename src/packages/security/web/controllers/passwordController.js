@@ -5,6 +5,7 @@ class PasswordController {
     /*ngInject*/
     constructor($state, $http, $stateParams, $location, AuthenticationService, SecurityService, toastr) {
         this.authentication = AuthenticationService;
+        this.user = AuthenticationService.user;
         this.security = SecurityService;
         this.$state = $state;
         this.$http = $http;
@@ -60,14 +61,13 @@ class PasswordController {
                 console.log("response", response)
                 // If successful show success message and clear form
                 this.passwordDetails = null;
+                this.$state.transitionTo('settings.profile');
                 this.toastr.success("Su clave fue cambiada correctamente.", 'Info');
             }).error((response) => {
                 this.error = response.message;
                 this.toastr.error(this.error, 'Error');
             });
     }
-
-;
 
 }
 
