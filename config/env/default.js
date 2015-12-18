@@ -31,7 +31,8 @@ module.exports = {
     favicon: 'public/app/packages/core/web/assets/img/brand/favicon.ico',
     uploads: {
         profileUpload: {
-            dest: './public/app/packages/security/web/img/profile/uploads/', // Profile upload destination path
+            dest: './public/assets/img/profile/uploads/', // Profile upload destination path
+            dirStore: 'assets/img/profile/uploads/', // Dir store
             limits: {
                 fileSize: 1 * 1024 * 1024 // Max file size in bytes (1 MB)
             }

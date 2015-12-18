@@ -3,12 +3,14 @@ import securityModule from '../../securityModule';
 class ProfileController {
 
     /*ngInject*/
-    constructor($location, AuthenticationService, UserService, Upload) {
+    constructor($location, $scope, AuthenticationService, UserService, Upload, toastr) {
         this.authentication = AuthenticationService;
         this.UserService = UserService;
         this.Upload = Upload;
         this.user = this.authentication.user;
         this.imageURL = this.user.profileImageURL;
+        this.$scope = $scope;
+        this.toastr = toastr;
         // If user is signed in then redirect back home
         if (!this.authentication.user) {
             $location.path('/');
@@ -21,7 +23,7 @@ class ProfileController {
     updateUserProfile() {
         let user = new this.UserService(this.authentication.user);
         user.$update((response) => {
-            this.authentication.user = response;
+            this.user = response;
         }, (response) => {
             this.error = response.data.message;
         });
@@ -38,12 +40,16 @@ class ProfileController {
                 file: file,
                 user: this.authentication.user
             }
-        }).then((resp) => {
-            console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
+        }).then((response) => {
+            this.authentication.user = response;
+            this.imageURL = response.profileImageURL;
+            this.toastr.success('Success ' + response.config.data.file.name + ' uploaded.', 'Success');
         }, (resp) => {
             console.log('Error status: ' + resp.status);
+            this.toastr.error('Error status: ' + resp.status, 'Error');
         }, (evt) => {
             let progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+            //this.toastr.info('progress: ' + progressPercentage + '% ' + evt.config.data.file.name, 'Info');
             console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
         });
     }

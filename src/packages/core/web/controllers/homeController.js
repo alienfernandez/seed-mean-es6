@@ -10,6 +10,9 @@ class HomeController {
         this.security = SecurityService;
         this.localStorageService = localStorageService;
         this.$state = $state;
+        this.options = {
+            user: this.user
+        };
     }
 
     editProfile() {
