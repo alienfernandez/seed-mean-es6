@@ -19,6 +19,8 @@ class NavBarDirective {
             restrict: 'E',
             //replace: true,
             templateUrl: NavBarTpl.name,
+            controller: 'NavbarController',
+            controllerAs: 'navbarCtrl',
             scope: {
                 user: '='
             },

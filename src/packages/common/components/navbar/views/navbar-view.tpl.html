@@ -16,8 +16,8 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown" ng-if="user">
                     <a href="#" role="navbar" class="dropdown-toggle" data-toggle="dropdown" role="button">
-                        <img ng-src="{{user.profileImageURL}}" width="16" height="16">
-                        {{user.firstName | capitalize}} <span class="caret"></span>
+                        <img ng-src="{{navbarCtrl.user.profileImageURL}}" width="16" height="16">
+                        {{navbarCtrl.user.firstName | capitalize}} <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
                         <li>
@@ -26,14 +26,14 @@
                                     <div class="col-lg-4">
                                         <p class="text-center">
                                             <!--<span class="glyphicon glyphicon-user icon-size"></span>-->
-                                            <img ng-src="{{user.profileImageURL}}" class="img-responsive">
+                                            <img ng-src="{{navbarCtrl.user.profileImageURL}}" class="img-responsive">
                                         </p>
                                     </div>
                                     <div class="col-lg-8">
-                                        <p class="text-left"><strong>{{user.firstName |
-                                            capitalize}}</strong></p>
+                                        <p class="text-left"><strong>{{navbarCtrl.user.firstName | capitalize}}</strong>
+                                        </p>
 
-                                        <p class="text-left small">{{user.email}}</p>
+                                        <p class="text-left small">{{navbarCtrl.user.email}}</p>
 
                                         <p class="text-left">
                                             <a ui-sref="settings.profile" class="btn btn-info btn-sm">
@@ -50,7 +50,7 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <p>
-                                            <button ng-click="signout()" class="btn btn-default btn-block">
+                                            <button ng-click="navbarCtrl.signout()" class="btn btn-default btn-block">
                                                 <i class="fa fa-sign-out"></i> Signout
                                             </button>
                                         </p>
