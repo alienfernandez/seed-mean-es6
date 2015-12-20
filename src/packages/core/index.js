@@ -13,6 +13,5 @@ import './web/controllers/homeController';
 //Directives
 import './web/directives/headerDirective';
 import './web/directives/contentDirective';
-import './web/directives/navbarDirective';
 
 export default coreModule;

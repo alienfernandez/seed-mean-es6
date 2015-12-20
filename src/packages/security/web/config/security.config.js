@@ -38,9 +38,9 @@ class SecurityConfig {
             controller: 'UserController',
             controllerAs: 'userCtrl',
             templateUrl: this.Templates.AddUserTpl.name,
-            data: {
-                roles: ['user', 'admin']
-            }
+            //data: {
+            //    roles: ['user', 'admin']
+            //}
         }).state('userlist', {
             url: '/users/list',
             controller: 'UserController',

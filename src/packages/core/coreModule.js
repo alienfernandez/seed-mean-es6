@@ -30,8 +30,6 @@ coreModule.run(($rootScope, $state, AuthenticationService) => {
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
         if (toState.data && toState.data.roles && toState.data.roles.length > 0) {
             var allowed = false;
-            console.log("AuthenticationService.user", AuthenticationService);
-            console.log("toState.data.roles", toState.data.roles);
             toState.data.roles.forEach(function (role) {
                 if (AuthenticationService.user && AuthenticationService.user.roles !== undefined &&
                     AuthenticationService.user.roles.indexOf(role) !== -1) {
@@ -39,10 +37,9 @@ coreModule.run(($rootScope, $state, AuthenticationService) => {
                     return true;
                 }
             });
-            console.log("allowed", allowed);
             if (!allowed) {
                 event.preventDefault();
-                if (AuthenticationService.user !== undefined && typeof AuthenticationService.user === 'object') {
+                if (AuthenticationService.user && AuthenticationService.user._id) {
                     $state.go('forbidden');
                 } else {
                     $state.go('authentication.signin').then(function () {

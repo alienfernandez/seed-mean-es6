@@ -46,8 +46,6 @@ let securityModule = angular.module('app.security', [
                             console.log("AuthenticationService", AuthenticationService);
                             // Deauthenticate the global user
                             AuthenticationService.user = null;
-                            //Remove storage user
-                            localStorageService.set('user', null);
 
                             // Redirect to signin page
                             $location.path('signin');
