@@ -37,6 +37,21 @@ class CoreConfig {
                 templateUrl: this.Templates.DataViewTpl.name,
                 controller: 'ComponentsController',
                 controllerAs: 'cmpCtrl'
+            }).state('components.navbar', {
+                url: '/navbar',
+                templateUrl: this.Templates.NavbarViewTpl.name,
+                controller: 'ComponentsController',
+                controllerAs: 'cmpCtrl'
+            }).state('components.loadmask', {
+                url: '/loadmask',
+                templateUrl: this.Templates.LoadMaskViewTpl.name,
+                controller: 'ComponentsController',
+                controllerAs: 'cmpCtrl'
+            }).state('components.validations', {
+                url: '/validations',
+                templateUrl: this.Templates.ValidationsViewTpl.name,
+                controller: 'ComponentsController',
+                controllerAs: 'cmpCtrl'
             })
             .state('not-found', {
                 url: '/not-found',

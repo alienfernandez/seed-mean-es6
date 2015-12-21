@@ -11,6 +11,7 @@ import CoreConfig from './web/config/core.config';
 let coreModule = angular.module("app.core", [
     Templates.Template400.name, Templates.Template403.name, Templates.Template404.name,
     Templates.HomeTemplate.name, Templates.ComponentsTpl.name, Templates.DataViewTpl.name,
+    Templates.NavbarViewTpl.name, Templates.LoadMaskViewTpl.name, Templates.ValidationsViewTpl.name,
     'app.security'
 ]);
 

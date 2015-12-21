@@ -118,43 +118,45 @@ nav.navbar-findcond span.badge.new {
 
 #custom_carousel .item {
 
-    color:#000;
-    background-color:#eee;
-    padding:20px 0;
+    color: #000;
+    background-color: #eee;
+    padding: 20px 0;
 }
-#custom_carousel .controls{
+
+#custom_carousel .controls {
     overflow-x: auto;
     overflow-y: hidden;
-    padding:0;
-    margin:0;
+    padding: 0;
+    margin: 0;
     white-space: nowrap;
     text-align: center;
     position: relative;
-    background:#ddd
+    background: #ddd
 }
+
 #custom_carousel .controls li {
     display: table-cell;
     width: 1%;
-    max-width:90px
+    max-width: 90px
 }
+
 #custom_carousel .controls li.active {
-    background-color:#eee;
-    border-top:3px solid #72c02c;
+    background-color: #eee;
+    border-top: 3px solid #72c02c;
 }
 
 #custom_carousel .controls li:hover {
-    background-color:#eee;
-    border-top:3px solid #72c02c;
+    background-color: #eee;
+    border-top: 3px solid #72c02c;
 }
 
 #custom_carousel .controls a small {
-    overflow:hidden;
-    display:block;
-    font-size:10px;
-    margin-top:5px;
-    font-weight:bold
+    overflow: hidden;
+    display: block;
+    font-size: 10px;
+    margin-top: 5px;
+    font-weight: bold
 }
-
 
 .dv-grouping {
     display: block;
@@ -170,4 +172,17 @@ nav.navbar-findcond span.badge.new {
     padding: 5px;
     font-weight: 600;
     cursor: pointer;
+}
+
+.component ul li a {
+    color: #93a3b5;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.component ul li.active a {
+    color: #5b9bd1;
+    background-color: #f6f9fb;
+    border-left: 2px solid #5b9bd1;
+    margin-left: -2px;
 }

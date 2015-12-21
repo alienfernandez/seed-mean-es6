@@ -21,11 +21,16 @@ class ProfileController {
      * Update a user profile
      */
     updateUserProfile() {
-        let user = new this.UserService(this.authentication.user);
+        let user = new this.UserService(this.user);
         user.$update((response) => {
-            this.user = response;
+            if (response && response._id) {
+                this.authentication.user = response;
+                this.user = response;
+                this.toastr.success('Profile updated correctly.');
+            }
         }, (response) => {
             this.error = response.data.message;
+            this.toastr.error('Error: ' + this.error, 'Error');
         });
     }
 
