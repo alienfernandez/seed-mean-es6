@@ -40,5 +40,11 @@
     "urlPrefix": "/chat",
     "type": "load",
     "src": "packages/chat"
+  },
+  {
+    "stateName": "components",
+    "urlPrefix": "/components",
+    "type": "load",
+    "src": "packages/core"
   }
 ]

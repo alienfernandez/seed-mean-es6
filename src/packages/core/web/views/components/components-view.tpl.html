@@ -1,0 +1,33 @@
+<section>
+    <navbar user="cmpCtrl.user"></navbar>
+    <div class="container-fluid">
+        <div class="row profile">
+            <div class="col-md-3">
+                <!-- SIDEBAR MENU -->
+                <div class="">
+                    <div class="dv-header-grouping">
+                        <span>
+                            <span class="fa fa-cogs"></span>
+                            <span> Components list</span>
+                        </span>
+                    </div>
+                    <ul class="nav">
+                        <li ui-sref-active="active">
+                            <a ui-sref="components.dataview">
+                                <i class="fa fa-cog"></i> DataView Component (React.js)
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MENU -->
+            </div>
+            <div class="col-md-9">
+                <!--<div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" class="ng-binding"></div>-->
+                <div class="">
+                    <div ui-view></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+</section>

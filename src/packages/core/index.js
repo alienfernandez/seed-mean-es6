@@ -9,6 +9,7 @@ import './web/services/socketIoService';
 
 //Controllers
 import './web/controllers/homeController';
+import './web/controllers/componentsController';
 
 //Directives
 import './web/directives/headerDirective';

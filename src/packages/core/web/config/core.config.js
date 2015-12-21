@@ -26,6 +26,17 @@ class CoreConfig {
                 controller: 'HomeController',
                 controllerAs: 'homeCtrl',
                 templateUrl: this.Templates.HomeTemplate.name
+            }).state('components', {
+                abstract: true,
+                url: '/components',
+                templateUrl: this.Templates.ComponentsTpl.name,
+                controller: 'ComponentsController',
+                controllerAs: 'cmpCtrl'
+            }).state('components.dataview', {
+                url: '/dataview',
+                templateUrl: this.Templates.DataViewTpl.name,
+                controller: 'ComponentsController',
+                controllerAs: 'cmpCtrl'
             })
             .state('not-found', {
                 url: '/not-found',

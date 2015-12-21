@@ -10,7 +10,8 @@ import CoreConfig from './web/config/core.config';
 
 let coreModule = angular.module("app.core", [
     Templates.Template400.name, Templates.Template403.name, Templates.Template404.name,
-    Templates.HomeTemplate.name, 'app.security'
+    Templates.HomeTemplate.name, Templates.ComponentsTpl.name, Templates.DataViewTpl.name,
+    'app.security'
 ]);
 
 coreModule.config(($stateProvider, $locationProvider, $httpProvider, $urlRouterProvider) => {
