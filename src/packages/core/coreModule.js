@@ -8,14 +8,18 @@ import * as Templates from './templates';
 //Import config module class
 import CoreConfig from './web/config/core.config';
 
+import 'ng-select';
+//import 'highlight';
+import 'angular-highlightjs';
+
 let coreModule = angular.module("app.core", [
     Templates.Template400.name, Templates.Template403.name, Templates.Template404.name,
     Templates.HomeTemplate.name, Templates.ComponentsTpl.name, Templates.DataViewTpl.name,
     Templates.NavbarViewTpl.name, Templates.LoadMaskViewTpl.name, Templates.ValidationsViewTpl.name,
-    'app.security'
+    'app.security', 'ngSelect', 'hljs'
 ]);
 
-coreModule.config(($stateProvider, $locationProvider, $httpProvider, $urlRouterProvider) => {
+coreModule.config(($stateProvider, $locationProvider, $httpProvider, $urlRouterProvider, hljsServiceProvider) => {
     //$locationProvider.html5Mode(true).hashPrefix('!');
     $httpProvider.interceptors.push('AuthInterceptor');
     // Redirect to 404 when route not found
@@ -26,6 +30,11 @@ coreModule.config(($stateProvider, $locationProvider, $httpProvider, $urlRouterP
     });
     //Init module routes
     new CoreConfig($stateProvider, Templates).initModuleRoutes();
+
+    hljsServiceProvider.setOptions({
+        // replace tab with 4 spaces
+        tabReplace: '    '
+    });
 });
 
 coreModule.run(($rootScope, $state, AuthenticationService) => {

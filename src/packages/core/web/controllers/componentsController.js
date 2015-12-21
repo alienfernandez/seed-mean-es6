@@ -10,6 +10,9 @@ class ComponentsController {
         this.options = {
             user: this.user
         };
+        this.tabsDataView = ['app.js', 'index.html'];
+        //this.currentTab = "app/packages/core/web/views/components/data-view/" + this.tabsDataView[0];
+        this.currentTab = this.tabsDataView[0];
 
         this.options = {
             store: [

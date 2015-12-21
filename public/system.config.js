@@ -101,6 +101,7 @@ System.config({
     "angular": "github:angular/bower-angular@1.4.8",
     "angular-animate": "npm:angular-animate@1.4.8",
     "angular-fancybox-plus": "github:igorlino/angular-fancybox-plus@1.0.2",
+    "angular-highlightjs": "npm:angular-highlightjs@0.5.1",
     "angular-local-storage": "github:grevory/angular-local-storage@0.2.3",
     "angular-material": "github:angular/bower-material@0.11.4",
     "angular-mocks": "github:angular/bower-angular-mocks@1.4.8",
@@ -123,6 +124,7 @@ System.config({
     "elevateweb/elevatezoom": "github:elevateweb/elevatezoom@2.2.3",
     "fancybox-plus": "github:igorlino/fancybox-plus@1.3.6",
     "font-awesome": "npm:font-awesome@4.5.0",
+    "highlight": "npm:highlight@0.2.4",
     "image": "github:systemjs/plugin-image@0.1.0",
     "jquery": "github:components/jquery@2.1.4",
     "jquery/jquery-ui": "github:jquery/jquery-ui@1.11.4",
@@ -132,6 +134,7 @@ System.config({
     "mongoose": "github:Automattic/mongoose@4.3.1",
     "ng-file-upload": "npm:ng-file-upload@10.1.9",
     "ng-lodash": "npm:ng-lodash@0.2.3",
+    "ng-select": "github:pc035860/ngSelect@1.0.0",
     "ngReact": "github:ngReact/ngReact@0.2.0",
     "ngStorage": "github:gsklee/ngStorage@0.3.10",
     "ocLazyLoad": "github:ocombe/ocLazyLoad@1.0.9",
@@ -203,6 +206,11 @@ System.config({
     "npm:angular-animate@1.4.8": {
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
+    "npm:angular-highlightjs@0.5.1": {
+      "buffer": "github:jspm/nodelibs-buffer@0.1.0",
+      "path": "github:jspm/nodelibs-path@0.1.0",
+      "process": "github:jspm/nodelibs-process@0.1.2"
+    },
     "npm:angular-translate-loader-static-files@2.8.1": {
       "angular-translate": "npm:angular-translate@2.8.1"
     },
@@ -242,6 +250,11 @@ System.config({
     },
     "npm:font-awesome@4.5.0": {
       "css": "github:systemjs/plugin-css@0.1.20"
+    },
+    "npm:highlight@0.2.4": {
+      "assert": "github:jspm/nodelibs-assert@0.1.0",
+      "fs": "github:jspm/nodelibs-fs@0.1.2",
+      "process": "github:jspm/nodelibs-process@0.1.2"
     },
     "npm:inherits@2.0.1": {
       "util": "github:jspm/nodelibs-util@0.1.0"
