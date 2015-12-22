@@ -47,9 +47,9 @@ class CoreConfig {
                 templateUrl: this.Templates.LoadMaskViewTpl.name,
                 controller: 'ComponentsController',
                 controllerAs: 'cmpCtrl'
-            }).state('components.validations', {
-                url: '/validations',
-                templateUrl: this.Templates.ValidationsViewTpl.name,
+            }).state('components.maskre', {
+                url: '/maskre',
+                templateUrl: this.Templates.MaskReViewTpl.name,
                 controller: 'ComponentsController',
                 controllerAs: 'cmpCtrl'
             })

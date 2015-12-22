@@ -6,10 +6,21 @@ class ComponentsController {
     constructor(AuthenticationService, DataItemModule, DataItem) {
         // This provides Authentication context.
         this.authentication = AuthenticationService;
+        this.DataItemModule = DataItemModule;
+        this.DataItem = DataItem;
         this.user = AuthenticationService.user;
         this.options = {
             user: this.user
         };
+
+        this.dataViewComponent();
+        this.loadMaskComponent();
+        this.maskReComponent();
+
+    }
+
+    dataViewComponent() {
+        //Data view component
         this.tabsDataView = [{
             iconCls: 'fa fa-th-large',
             name: 'Preview Component',
@@ -25,7 +36,7 @@ class ComponentsController {
             uri: 'app/packages/core/web/views/components/data-view/highlight/dataview-view.tpl.html',
             highlight: true
         }];
-        this.currentTab = this.tabsDataView[0];
+        this.currentTabDV = this.tabsDataView[0];
 
         this.options = {
             store: [
@@ -74,7 +85,7 @@ class ComponentsController {
                 iconCls: 'iconCls'
             },
             template: {
-                component: DataItemModule,
+                component: this.DataItemModule,
                 listeners: {
                     onClick: (item, dataView, index, event) => {
                         console.log("item", item);
@@ -86,6 +97,36 @@ class ComponentsController {
 
             }
         };
+    }
+
+    loadMaskComponent() {
+        //Load Mask component
+        this.tabsLoadMask = [{
+            iconCls: 'fa fa-spinner',
+            name: 'Preview Component',
+            highlight: false
+        }, {
+            iconCls: 'fa fa-code',
+            name: 'LoadMaskController.js',
+            uri: 'app/packages/core/web/views/components/load-mask/highlight/loadmask.js',
+            highlight: true
+        }];
+        this.currentTabLM = this.tabsLoadMask[0];
+    }
+
+    maskReComponent() {
+        //Load Mask component
+        this.tabsMaskRe = [{
+            iconCls: 'fa fa-asterisk',
+            name: 'Preview Component',
+            highlight: false
+        }, {
+            iconCls: 'fa fa-html5',
+            name: 'MaskRe.tpl.html',
+            uri: 'app/packages/core/web/views/components/maskre/highlight/maskre-view.tpl.html',
+            highlight: true
+        }];
+        this.currentTabMR = this.tabsMaskRe[0];
     }
 }
 

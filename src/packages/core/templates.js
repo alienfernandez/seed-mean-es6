@@ -8,8 +8,8 @@ import HomeTemplate from './web/views/home.tpl';
 import ComponentsTpl from './web/views/components/components-view.tpl';
 import DataViewTpl from './web/views/components/data-view/dataview-view.tpl';
 import NavbarViewTpl from './web/views/components/navbar-view.tpl';
-import LoadMaskViewTpl from './web/views/components/loadmask-view.tpl';
-import ValidationsViewTpl from './web/views/components/validations-view.tpl';
+import LoadMaskViewTpl from './web/views/components/load-mask/loadmask-view.tpl';
+import MaskReViewTpl from './web/views/components/maskre/maskre-view.tpl';
 
 export {Template400, Template403, Template404, HomeTemplate, ComponentsTpl, DataViewTpl, NavbarViewTpl, LoadMaskViewTpl,
-    ValidationsViewTpl};
+    MaskReViewTpl};

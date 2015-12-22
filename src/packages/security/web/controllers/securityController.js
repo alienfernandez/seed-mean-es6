@@ -64,8 +64,8 @@ class SecurityController {
             // And redirect to the previous or home page
             this.$state.transitionTo(this.$state.previous.state.name || 'home', this.$state.previous.params);
         }).catch((error) => {
-            this.loadMask.hide('#loadMaskData');
             this.toastr.error(error.message.message, 'Error');
+            this.loadMask.hide('#loadMaskData');
         });
     }
 
