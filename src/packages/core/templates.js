@@ -6,7 +6,7 @@ import HomeTemplate from './web/views/home.tpl';
 
 //Components templates
 import ComponentsTpl from './web/views/components/components-view.tpl';
-import DataViewTpl from './web/views/components/dataview-view.tpl';
+import DataViewTpl from './web/views/components/data-view/dataview-view.tpl';
 import NavbarViewTpl from './web/views/components/navbar-view.tpl';
 import LoadMaskViewTpl from './web/views/components/loadmask-view.tpl';
 import ValidationsViewTpl from './web/views/components/validations-view.tpl';

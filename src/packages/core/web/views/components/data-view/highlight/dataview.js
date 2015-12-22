@@ -1,31 +1,7 @@
-import coreModule from '../../coreModule';
-
-class ComponentsController {
+class DataViewController {
 
     /*ngInject*/
-    constructor(AuthenticationService, DataItemModule, DataItem) {
-        // This provides Authentication context.
-        this.authentication = AuthenticationService;
-        this.user = AuthenticationService.user;
-        this.options = {
-            user: this.user
-        };
-        this.tabsDataView = [{
-            iconCls: 'fa fa-th-large',
-            name: 'Preview Component',
-            highlight: false
-        }, {
-            iconCls: 'fa fa-code',
-            name: 'DataViewController.js',
-            uri: 'app/packages/core/web/views/components/data-view/highlight/dataview.js',
-            highlight: true
-        }, {
-            iconCls: 'fa fa-html5',
-            name: 'DataView.tpl.html',
-            uri: 'app/packages/core/web/views/components/data-view/highlight/dataview-view.tpl.html',
-            highlight: true
-        }];
-        this.currentTab = this.tabsDataView[0];
+    constructor(DataItemModule) {
 
         this.options = {
             store: [
@@ -66,7 +42,7 @@ class ComponentsController {
             ],
             itemSelector: 'div.dv-thumb-wrap',
             overItemCls: 'dv-view-over',
-            selectItemCls: 'dv-item-selected', //dv-view-item-focused
+            selectItemCls: 'dv-item-selected',
             multiSelect: false,
             groupBy: {
                 key: 'group',
@@ -88,7 +64,3 @@ class ComponentsController {
         };
     }
 }
-
-coreModule.controller('ComponentsController', ComponentsController);
-
-export default coreModule;

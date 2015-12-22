@@ -74,6 +74,16 @@ gulp.task('html', function () {
         }));
 });
 
+gulp.task('html-highlight', function () {
+    return gulp.src(config.path.templatesHighlight)
+        .pipe(cache('templatesHighlight'))
+        .pipe(plumber())
+        .pipe(changed(config.path.output, {
+            extension: '.html'
+        }))
+        .pipe(gulp.dest(config.path.output));
+});
+
 /**
  * Copy es5 resources
  */
@@ -120,7 +130,7 @@ gulp.task('es6', function () {
 });
 
 gulp.task('build', function (callback) {
-    return runSequence(['sass', 'css', 'html', 'es6', 'es5', 'move', 'config'], callback);
+    return runSequence(['sass', 'css', 'html', 'html-highlight', 'es6', 'es5', 'move', 'config'], callback);
 });
 
 // Lint project files and minify them into two production files.

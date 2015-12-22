@@ -7,12 +7,13 @@ var compilerOptions = {
 };
 
 var path = {
-    source: ['src/**/*.js', '!src/**/server/**/*.js'],
+    source: ['src/**/*.js', '!src/**/server/**/*.js', '!src/**/web/**/highlight/*.js'],
     allJsSource: ['src/**/*.js'],
-    sourceES5: ['src/**/server/**/*.js'],
+    sourceES5: ['src/**/server/**/*.js', 'src/**/web/**/highlight/*.js'],
     html: '**/*.html',
     json: 'src/**/*.json',
-    templates: 'src/**/*.html',
+    templates: ['src/**/*.html', '!src/**/web/**/highlight/*.html'],
+    templatesHighlight: ['src/**/web/**/highlight/*.html'],
     less: 'src/assets/less/*.less',
     sass: 'src/assets/sass/main.scss',
     themes: ['app/assets/dark.css', 'app/assets/light.css'],
