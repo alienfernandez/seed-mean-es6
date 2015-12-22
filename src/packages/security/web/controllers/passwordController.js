@@ -11,61 +11,61 @@ class PasswordController {
         this.$http = $http;
         this.$stateParams = $stateParams;
         this.toastr = toastr;
+        this.$location = $location;
 
-        // If user is signed in then redirect back home
-        //if (!this.authentication.user) {
-        //    $location.path('/');
-        //}
     }
 
+    /**
+     * Send email
+     */
     askForPasswordReset() {
         this.security.askForPasswordReset(this.credentials)
             .then((response) => {
                 this.credentials = null;
                 this.success = response.message;
-                this.toastr.success(this.success, 'Success');
+                this.toastr.success(this.success);
             })
             .catch((error) => {
-                console.log("error", error)
                 // Show user error message and clear form
                 this.credentials = null;
-                this.error = error.message.message;
-                this.toastr.error(this.error, 'Error');
+                this.toastr.error(error.message.message, 'Error');
             });
     }
 
-    resetUserPassword(isValid) {
-        this.success = this.error = null;
-        if (!isValid) {
-            return false;
-        }
+    /**
+     * Reset user password with email params send
+     */
+    resetUserPassword() {
         this.security.resetUserPassword(this.passwordDetails, '/api/auth/reset/' + this.$stateParams.token)
             .then((response) => {
                 this.passwordDetails = null;
-                this.toastr.success("Password reseted.", 'Success');
+                this.toastr.success("Your password was reset successfully.");
                 // Attach user profile
                 this.authentication.user = response;
                 // And redirect to the index page
-                this.$location.path('/password/reset/success');
+                this.$state.go('home');
             })
             .catch((response) => {
-                this.error = response.message;
-                this.toastr.error(this.error, 'Error');
+                this.toastr.error(response.message.message, 'Error');
             });
     }
 
-    // Change user password
+    /**
+     * Change user password (need login)
+     */
     changeUserPassword() {
+        // If user is signed in then redirect back home
+        if (!this.authentication.user) {
+            this.$location.path('/');
+        }
         this.$http.post('/api/users/password', this.passwordDetails).success(
             (response) => {
-                console.log("response", response)
                 // If successful show success message and clear form
                 this.passwordDetails = null;
                 this.$state.transitionTo('settings.profile');
-                this.toastr.success("Su clave fue cambiada correctamente.", 'Info');
+                this.toastr.success("Your password was changed successfully.");
             }).error((response) => {
-                this.error = response.message;
-                this.toastr.error(this.error, 'Error');
+                this.toastr.error(response.message.message, 'Error');
             });
     }
 

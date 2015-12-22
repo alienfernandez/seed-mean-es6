@@ -77,16 +77,18 @@ exports.forgot = function (req, res, next) {
                 subject: 'Password Reset',
                 html: emailHTML
             };
-            console.log("mailOptions", mailOptions)
             smtpTransport.sendMail(mailOptions, function (err) {
                 if (!err) {
                     res.send({
                         message: 'An email has been sent to the provided email with further instructions.'
                     });
                 } else {
-                    console.log("err", err)
+                    var msgError = "Failure sending email";
+                    if (err.code == 'EAUTH') {
+                        msgError += ": Invalid login";
+                    }
                     return res.status(400).send({
-                        message: 'Failure sending email'
+                        message: msgError
                     });
                 }
 
@@ -111,10 +113,10 @@ exports.validateResetToken = function (req, res) {
         }
     }, function (err, user) {
         if (!user) {
-            return res.redirect('/password/reset/invalid');
+            return res.redirect('/#password/reset/invalid');
         }
 
-        res.redirect('/password/reset/' + req.params.token);
+        res.redirect('/#password/reset/' + req.params.token);
     });
 };
 
