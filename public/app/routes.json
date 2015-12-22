@@ -46,5 +46,11 @@
     "urlPrefix": "/components",
     "type": "load",
     "src": "packages/core"
+  },
+  {
+    "stateName": "password",
+    "urlPrefix": "/password",
+    "type": "load",
+    "src": "packages/security"
   }
 ]

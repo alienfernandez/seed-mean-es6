@@ -13,25 +13,24 @@ class PasswordController {
         this.toastr = toastr;
 
         // If user is signed in then redirect back home
-        if (!this.authentication.user) {
-            $location.path('/');
-        }
+        //if (!this.authentication.user) {
+        //    $location.path('/');
+        //}
     }
 
-    askForPasswordReset(isValid) {
-        this.success = this.error = null;
-        if (!isValid) {
-            return false;
-        }
+    askForPasswordReset() {
         this.security.askForPasswordReset(this.credentials)
             .then((response) => {
                 this.credentials = null;
                 this.success = response.message;
+                this.toastr.success(this.success, 'Success');
             })
-            .catch(function (error) {
+            .catch((error) => {
+                console.log("error", error)
                 // Show user error message and clear form
                 this.credentials = null;
-                this.error = error.message;
+                this.error = error.message.message;
+                this.toastr.error(this.error, 'Error');
             });
     }
 
@@ -43,7 +42,7 @@ class PasswordController {
         this.security.resetUserPassword(this.passwordDetails, '/api/auth/reset/' + this.$stateParams.token)
             .then((response) => {
                 this.passwordDetails = null;
-
+                this.toastr.success("Password reseted.", 'Success');
                 // Attach user profile
                 this.authentication.user = response;
                 // And redirect to the index page
@@ -51,6 +50,7 @@ class PasswordController {
             })
             .catch((response) => {
                 this.error = response.message;
+                this.toastr.error(this.error, 'Error');
             });
     }
 

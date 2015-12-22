@@ -9,7 +9,7 @@ import * as Templates from './templates';
 import CoreConfig from './web/config/core.config';
 
 import 'ng-select';
-import 'highlightjs';
+import 'highlight-js';
 import 'angular-highlightjs';
 
 let coreModule = angular.module("app.core", [
@@ -38,6 +38,9 @@ coreModule.config(($stateProvider, $locationProvider, $httpProvider, $urlRouterP
 });
 
 coreModule.run(($rootScope, $state, AuthenticationService) => {
+    //TODO delete
+    $rootScope.facebookAppId = "";
+
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
         if (toState.data && toState.data.roles && toState.data.roles.length > 0) {
             var allowed = false;

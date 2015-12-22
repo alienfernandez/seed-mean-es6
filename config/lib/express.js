@@ -94,6 +94,19 @@ module.exports.initMiddleware = function (app) {
 };
 
 /**
+ * Configure view engine
+ */
+module.exports.initViewEngine = function (app) {
+    // Set swig as the template engine
+    app.engine('server.view.html', consolidate[config.templateEngine]);
+
+    // Set views path and view engine
+    app.set('view engine', 'server.view.html');
+    app.set('views', './');
+};
+
+
+/**
  * Configure Express session
  */
 module.exports.initSession = function (app, db) {
@@ -225,7 +238,7 @@ module.exports.init = function (db) {
     this.initMiddleware(app);
 
     // Initialize Express view engine
-    //this.initViewEngine(app);
+    this.initViewEngine(app);
 
     // Initialize Express session
     this.initSession(app, db);

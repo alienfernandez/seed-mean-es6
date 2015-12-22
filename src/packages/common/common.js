@@ -2,8 +2,8 @@
 import commonModule from './commonModule';
 
 //Constants
-import './constants/development';
-//import './constants/production';
+//import './constants/development';
+import './constants/production';
 
 //provider
 import './providers/lagoProvider';

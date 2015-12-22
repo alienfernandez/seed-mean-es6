@@ -7,8 +7,10 @@ class ProfileController {
         this.authentication = AuthenticationService;
         this.UserService = UserService;
         this.Upload = Upload;
-        this.user = this.authentication.user;
-        this.imageURL = this.user.profileImageURL;
+        //this.user = this.authentication.user;
+        this.findUser(this.authentication.user._id);
+        console.log("this.user", this.user)
+        this.imageURL = this.authentication.user.profileImageURL;
         this.$state = $state;
         this.toastr = toastr;
         // If user is signed in then redirect back home
@@ -17,21 +19,35 @@ class ProfileController {
         }
     }
 
+    findUser(userId) {
+        this.user = this.UserService.get({
+            userId: userId
+        });
+    }
+
     /**
      * Update a user profile
      */
     updateUserProfile() {
-        let user = new this.UserService(this.user);
-        user.$update((response) => {
-            if (response && response._id) {
-                this.authentication.user = response;
-                this.user = response;
-                this.toastr.success('Profile updated correctly.');
-            }
+        //let user = this.findUser(this.user._id);
+        this.user.$update((response) => {
+            console.log("response", response)
+            this.authentication.user = response;
+            this.toastr.success('Profile updated correctly.');
         }, (response) => {
             this.error = response.data.message;
             this.toastr.error('Error: ' + this.error, 'Error');
         });
+        //user.$update((response) => {
+        //    if (response && response._id) {
+        //        this.authentication.user = response;
+        //        this.user = response;
+        //        this.toastr.success('Profile updated correctly.');
+        //    }
+        //}, (response) => {
+        //    this.error = response.data.message;
+        //    this.toastr.error('Error: ' + this.error, 'Error');
+        //});
     }
 
     /**

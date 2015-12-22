@@ -12,10 +12,12 @@ import ChangePictureTpl from './web/views/settings/change-profile-picture-view.t
 import SocialAccountTpl from './web/views/settings/manage-social-accounts-view.tpl';
 
 //Password templates
+import PasswordTpl from './web/views/password/password-view.tpl';
 import ForgotPasswordTpl from './web/views/password/forgot-password-view.tpl';
 import ResetPasswordTpl from './web/views/password/reset-password-view.tpl';
 
 export {
     SigninTpl, UserEditTpl, AddUserTpl, UserListTpl, UserProfileTpl, UserSettingsTpl,
-    ChangePasswordTpl, SocialAccountTpl, ChangePictureTpl, ForgotPasswordTpl, ResetPasswordTpl
+    ChangePasswordTpl, SocialAccountTpl, ChangePictureTpl, ForgotPasswordTpl, ResetPasswordTpl,
+    PasswordTpl
 };

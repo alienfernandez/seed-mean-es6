@@ -86,7 +86,9 @@ class SecurityConfig {
         }).state('password', {
             abstract: true,
             url: '/password',
-            template: '<ui-view/>'
+            template: '<ui-view/>',
+            controller: 'PasswordController',
+            controllerAs: 'passwordCtrl',
         }).state('password.forgot', {
             url: '/forgot',
             templateUrl: this.Templates.ForgotPasswordTpl.name,
