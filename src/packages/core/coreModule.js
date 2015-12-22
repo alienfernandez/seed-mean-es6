@@ -9,7 +9,7 @@ import * as Templates from './templates';
 import CoreConfig from './web/config/core.config';
 
 import 'ng-select';
-//import 'highlight';
+import 'highlightjs';
 import 'angular-highlightjs';
 
 let coreModule = angular.module("app.core", [
