@@ -16,6 +16,7 @@ class ComponentsController {
         this.dataViewComponent();
         this.loadMaskComponent();
         this.maskReComponent();
+        this.navbarComponent();
 
     }
 
@@ -127,6 +128,21 @@ class ComponentsController {
             highlight: true
         }];
         this.currentTabMR = this.tabsMaskRe[0];
+    }
+
+    navbarComponent() {
+        //Load Mask component
+        this.tabsNavbar = [{
+            iconCls: 'fa fa-navicon',
+            name: 'Preview Component',
+            highlight: false
+        }, {
+            iconCls: 'fa fa-html5',
+            name: 'NavBar.tpl.html',
+            uri: 'app/packages/core/web/views/components/navbar/highlight/navbar-view.tpl.html',
+            highlight: true
+        }];
+        this.currentTabNB = this.tabsNavbar[0];
     }
 }
 
