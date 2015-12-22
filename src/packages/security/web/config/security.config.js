@@ -32,20 +32,23 @@ class SecurityConfig {
             url: '/signup',
             controller: 'SecurityController',
             controllerAs: 'secCtrl',
-            templateUrl: this.Templates.SigninTpl.name
+            templateUrl: this.Templates.SignupTpl.name
         }).state('useradd', {
             url: '/users/create',
             controller: 'UserController',
             controllerAs: 'userCtrl',
             templateUrl: this.Templates.AddUserTpl.name,
-            //data: {
-            //    roles: ['user', 'admin']
-            //}
+            data: {
+                roles: ['user', 'admin']
+            }
         }).state('userlist', {
             url: '/users/list',
             controller: 'UserController',
             controllerAs: 'userCtrl',
-            templateUrl: this.Templates.UserListTpl.name
+            templateUrl: this.Templates.UserListTpl.name,
+            data: {
+                roles: ['user', 'admin']
+            }
         }).state('useredit', {
             url: '/users/edit/:userId',
             controller: 'UserController',

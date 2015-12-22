@@ -22,17 +22,14 @@ class SecurityController {
         }
     }
 
-    signup(isValid) {
-        this.error = null;
-        if (!isValid) {
-            return false;
-        }
+    signup() {
         this.security.signup(this.credentials)
             .then((response) => {
                 this.authentication.user = response;
+                //Storage user
+                this.localStorageService.set('user', response);
                 // And redirect to the previous or home page
                 this.$state.transitionTo(this.$state.previous.state.name || 'home', this.$state.previous.params);
-                //this.$state.transitionTo('home');
             })
             .catch((error) => {
                 this.error = error.message;
@@ -48,11 +45,7 @@ class SecurityController {
         });
     }
 
-    signin(isValid) {
-        this.error = null;
-        if (!isValid) {
-            return false;
-        }
+    signin() {
         //Show loading
         this.loadMask.show('#loadMaskData');
         this.security.signin(this.credentials).then((response) => {

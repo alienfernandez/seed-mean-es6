@@ -20,7 +20,7 @@ let securityModule = angular.module('app.security', [
     'ngFileUpload', 'pascalprecht.translate',
 
     //Templates
-    Templates.SigninTpl.name, Templates.UserEditTpl.name, Templates.AddUserTpl.name,
+    Templates.SigninTpl.name, Templates.SignupTpl.name, Templates.UserEditTpl.name, Templates.AddUserTpl.name,
     Templates.UserListTpl.name, Templates.UserSettingsTpl.name, Templates.UserProfileTpl.name,
     Templates.ChangePasswordTpl.name, Templates.ForgotPasswordTpl.name, Templates.ResetPasswordTpl.name,
     Templates.ChangePictureTpl.name, Templates.SocialAccountTpl.name, Templates.PasswordTpl.name,
