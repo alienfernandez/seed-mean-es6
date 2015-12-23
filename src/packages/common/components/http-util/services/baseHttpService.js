@@ -4,7 +4,7 @@ import HttpService from '../HttpService';
 class BaseHttpService extends HttpService {
     /*ngInject*/
     constructor($http, lodash, $appConstants, localStorageService) {
-        console.log("$appConstants!", $appConstants);
+        //console.log("$appConstants!", $appConstants);
         super($http, lodash);
         this.config = {
             serverUri: $appConstants.server + ':' + $appConstants.port

@@ -3,16 +3,16 @@ import securityModule from '../../securityModule';
 class ProfileController {
 
     /*ngInject*/
-    constructor($location, $state, AuthenticationService, UserService, Upload, toastr) {
+    constructor($location, $state, AuthenticationService, UserService, Upload, toastr, lodash) {
         this.authentication = AuthenticationService;
         this.UserService = UserService;
         this.Upload = Upload;
         //this.user = this.authentication.user;
         this.findUser(this.authentication.user._id);
-        console.log("this.user", this.user)
         this.imageURL = this.authentication.user.profileImageURL;
         this.$state = $state;
         this.toastr = toastr;
+        this._ = lodash;
         // If user is signed in then redirect back home
         if (!this.authentication.user) {
             $location.path('/');
@@ -29,25 +29,16 @@ class ProfileController {
      * Update a user profile
      */
     updateUserProfile() {
-        //let user = this.findUser(this.user._id);
+        console.log("this.user1", this._.clone(this.user));
         this.user.$update((response) => {
-            console.log("response", response)
+            console.log("response", response);
             this.authentication.user = response;
             this.toastr.success('Profile updated correctly.');
+            this.$state.reload();
         }, (response) => {
             this.error = response.data.message;
             this.toastr.error('Error: ' + this.error, 'Error');
         });
-        //user.$update((response) => {
-        //    if (response && response._id) {
-        //        this.authentication.user = response;
-        //        this.user = response;
-        //        this.toastr.success('Profile updated correctly.');
-        //    }
-        //}, (response) => {
-        //    this.error = response.data.message;
-        //    this.toastr.error('Error: ' + this.error, 'Error');
-        //});
     }
 
     /**

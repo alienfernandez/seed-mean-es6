@@ -3,23 +3,23 @@ import blogModule from '../../blogModule';
 class ArticleController {
 
     /*ngInject*/
-    constructor($state, $stateParams, ArticleResource) {
+    constructor($state, $stateParams, ArticleResource, toastr) {
         this.$state = $state;
         this.$stateParams = $stateParams;
         this.articleResource = ArticleResource;
+        this.toastr = toastr;
     }
 
     create() {
-        this.error = null;
         var article = new this.articleResource(this.article);
-        console.log("article", article)
+        //console.log("article", article);
         // Redirect after save
         article.$save((response) => {
-            console.log(response);
             this.$state.transitionTo('article-list');
+            this.toastr.success("Article saved.");
         }, function (errorResponse) {
             console.log("errorResponse", errorResponse);
-            //this.error = errorResponse.data.message;
+            this.toastr.error(errorResponse.message.message);
         });
     }
 
@@ -39,14 +39,12 @@ class ArticleController {
     }
 
     update() {
-        this.error = null;
-
         this.article.$update(() => {
             this.$state.transitionTo('article-list');
+            this.toastr.success("Article saved.");
         }, (errorResponse) => {
-            //this.error = errorResponse.data.message;
-            this.error = errorResponse.data;
             console.log("errorResponse", errorResponse);
+            this.toastr.error(errorResponse.message.message);
         });
     }
 
