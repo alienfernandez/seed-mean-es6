@@ -1,7 +1,7 @@
 import coreModule from './coreModule';
 
 //Import css
-import './web/assets/css/core.css!';
+import './web/assets/css/core.min.css!';
 
 //Services
 import './web/services/interceptors/authInterceptorService';

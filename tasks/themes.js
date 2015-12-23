@@ -9,6 +9,7 @@ var less = require('gulp-less');
 var sass = require('gulp-sass');
 var lessPluginCleanCSS = require("less-plugin-clean-css");
 var cleancss = new lessPluginCleanCSS({advanced: true});
+var rename = require("gulp-rename");
 
 /**
  * Css tasks
@@ -76,10 +77,14 @@ gulp.task('sass', function () {
         .pipe(cache('sass'))
         .pipe(plumber())
         .pipe(changed(config.path.output, {extension: '.css'}))
-        .pipe(sourcemaps.init())
-        .pipe(sass().on('error', sass.logError))
-        .pipe(sourcemaps.write("."))
+        //.pipe(sourcemaps.init())
+        .pipe(sass({outputStyle: 'compressed', compact: true, comments: false}).on('error', sass.logError))
+        //.pipe(sourcemaps.write())
+        .pipe(rename(function (path) {
+            //Copy in css folder
+            path.dirname += "/../css";
+            path.basename += ".min";
+        }))
         .pipe(gulp.dest(config.path.outputCss))
         .pipe(browserSync.reload({stream: true}));
 });
-

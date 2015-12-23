@@ -1,7 +1,7 @@
 import securityModule from './securityModule';
 
 //Import styles
-import './web/assets/css/users.css!';
+import './web/assets/css/users.min.css!';
 
 //Services
 import './web/services/authenticationService';

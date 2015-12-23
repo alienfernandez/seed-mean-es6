@@ -1,4 +1,4 @@
-import './assets/css/data-view.css!';
+import './assets/css/data-view.min.css!';
 
 //Import react components as value
 import './factory/dataViewValue';

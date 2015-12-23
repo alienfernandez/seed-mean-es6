@@ -1,4 +1,4 @@
-import './assets/css/navbar.css!';
+import './assets/css/navbar.min.css!';
 
 //Import controllers
 import './controllers/navbarController';
