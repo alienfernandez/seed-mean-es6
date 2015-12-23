@@ -95,7 +95,7 @@ System.config({
         },
         "highlight-js": {
             "deps": [
-                "github:isagalaev/highlight.js@9.0.0/src/styles/default.css!"
+                "github:isagalaev/highlight.js@9.0.0/src/styles/darkula.css!"
             ]
         }
     },
