@@ -1,14 +1,11 @@
-/public/app/resources.js.map
-/public/app/resources.js
 /coverage
 /public/dist
 node_modules/
 node_modules/**
 public/jspm_packages/
 public/jspm_packages/**
+/public/assets/img/profile/uploads
 /public/jspm_packages
-/public/app/app.js
-/public/app/app.js.map
-/public/app/packages
+/public/app
 /public/routes.json
 .idea

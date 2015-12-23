@@ -3,6 +3,7 @@
  **/
 $font-size: 11px;
 $font-family: Verdana, Arial, sans-serif;
+$color-line: #72c02c;
 
 /**
  * Forms vars
@@ -24,16 +25,8 @@ $badge-warning-color: #eac85e;
 $badge-danger-color: #e5603b;
 $state-danger-text: #a94442;
 
-
-
-/*@panel-head-padding: 5px 10px !important;
-@alert-padding: 10px !important;
-//Badge vars
-@badge-padding: 2px 9px;
-@badge-default-color: #999999;
-@badge-success-color: #56bc76;
-@badge-primary-color: #618fb0;
-@badge-info-color: #4ab0ce;
-@badge-warning-color: #eac85e;
-@badge-danger-color: #e5603b;
-@state-danger-text: #a94442;*/
+/*
+ * Tab line vars
+ */
+$tabline-color: #72c02c;
+$tabline-color-hover: #95eb2e;

@@ -73,18 +73,22 @@ gulp.task('less-themes', function () {
  * Sass tasks
  */
 gulp.task('sass', function () {
+    var env = process.env.NODE_ENV;
+    var sassConfig = {compact: true, comments: false};
+    if (env == "production") {
+        sassConfig.outputStyle = 'compressed';
+    }
     return gulp.src(config.path.sass)
         .pipe(cache('sass'))
         .pipe(plumber())
         .pipe(changed(config.path.output, {extension: '.css'}))
         //.pipe(sourcemaps.init())
-        .pipe(sass({outputStyle: 'compressed', compact: true, comments: false}).on('error', sass.logError))
+        .pipe(sass(sassConfig).on('error', sass.logError))
         //.pipe(sourcemaps.write())
         .pipe(rename(function (path) {
             //Copy in css folder
             path.dirname += "/../css";
             path.basename += ".min";
         }))
-        .pipe(gulp.dest(config.path.outputCss))
-        .pipe(browserSync.reload({stream: true}));
+        .pipe(gulp.dest(config.path.outputCss));
 });

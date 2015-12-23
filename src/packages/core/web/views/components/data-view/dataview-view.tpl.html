@@ -14,7 +14,9 @@
                             <div ng-if="tab == cmpCtrl.currentTabDV">
                                 <div class="row" style="margin-top: 10px;">
                                     <div class="col-lg-12" ng-if="tab.highlight" hljs
-                                         hljs-include="cmpCtrl.currentTabDV.uri"></div>
+                                         hljs-include="cmpCtrl.currentTabDV.uri"
+                                         style="overflow: auto; height: 500px;">
+                                    </div>
                                     <div ng-if="!tab.highlight">
                                         <div class="col-lg-12">
                                             <dataview options="cmpCtrl.options"></dataview>

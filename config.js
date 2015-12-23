@@ -3,7 +3,7 @@ var compilerOptions = {
     moduleIds: false,
     externalHelpers: true,
     comments: true,
-    compact: false,
+    compact: false
 };
 
 var path = {
@@ -15,13 +15,14 @@ var path = {
     templates: ['src/**/*.html', '!src/**/web/**/highlight/*.html', '!src/**/server/**/templates/*.html'],
     originalTemplates: ['src/**/web/**/highlight/*.html', 'src/**/server/**/templates/*.html'],
     less: 'src/assets/less/*.less',
-    sass: ['src/**/sass/*.scss', '!src/**/sass/variables.scss', '!src/**/sass/mixin.scss'],
+    sass: ['src/**/sass/*.scss', '!src/**/sass/variables.scss', '!src/**/sass/mixin.scss',
+        '!src/**/sass/components.scss', '!src/**/sass/test.scss'],
     themes: ['app/assets/dark.css', 'app/assets/light.css'],
     themesOutput: 'public/assets/',
     output: 'public/app',
     outputConfig: 'public/app/packages/common/config/env',
     outputCss: 'src',
-    css: ['src/**/*.css', '!app/assets/**/*.css'],
+    css: ['src/**/*.css', '!app/assets/**/*.css']
 };
 
 var serve = {
