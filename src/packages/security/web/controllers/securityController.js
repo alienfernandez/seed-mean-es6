@@ -25,11 +25,9 @@ class SecurityController {
     signup() {
         this.security.signup(this.credentials)
             .then((response) => {
-                this.authentication.user = response;
-                //Storage user
-                this.localStorageService.set('user', response);
+                let defaultRedirect = response.redirect || 'home';
                 // And redirect to the previous or home page
-                this.$state.transitionTo(this.$state.previous.state.name || 'home', this.$state.previous.params);
+                this.$state.transitionTo(this.$state.previous.state.name || defaultRedirect, this.$state.previous.params);
             })
             .catch((error) => {
                 this.error = error.message;
@@ -37,25 +35,14 @@ class SecurityController {
             });
     }
 
-    signout() {
-        this.security.signout().then((response) => {
-            //Clean user data
-            this.authentication.user = null;
-            this.localStorageService.set('user', null);
-        });
-    }
-
     signin() {
         //Show loading
         this.loadMask.show('#loadMaskData');
         this.security.signin(this.credentials).then((response) => {
-            this.authentication.user = response;
-            //Storage user
-            this.localStorageService.set('user', response);
-
+            let defaultRedirect = response.redirect || 'home';
             this.loadMask.hide('#loadMaskData');
             // And redirect to the previous or home page
-            this.$state.transitionTo(this.$state.previous.state.name || 'home', this.$state.previous.params);
+            this.$state.transitionTo(this.$state.previous.state.name || defaultRedirect, this.$state.previous.params);
         }).catch((error) => {
             this.toastr.error(error.message.message, 'Error');
             this.loadMask.hide('#loadMaskData');

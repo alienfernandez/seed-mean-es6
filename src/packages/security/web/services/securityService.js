@@ -2,16 +2,17 @@ import securityModule from '../../securityModule';
 
 class SecurityService {
 
-    constructor($window, BaseHttpService) {
+    constructor($window, BaseHttpService, AuthenticationService) {
         this.$window = $window;
-        this.http = BaseHttpService;
-        this.serverUri = this.http.config.serverUri;
+        this.httpService = BaseHttpService;
+        this.authService = AuthenticationService;
+        this.serverUri = this.httpService.config.serverUri;
         console.log("serverUri: ", this.serverUri);
     }
 
     /*ngInject*/
-    static instance($window, BaseHttpService) {
-        return new SecurityService($window, BaseHttpService);
+    static instance($window, BaseHttpService, AuthenticationService) {
+        return new SecurityService($window, BaseHttpService, AuthenticationService);
     }
 
     /**
@@ -23,7 +24,7 @@ class SecurityService {
     signup(credentials, uri = '/api/auth/signup') {
         var url = this.serverUri + uri;
         return new Promise((resolve, reject) => {
-            this.http.post(url, credentials)
+            this.httpService.post(url, credentials)
                 .then((data) => {
                     resolve(data);
                 })
@@ -42,9 +43,10 @@ class SecurityService {
     signin(credentials, uri = '/api/auth/signin') {
         var url = this.serverUri + uri;
         return new Promise((resolve, reject) => {
-            this.http.post(url, credentials)
-                .then((data) => {
-                    resolve(data);
+            this.httpService.post(url, credentials)
+                .then((response) => {
+                    let identity = this.authService.onIdentity(response);
+                    resolve(identity);
                 })
                 .catch((error) => {
                     reject(error);
@@ -55,7 +57,7 @@ class SecurityService {
     signout() {
         var url = this.serverUri + '/api/auth/signout';
         return new Promise((resolve, reject) => {
-            this.http.get(url, {})
+            this.httpService.get(url, {})
                 .then((data) => {
                     resolve(data);
                 })
@@ -68,7 +70,7 @@ class SecurityService {
     askForPasswordReset(credentials, uri = '/api/auth/forgot') {
         var url = this.serverUri + uri;
         return new Promise((resolve, reject) => {
-            this.http.post(url, credentials)
+            this.httpService.post(url, credentials)
                 .then((data) => {
                     resolve(data);
                 })
@@ -87,7 +89,7 @@ class SecurityService {
     resetUserPassword(passwordDetails, uri) {
         var url = this.serverUri + uri;
         return new Promise((resolve, reject) => {
-            this.http.post(url, passwordDetails)
+            this.httpService.post(url, passwordDetails)
                 .then((data) => {
                     resolve(data);
                 })

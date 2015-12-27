@@ -7,7 +7,9 @@ var path = require('path'),
     errorHandler = require(path.resolve('./src/packages/core/server/controllers/errors.server.controller')),
     mongoose = require('mongoose'),
     passport = require('passport'),
-    User = mongoose.model('User');
+    User = mongoose.model('User'),
+    config = require(path.resolve('./config/config')),
+    jwt = require('jsonwebtoken');
 
 // URLs for which user can't be redirected on signin
 var noReturnUrls = [
@@ -45,7 +47,15 @@ exports.signup = function (req, res) {
                 if (err) {
                     res.status(400).send(err);
                 } else {
-                    res.json(user);
+                    var payload = user;
+                    var escaped = JSON.stringify(payload);
+                    escaped = encodeURI(escaped);
+                    // We are sending the payload inside the token
+                    var token = jwt.sign(escaped, config.secret, {expiresIn: 300});
+                    res.json({
+                        token: token,
+                        redirect: config.landingPageState
+                    });
                 }
             });
         }
@@ -68,7 +78,15 @@ exports.signin = function (req, res, next) {
                 if (err) {
                     res.status(400).send(err);
                 } else {
-                    res.json(user);
+                    var payload = user;
+                    var escaped = JSON.stringify(payload);
+                    escaped = encodeURI(escaped);
+                    // We are sending the payload inside the token
+                    var token = jwt.sign(escaped, config.secret, {expiresIn: 300});
+                    res.json({
+                        token: token,
+                        redirect: config.landingPageState
+                    });
                 }
             });
         }

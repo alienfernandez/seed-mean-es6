@@ -16,8 +16,9 @@ class NavbarController {
      */
     signout() {
         this.security.signout().then((response) => {
-            //Clean user data
-            this.authentication.user = null;
+            //Clean JWT user data
+            this.authentication.signOut();
+            console.log("this.$state.current.name", this.$state.current.name);
             if (this.$state.current.name === "home") {
                 this.$state.reload();
             } else {

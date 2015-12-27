@@ -20,6 +20,24 @@ commonModule.filter('stripSpecialChars', ["StringUtil", function (StringUtil) {
             return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
         }) : '';
     }
+}).filter('escape_html', function () {
+    return function (input) {
+        return String(input)
+            .replace(/&/g, '&amp;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+    }
+}).filter('b64_to_utf8', function () {
+    return function (input) {
+        return String(input)
+            .replace(/&/g, '&amp;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+    }
 });
 
 export default commonModule;

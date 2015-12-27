@@ -3,7 +3,7 @@ import HttpService from '../HttpService';
 
 class BaseHttpService extends HttpService {
     /*ngInject*/
-    constructor($http, lodash, $appConstants, localStorageService) {
+    constructor($http, lodash, $appConstants) {
         //console.log("$appConstants!", $appConstants);
         super($http, lodash);
         this.config = {

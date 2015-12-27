@@ -15,7 +15,8 @@ commonModule.config((localStorageServiceProvider, $appConstants) => {
     //Updating prefix and storage type of localStorage
     localStorageServiceProvider
         .setPrefix($appConstants.local_store.prefix)
-        .setStorageType($appConstants.local_store.type.session_storage);
+        .setStorageType($appConstants.local_store.type.session_storage)
+        .setNotify(true, true);
 });
 
 

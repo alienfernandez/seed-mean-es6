@@ -21,8 +21,10 @@ module.exports = {
         // in HTTPS mode.
         secure: false
     },
+    landingPageState: 'home',
     // sessionSecret should be changed for security measures and concerns
-    sessionSecret: 'MEANRR_ES6',
+    sessionSecret: '214e4a8c46d1bb2cb35a6bdb7ff41752a77ceccd',
+    secret: '3ef08f6cec91fd33a050c61955de86c86ca44ada',
     // sessionKey is set to the generic sessionId key used by PHP applications for obsecurity reasons
     sessionKey: 'sessionId',
     redisSessionSecret: 'eVCbCFxUUG1kq3x5U9tuzUOkg',

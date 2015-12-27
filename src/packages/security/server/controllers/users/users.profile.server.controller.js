@@ -99,5 +99,33 @@ exports.changeProfilePicture = function (req, res) {
  * Send User
  */
 exports.me = function (req, res) {
-    res.json(req.user || null);
+    if (!req.user || !req.user.hasOwnProperty('_id')) return res.send(null);
+
+    User.findOne({
+        _id: req.user._id
+    }).exec(function (err, user) {
+
+        if (err || !user) return res.send(null);
+
+
+        var dbUser = user.toJSON();
+        var id = req.user._id;
+
+        delete dbUser._id;
+        delete req.user._id;
+
+        var eq = _.isEqual(dbUser, req.user);
+        if (eq) {
+            req.user._id = id;
+            return res.json(req.user);
+        }
+
+        var payload = user;
+        var escaped = JSON.stringify(payload);
+        escaped = encodeURI(escaped);
+        var token = jwt.sign(escaped, config.secret, {expiresInMinutes: 60 * 5});
+        res.json({token: token});
+
+    });
+    //res.json(req.user || null);
 };
