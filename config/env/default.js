@@ -31,6 +31,7 @@ module.exports = {
     sessionCollection: 'sessions',
     logo: 'public/app/packages/core/web/assets/img/brand/logo.png',
     favicon: 'public/app/packages/core/web/assets/img/brand/favicon.ico',
+    staticFiles: 'public/assets/static/',
     uploads: {
         profileUpload: {
             dest: './public/assets/img/profile/uploads/', // Profile upload destination path

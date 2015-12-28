@@ -39,6 +39,7 @@ module.exports.initLocalVariables = function (app) {
     app.locals.livereload = config.livereload;
     app.locals.logo = config.logo;
     app.locals.favicon = config.favicon;
+    app.locals.staticFiles = config.staticFiles;
 
     // Passing the request url to environment locals
     app.use(function (req, res, next) {
@@ -69,6 +70,10 @@ module.exports.initMiddleware = function (app) {
 
     // Initialize favicon middleware
     app.use(favicon(app.locals.favicon));
+
+
+    // Adding robots and humans txt
+    app.useStatic(app.locals.staticFiles);
 
     // Enable logger (morgan)
     app.use(morgan(logger.getFormat(), logger.getOptions()));
@@ -230,6 +235,14 @@ module.exports.initCors = function (app) {
 module.exports.init = function (db) {
     // Initialize express app
     var app = express();
+
+    app.useStatic = function (a, b) {
+        if ('undefined' === typeof b) {
+            this.use(express.static(a));
+        } else {
+            this.use(a, express.static(b));
+        }
+    };
 
     // Initialize local variables
     this.initLocalVariables(app);
