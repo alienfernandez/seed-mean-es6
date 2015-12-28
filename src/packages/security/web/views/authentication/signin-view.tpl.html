@@ -30,7 +30,8 @@
                     <div class="input-group">
                         <div class="checkbox">
                             <label>
-                                <input id="login-remember" type="checkbox" name="remember" value="1">
+                                <input id="login-remember" type="checkbox" name="remember"
+                                       ng-model="secCtrl.credentials.remember_me" value="1" checked="checked">
                                 {{ 'REMEMBER_ME' | translate}}
                             </label>
                         </div>

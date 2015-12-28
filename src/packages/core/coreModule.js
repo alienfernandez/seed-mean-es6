@@ -16,7 +16,7 @@ let coreModule = angular.module("app.core", [
     Templates.Template400.name, Templates.Template403.name, Templates.Template404.name,
     Templates.HomeTemplate.name, Templates.ComponentsTpl.name, Templates.DataViewTpl.name,
     Templates.NavbarViewTpl.name, Templates.LoadMaskViewTpl.name, Templates.MaskReViewTpl.name,
-    'app.security', 'ngSelect', 'hljs'
+    'app.security', 'ngSelect', 'hljs', 'ngCookies'
 ]);
 
 coreModule.config(($stateProvider, $locationProvider, $httpProvider, $urlRouterProvider, hljsServiceProvider) => {
@@ -37,7 +37,7 @@ coreModule.config(($stateProvider, $locationProvider, $httpProvider, $urlRouterP
     });
 });
 
-coreModule.run(($rootScope, $state, AuthenticationService) => {
+coreModule.run(($rootScope, $state, AuthenticationService, $cookies) => {
     //TODO delete
     $rootScope.facebookAppId = "";
 
@@ -56,6 +56,7 @@ coreModule.run(($rootScope, $state, AuthenticationService) => {
                 if (AuthenticationService.user && AuthenticationService.user._id) {
                     $state.go('forbidden');
                 } else {
+                    //console.log("$cookies", $cookies);
                     $state.go('authentication.signin').then(function () {
                         storePreviousState(toState, toParams);
                     });

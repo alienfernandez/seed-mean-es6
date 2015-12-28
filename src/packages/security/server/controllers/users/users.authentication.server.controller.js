@@ -9,7 +9,13 @@ var path = require('path'),
     passport = require('passport'),
     User = mongoose.model('User'),
     config = require(path.resolve('./config/config')),
-    jwt = require('jsonwebtoken');
+    jwt = require('jsonwebtoken'),
+    util = require('../../util/utils'),
+    rememberMe = require('../../config/strategies/remember-me'),
+    UtilRemember = require('../../util/util.remember_me');
+
+
+//console.log("rememberMe", rememberMe)
 
 // URLs for which user can't be redirected on signin
 var noReturnUrls = [
@@ -78,6 +84,18 @@ exports.signin = function (req, res, next) {
                 if (err) {
                     res.status(400).send(err);
                 } else {
+                    if (req.body.remember_me) {
+                        var remember = new UtilRemember();
+                        //Save remember me token
+                        remember.issueToken(user, function (err, token) {
+                            if (err) {
+                                return next(err);
+                            }
+                            res.cookie('remember_me', token, {path: '/', httpOnly: true, maxAge: 604800000});
+                            //return next();
+                        });
+                    }
+
                     var payload = user;
                     var escaped = JSON.stringify(payload);
                     escaped = encodeURI(escaped);
@@ -97,6 +115,8 @@ exports.signin = function (req, res, next) {
  * Signout
  */
 exports.signout = function (req, res) {
+    // clear the remember me cookie when logging out
+    res.clearCookie('remember_me', null);
     req.logout();
     res.redirect('/');
 };
