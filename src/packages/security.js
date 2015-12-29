@@ -1,2 +1,2 @@
-import securityModule from './security/index';
+import securityModule from './core/security/index';
 export default securityModule;

@@ -3,25 +3,31 @@
     "stateName": "home",
     "urlPrefix": "/",
     "type": "load",
-    "src": "packages/core"
+    "src": "packages/core/system"
+  },
+  {
+    "stateName": "components",
+    "urlPrefix": "/components",
+    "type": "load",
+    "src": "packages/core/system"
   },
   {
     "stateName": "authentication",
     "urlPrefix": "/",
     "type": "load",
-    "src": "packages/security"
+    "src": "packages/core/security"
   },
   {
     "stateName": "user",
     "urlPrefix": "/users/:userId",
     "type": "load",
-    "src": "packages/security"
+    "src": "packages/core/security"
   },
   {
     "stateName": "settings",
     "urlPrefix": "/settings",
     "type": "load",
-    "src": "packages/security"
+    "src": "packages/core/security"
   },
   {
     "stateName": "article",
@@ -42,15 +48,9 @@
     "src": "packages/chat"
   },
   {
-    "stateName": "components",
-    "urlPrefix": "/components",
-    "type": "load",
-    "src": "packages/core"
-  },
-  {
     "stateName": "password",
     "urlPrefix": "/password",
     "type": "load",
-    "src": "packages/security"
+    "src": "packages/core/security"
   }
 ]

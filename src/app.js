@@ -5,12 +5,12 @@ import {angular} from './resources';
 import {commonModule} from 'commons';
 import {routing} from 'commons';
 import futureRoutes from './routes.json!';
-//Import core module
-import core from './packages/core';
+//Import system module
+import system from './packages/system';
 
 var appModuleName = 'app';
 var appDependencies = ['ui.router', 'ui.router.stateHelper', 'oc.lazyLoad', 'ngResource', 'ngAnimate',
-    'toastr', 'validation', 'validation.rule', 'LocalStorageModule', 'pascalprecht.translate', 'common', 'app.core'];
+    'toastr', 'validation', 'validation.rule', 'LocalStorageModule', 'pascalprecht.translate', 'common', 'app.system'];
 
 let app = angular.module(appModuleName, appDependencies);
 

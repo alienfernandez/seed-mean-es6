@@ -8,7 +8,7 @@ var path = require('path'),
     Article = mongoose.model('Article'),
     multer = require('multer'),
     config = require(path.resolve('./config/config')),
-    errorHandler = require(path.resolve('./src/packages/core/server/controllers/errors.server.controller'));
+    errorHandler = require(path.resolve('./src/packages/core/system/server/controllers/errors.server.controller'));
 
 /**
  * Create a article

@@ -9,13 +9,13 @@
     "stateName": "authentication",
     "urlPrefix": "/",
     "type": "load",
-    "src": "packages/security"
+    "src": "packages/core/security"
   },
   {
     "stateName": "user",
     "urlPrefix": "/users/:userId",
     "type": "load",
-    "src": "packages/security"
+    "src": "packages/core/security"
   },
   {
     "stateName": "articles",
