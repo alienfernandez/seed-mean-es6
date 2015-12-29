@@ -76,14 +76,19 @@ class SystemConfig {
             }).state('admin', {
                 abstract: true,
                 url: '/admin',
-                templateUrl: this.Templates.ControlPanelTpl.name,
-                controller: 'ControlPanelController',
-                controllerAs: 'controlCtrl'
+                templateUrl: this.Templates.AdminTpl.name,
+                controller: 'AdminController',
+                controllerAs: 'adminCtrl'
             }).state('admin.panel', {
                 url: '/panel/control',
                 templateUrl: this.Templates.CtrlPanelThTpl.name,
                 controller: 'ControlPanelController',
                 controllerAs: 'controlCtrl'
+            }).state('admin.system', {
+                url: '/system',
+                templateUrl: this.Templates.SystemTpl.name,
+                controller: 'SystemController',
+                controllerAs: 'systemCtrl'
             });
     }
 }
