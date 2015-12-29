@@ -12,6 +12,12 @@
     "src": "packages/core/system"
   },
   {
+    "stateName": "admin",
+    "urlPrefix": "/admin",
+    "type": "load",
+    "src": "packages/core/system"
+  },
+  {
     "stateName": "authentication",
     "urlPrefix": "/",
     "type": "load",

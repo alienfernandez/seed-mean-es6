@@ -73,8 +73,18 @@ class SystemConfig {
                 data: {
                     ignoreState: true
                 }
+            }).state('admin', {
+                abstract: true,
+                url: '/admin',
+                templateUrl: this.Templates.ControlPanelTpl.name,
+                controller: 'ControlPanelController',
+                controllerAs: 'controlCtrl'
+            }).state('admin.panel', {
+                url: '/panel/control',
+                templateUrl: this.Templates.CtrlPanelThTpl.name,
+                controller: 'ControlPanelController',
+                controllerAs: 'controlCtrl'
             });
-        ;
     }
 }
 

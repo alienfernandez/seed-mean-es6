@@ -4,6 +4,7 @@ import './assets/css/data-view.min.css!';
 import './factory/dataViewValue';
 import './factory/dataItemValue';
 import './factory/dataItemModuleValue';
+import './factory/dataItemPanelValue';
 
 //Import controller
 import './controller/dataViewController';

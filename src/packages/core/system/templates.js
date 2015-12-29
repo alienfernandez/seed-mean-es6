@@ -11,5 +11,9 @@ import NavbarViewTpl from './web/views/components/navbar/navbar-view.tpl';
 import LoadMaskViewTpl from './web/views/components/load-mask/loadmask-view.tpl';
 import MaskReViewTpl from './web/views/components/maskre/maskre-view.tpl';
 
+//Admin templates
+import ControlPanelTpl from './web/views/admin/control-panel/panel-view.tpl';
+import CtrlPanelThTpl from './web/views/admin/control-panel/controlpanel-th-view.tpl';
+
 export {Template400, Template403, Template404, HomeTemplate, ComponentsTpl, DataViewTpl, NavbarViewTpl, LoadMaskViewTpl,
-    MaskReViewTpl};
+        MaskReViewTpl, ControlPanelTpl, CtrlPanelThTpl};

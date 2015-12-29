@@ -16,6 +16,7 @@ let systemModule = angular.module("app.system", [
     Templates.Template400.name, Templates.Template403.name, Templates.Template404.name,
     Templates.HomeTemplate.name, Templates.ComponentsTpl.name, Templates.DataViewTpl.name,
     Templates.NavbarViewTpl.name, Templates.LoadMaskViewTpl.name, Templates.MaskReViewTpl.name,
+    Templates.ControlPanelTpl.name, Templates.CtrlPanelThTpl.name,
     'app.security', 'ngSelect', 'hljs', 'ngCookies', 'pascalprecht.translate'
 ]);
 

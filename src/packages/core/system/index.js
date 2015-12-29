@@ -10,6 +10,7 @@ import './web/services/socketIoService';
 //Controllers
 import './web/controllers/homeController';
 import './web/controllers/componentsController';
+import './web/controllers/controlPanelController';
 
 //Directives
 import './web/directives/headerDirective';
