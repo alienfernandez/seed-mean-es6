@@ -28,6 +28,11 @@ class NavBarDirective {
             },
             link: ($scope, $element, $attrs, ngModel, transclude) => {
                 //Render component
+                $('a[data-toggle="dropdown"], a.dropdown-toggle').on('click', function (e) {
+                    var a = window.outerWidth - e.clientX;
+                    console.log("a", a / 2)
+                    console.log("e", e)
+                });
             }
         };
         return directive;

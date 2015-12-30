@@ -4,6 +4,7 @@
  * Module dependencies.
  */
 var _ = require('lodash'),
+    path = require('path'),
     mongoose = require('mongoose'),
     System = mongoose.model('System'),
     errorHandler = require(path.resolve('./src/packages/core/system/server/controllers/errors.server.controller'));

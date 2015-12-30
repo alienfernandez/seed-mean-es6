@@ -39,10 +39,10 @@ nav.navbar-app button.navbar-toggle > span.icon-bar {
   background: #fff; }
 
 nav.navbar-app ul.dropdown-menu {
+  margin-top: 20px;
   border: 0;
   background: #fff;
   border-radius: 4px;
-  margin: 4px 0;
   box-shadow: 0 0 4px 0 #ccc; }
 
 nav.navbar-app ul.dropdown-menu > li > a[role="navbar"] {

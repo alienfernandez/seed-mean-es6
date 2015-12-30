@@ -49,11 +49,34 @@ nav.navbar-app button.navbar-toggle > span.icon-bar {
   background: #fff;
 }
 
+//nav.navbar-app ul
+//.dropdown-menu:before {
+//  content: "";
+//  border-bottom: 15px solid #fff;
+//  border-right: 15px solid transparent;
+//  border-left: 15px solid transparent;
+//  position: absolute;
+//  top: -15px;
+//  left: 50%;
+//  display: inline-block;
+//  z-index: 10;
+//}
+//
+////nav.navbar-app ul
+//.dropdown-menu:after {
+//  content: "";
+//  position: absolute;
+//  top: -16px;
+//  left: 24%;
+//  display: inline-block;
+//}
+
 nav.navbar-app ul.dropdown-menu {
+  margin-top: 20px;
   border: 0;
   background: #fff;
   border-radius: 4px;
-  margin: 4px 0;
+  //margin: 4px 0;
   box-shadow: 0 0 4px 0 #ccc;
 }
 
@@ -89,3 +112,4 @@ nav.navbar-app span.badge.new {
   padding-bottom: 0px;
   padding-top: 0px;
 }
+
