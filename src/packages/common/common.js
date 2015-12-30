@@ -14,11 +14,12 @@ import './components/util/index';
 //Import services
 import './components/http-util/services/baseHttpService';
 
-//Directives
+//Import components
 import './components/validation/index';
 import './components/mask/index';
 import './components/data-view/index';
 import './components/navbar/index';
+import './components/tree-panel/index';
 
 import routing from './providers/routing';
 
