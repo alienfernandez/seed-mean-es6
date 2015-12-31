@@ -19,9 +19,12 @@ let chatModule = angular.module('app.blog', [
 
     //------------- $translateProvider i18n config ---------------
     $translateProvider.useStaticFilesLoader({
-        prefix: 'app/packages/chat/web/locales/locale-',
+        prefix: 'app/packages/chat/web/i18n/locale-',
         suffix: '.json'
     });
+    //$translateProvider.useLoader('i18nLoader', {
+    //    module: 'chat'
+    //});
     //-------------------------------------------------------
 });
 

@@ -41,7 +41,7 @@ systemModule.config(($stateProvider, $locationProvider, $httpProvider, $urlRoute
 
     //------------- $translateProvider i18n config ---------------
     //$translateProvider.useStaticFilesLoader({
-    //    prefix: 'app/packages/core/system/web/locales/locale-',
+    //    prefix: 'app/packages/core/system/web/i18n/locale-',
     //    suffix: '.json'
     //});
     //-------------------------------------------------------

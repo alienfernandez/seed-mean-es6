@@ -25,7 +25,7 @@ let blogModule = angular.module('app.blog', [
 
         //------------- $translateProvider i18n config ---------------
         $translateProvider.useStaticFilesLoader({
-            prefix: 'app/packages/blog/web/locales/locale-',
+            prefix: 'app/packages/blog/web/i18n/locale-',
             suffix: '.json'
         });
         //-------------------------------------------------------

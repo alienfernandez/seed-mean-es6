@@ -15,6 +15,7 @@ import './components/util/index';
 import './components/http-util/services/baseHttpService';
 
 //Import components
+import './components/i18n/index';
 import './components/validation/index';
 import './components/mask/index';
 import './components/data-view/index';

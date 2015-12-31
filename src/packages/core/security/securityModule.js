@@ -30,10 +30,14 @@ let securityModule = angular.module('app.security', [
     new SecurityConfig($stateProvider, Templates).initModuleRoutes();
 
     //------------- $translateProvider i18n config ---------------
-    $translateProvider.useStaticFilesLoader({
-        prefix: 'app/packages/core/security/web/locales/locale-',
-        suffix: '.json'
+    $translateProvider.useLoader('i18nLoader', {
+        module: 'core/security'
     });
+    //$translateProvider.useStaticFilesLoader({
+    //    prefix: 'app/packages/core/security/web/locales/locale-',
+    //    suffix: '.json'
+    //});
+
     //-------------------------------------------------------
 
     // Set the httpProvider "not authorized" interceptor
