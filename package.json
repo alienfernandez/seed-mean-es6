@@ -157,7 +157,7 @@
       "highlight": "github:isagalaev/highlight.js@^9.0.0",
       "image": "github:systemjs/plugin-image@^0.1.0",
       "jquery": "github:components/jquery@^2.1.4",
-      "jquery/jquery-ui": "github:jquery/jquery-ui@^1.11.4",
+      "jquery-ui": "npm:jquery-ui@^1.10.5",
       "json": "github:systemjs/plugin-json@^0.1.0",
       "lodash": "npm:lodash@^3.10.1",
       "moment": "github:moment/moment@^2.10.6",
@@ -183,9 +183,9 @@
       "visionmedia/debug": "github:visionmedia/debug@^2.2.0"
     },
     "devDependencies": {
-      "babel": "npm:babel-core@^5.7.4",
-      "babel-runtime": "npm:babel-runtime@^5.7.4",
-      "core-js": "npm:core-js@^0.9.18"
+      "babel": "npm:babel-core@^5.8.24",
+      "babel-runtime": "npm:babel-runtime@^5.8.24",
+      "core-js": "npm:core-js@^1.1.4"
     },
     "overrides": {
       "github:elevateweb/elevatezoom@2.2.3": {

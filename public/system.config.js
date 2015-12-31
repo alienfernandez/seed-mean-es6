@@ -97,6 +97,11 @@ System.config({
       "deps": [
         "github:isagalaev/highlight.js@9.0.0/src/styles/darkula.css!"
       ]
+    },
+    "npm:jquery-ui@1.10.5": {
+      "deps": [
+        "npm:jquery-ui@1.10.5/themes/smoothness/jquery-ui.min.css!"
+      ]
     }
   },
 
@@ -124,7 +129,7 @@ System.config({
     "bootstrap": "github:twbs/bootstrap@3.3.6",
     "bower-ui-grid": "github:angular-ui/bower-ui-grid@3.0.7",
     "classNames": "github:JedWatson/classnames@2.2.0",
-    "core-js": "npm:core-js@0.9.18",
+    "core-js": "npm:core-js@1.2.6",
     "css": "github:systemjs/plugin-css@0.1.20",
     "driftyco/ionicons": "github:driftyco/ionicons@2.0.1",
     "elevateweb/elevatezoom": "github:elevateweb/elevatezoom@2.2.3",
@@ -133,7 +138,7 @@ System.config({
     "highlight": "github:isagalaev/highlight.js@9.0.0",
     "image": "github:systemjs/plugin-image@0.1.0",
     "jquery": "github:components/jquery@2.1.4",
-    "jquery/jquery-ui": "github:jquery/jquery-ui@1.11.4",
+    "jquery-ui": "npm:jquery-ui@1.10.5",
     "json": "github:systemjs/plugin-json@0.1.0",
     "lodash": "npm:lodash@3.10.1",
     "moment": "github:moment/moment@2.10.6",
@@ -237,8 +242,9 @@ System.config({
       "isarray": "npm:isarray@1.0.0",
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
-    "npm:core-js@0.9.18": {
+    "npm:core-js@1.2.6": {
       "fs": "github:jspm/nodelibs-fs@0.1.2",
+      "path": "github:jspm/nodelibs-path@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.2",
       "systemjs-json": "github:systemjs/plugin-json@0.1.0"
     },
@@ -259,6 +265,9 @@ System.config({
     },
     "npm:inherits@2.0.1": {
       "util": "github:jspm/nodelibs-util@0.1.0"
+    },
+    "npm:jquery-ui@1.10.5": {
+      "fs": "github:jspm/nodelibs-fs@0.1.2"
     },
     "npm:jstransform@10.1.0": {
       "base62": "npm:base62@0.1.1",

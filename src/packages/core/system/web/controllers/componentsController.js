@@ -3,7 +3,7 @@ import systemModule from '../../systemModule';
 class ComponentsController {
 
     /*ngInject*/
-    constructor(AuthenticationService, DataItemModule, DataItem) {
+    constructor(AuthenticationService, DataItemModule, DataItem, WindowService) {
         // This provides Authentication context.
         this.authentication = AuthenticationService;
         this.DataItemModule = DataItemModule;
@@ -12,6 +12,8 @@ class ComponentsController {
         this.options = {
             user: this.user
         };
+
+        WindowService.create('idwin', 'Test', 'body');
 
         this.dataViewComponent();
         this.loadMaskComponent();

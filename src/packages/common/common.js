@@ -20,6 +20,7 @@ import './components/mask/index';
 import './components/data-view/index';
 import './components/navbar/index';
 import './components/tree-panel/index';
+import './components/window/index';
 
 import routing from './providers/routing';
 
