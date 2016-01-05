@@ -24,7 +24,7 @@ class TreePanelViewDirective {
         let directive = {
             restrict: 'E',
             replace: true,
-            controller: TreePanelController,
+            controller: "TreePanelController",
             template: '<div data-role="transclude" class="dv-main">' +
             '</div>',
             scope: {

@@ -13,7 +13,7 @@ class ComponentsController {
             user: this.user
         };
 
-        WindowService.create('idwin', 'Test', 'body');
+        //WindowService.create('idwin', 'Test', 'body');
 
         this.dataViewComponent();
         this.loadMaskComponent();

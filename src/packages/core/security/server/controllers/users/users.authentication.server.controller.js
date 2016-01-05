@@ -57,7 +57,7 @@ exports.signup = function (req, res) {
                     var escaped = JSON.stringify(payload);
                     escaped = encodeURI(escaped);
                     // We are sending the payload inside the token
-                    var token = jwt.sign(escaped, config.secret, {expiresIn: 300});
+                    var token = jwt.sign(escaped, config.secret, null, {expiresIn: 300});
                     res.json({
                         token: token,
                         redirect: config.landingPageState
@@ -100,7 +100,7 @@ exports.signin = function (req, res, next) {
                     var escaped = JSON.stringify(payload);
                     escaped = encodeURI(escaped);
                     // We are sending the payload inside the token
-                    var token = jwt.sign(escaped, config.secret, {expiresIn: 300});
+                    var token = jwt.sign(escaped, config.secret, null, {expiresIn: 300});
                     res.json({
                         token: token,
                         redirect: config.landingPageState
