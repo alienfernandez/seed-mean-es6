@@ -3,10 +3,11 @@ import blogModule from '../../blogModule';
 class BlogController {
 
     /*ngInject*/
-    constructor($state, $stateParams, ArticleResource) {
+    constructor($state, $stateParams, ArticleResource, AuthenticationService) {
         this.$state = $state;
         this.$stateParams = $stateParams;
         this.articleResource = ArticleResource;
+        this.user = AuthenticationService.user;
     }
 
     find() {

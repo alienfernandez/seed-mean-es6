@@ -7,6 +7,7 @@ class ChatController {
         this.$location = $location;
         this.Socket = Socket;
         this.AuthenticationService = AuthenticationService;
+        this.user = AuthenticationService.user;
         // Create a messages array
         this.messages = [];
 

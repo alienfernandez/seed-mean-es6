@@ -3,71 +3,71 @@ div.navbar-app {
   background: #fff;
   border-color: #ccc;
   box-shadow: 0 0 2px 0 #ccc;
-}
 
-div.navbar-app a[role="navbar"] {
-  color: #000000;
-}
+  a[role="navbar"] {
+    color: #000000;
+  }
 
-.div.navbar-app .open > a[role="navbar"], .nav .open > a[role="navbar"]:focus, .nav .open > a[role="navbar"]:hover {
-  background-color: #eee;
-  border-color: #72c02c !important;
-}
+  .open > a[role="navbar"], .nav .open > a[role="navbar"]:focus, .nav .open > a[role="navbar"]:hover {
+    background-color: #eee;
+    border-color: #72c02c !important;
+  }
 
-div.navbar-app ul.navbar-nav a[role="navbar"] {
-  color: #000000;
-  border-style: solid;
-  border-width: 0 0 2px 0;
-  border-color: #fff;
-}
+  ul.navbar-nav a[role="navbar"] {
+    color: #000000;
+    border-style: solid;
+    border-width: 0 0 2px 0;
+    border-color: #fff;
+  }
 
-div.navbar-app ul.navbar-nav a[role="navbar"]:hover,
-div.navbar-app ul.navbar-nav a[role="navbar"]:visited,
-div.navbar-app ul.navbar-nav a[role="navbar"]:focus,
-div.navbar-app ul.navbar-nav a[role="navbar"]:active {
-  background: #fff;
-}
+  ul.navbar-nav a[role="navbar"]:hover,
+  ul.navbar-nav a[role="navbar"]:visited,
+  ul.navbar-nav a[role="navbar"]:focus,
+  ul.navbar-nav a[role="navbar"]:active {
+    background: #fff;
+  }
 
-div.navbar-app ul.navbar-nav a[role="navbar"]:hover {
-  border-color: #72c02c;
-}
+  ul.navbar-nav a[role="navbar"]:hover {
+    border-color: #72c02c;
+  }
 
-div.navbar-app li.divider {
-  background: #ccc;
-}
+  li.divider {
+    background: #ccc;
+  }
 
-div.navbar-app button.navbar-toggle {
-  background: #72c02c;
-  border-radius: 2px;
-}
+  button.navbar-toggle {
+    background: #72c02c;
+    border-radius: 2px;
+  }
 
-div.navbar-app button.navbar-toggle:hover {
-  background: #999;
-}
+  button.navbar-toggle:hover {
+    background: #999;
+  }
 
-div.navbar-app button.navbar-toggle > span.icon-bar {
-  background: #fff;
-}
+  button.navbar-toggle > span.icon-bar {
+    background: #fff;
+  }
 
-div.navbar-app ul.dropdown-menu > li > a[role="navbar"] {
-  color: #444;
-}
+  ul.dropdown-menu > li > a[role="navbar"] {
+    color: #444;
+  }
 
-div.navbar-app ul.dropdown-menu > li > a[role="navbar"]:hover {
-  background: #72c02c;
-  color: #fff;
-}
+  ul.dropdown-menu > li > a[role="navbar"]:hover {
+    background: #72c02c;
+    color: #fff;
+  }
 
-div.navbar-app span.badge {
-  background: #72c02c;
-  font-weight: normal;
-  font-size: 11px;
-  margin: 0 4px;
-}
+  span.badge {
+    background: #72c02c;
+    font-weight: normal;
+    font-size: 11px;
+    margin: 0 4px;
+  }
 
-div.navbar-app span.badge.new {
-  background: rgba(255, 0, 0, 0.8);
-  color: #fff;
+  span.badge.new {
+    background: rgba(255, 0, 0, 0.8);
+    color: #fff;
+  }
 }
 
 .navbar-login {

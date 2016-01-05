@@ -16,6 +16,7 @@ export default class ItemAppPanel extends React.Component {
         var domNodeLink = this.refs.state_link.getDOMNode();
         if (this.props.state) {
             domNodeLink.setAttribute('ui-sref', this.props.state);
+            domNodeLink.setAttribute('ui-sref-active', "active");
         }
         if (this.props.uri) {
             domNodeLink.setAttribute('href', this.props.uri);

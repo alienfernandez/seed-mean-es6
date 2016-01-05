@@ -41,7 +41,7 @@ class BlogConfig {
             data: {
                 roles: ['user', 'admin']
             }
-        }).state('blog-article-list', {
+        }).state('blog', {
             url: '/blog',
             controller: 'BlogController',
             controllerAs: 'blogCtrl',

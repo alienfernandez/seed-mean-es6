@@ -18,10 +18,11 @@ class AppPanelController {
                         description: "Blog",
                         state: "blog"
                     }, {
-                        name: "Security",
-                        iconCls: 'fa fa-key',
-                        description: "Security",
-                        state: "admin.panel"
+                        name: "Components",
+                        iconCls: 'fa fa-cog',
+                        description: "Components",
+                        state: "components.dataview",
+                        //uri: "#/components/dataview"
                     }, {
                         name: "Home",
                         iconCls: 'fa fa-home',
@@ -29,13 +30,13 @@ class AppPanelController {
                         state: "home"
                     }, {
                         name: "Chat",
-                        iconCls: 'fa fa-key',
+                        iconCls: 'fa fa-comment',
                         description: "Chat",
                         state: "chat"
                     }, {
-                        name: "System",
-                        iconCls: 'fa fa-cog',
-                        description: "System",
+                        name: "Panel",
+                        iconCls: 'fa fa-th',
+                        description: "Control Panel",
                         state: "admin.panel"
                     }
                 ],

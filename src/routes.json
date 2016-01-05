@@ -36,6 +36,12 @@
     "src": "packages/core/security"
   },
   {
+    "stateName": "blog",
+    "urlPrefix": "/blog",
+    "type": "load",
+    "src": "packages/blog"
+  },
+  {
     "stateName": "article",
     "urlPrefix": "/articles/:userId",
     "type": "load",
