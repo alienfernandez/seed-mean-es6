@@ -22,6 +22,7 @@ import './components/data-view/index';
 import './components/navbar/index';
 import './components/tree-panel/index';
 import './components/window/index';
+import './components/app-panel/index';
 
 import routing from './providers/routing';
 

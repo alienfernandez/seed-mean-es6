@@ -1,6 +1,6 @@
 import commonModule from '../../../commonModule';
-import DataItemModule from '../react-components/moduleItemViewReact';
+import ItemModuleReact from '../react-components/ItemModuleReact';
 
-commonModule.value('DataItemModule', DataItemModule);
+commonModule.value('DataItemModule', ItemModuleReact);
 
 export default commonModule;

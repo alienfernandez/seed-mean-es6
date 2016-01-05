@@ -1,4 +1,4 @@
-import DataGroupingViewReact from './dataGroupingViewReact';
+import DataGroupingViewReact from './GroupingItemReact';
 import DataViewApi from "../factory/dataViewApiFactory"
 import _ from 'lodash';
 

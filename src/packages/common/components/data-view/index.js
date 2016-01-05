@@ -5,6 +5,7 @@ import './factory/dataViewValue';
 import './factory/dataItemValue';
 import './factory/dataItemModuleValue';
 import './factory/dataItemPanelValue';
+import './factory/dataItemAppPanelValue';
 
 //Import controller
 import './controller/dataViewController';

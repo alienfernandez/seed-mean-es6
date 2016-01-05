@@ -42,29 +42,6 @@ export default class DataItem extends React.Component {
                 </div>
             </div>
         );
-        //return React.DOM.div({
-        //        className: classItem,
-        //        onClick: (function (index, event) {
-        //            this.props.dataView.setState({selected: index});
-        //            this.props.onClick(this.props.item, this.props.dataView, index, event);
-        //        }).bind(this, this.props.index),
-        //
-        //        onMouseOver: (function (event) {
-        //            this.setState({mouseOver: true});
-        //        }).bind(this),
-        //
-        //        onMouseOut: (function (event) {
-        //            this.setState({mouseOver: false});
-        //        }).bind(this)
-        //    },
-        // React.DOM.div({className: 'dv-thumb'},
-        // React.DOM.img(
-        // {src: 'http://placehold.it/150x150', alt: this.props.name}
-        // )
-        // ),
-        // React.DOM.span({
-        //        children: 'Hello ' + this.props.name
-        //    })
-        //);
+
     }
 }

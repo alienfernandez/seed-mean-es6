@@ -1,4 +1,4 @@
-export default class DataItemModule extends React.Component {
+export default class ItemModule extends React.Component {
 
     constructor(props) {
         super(props);

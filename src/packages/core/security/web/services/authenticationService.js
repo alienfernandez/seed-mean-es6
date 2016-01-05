@@ -61,7 +61,7 @@ class AuthenticationService {
             this.localStorageService.set('JWT', response.token);
             encodedUser = decodeURI(this.b64_to_utf8(response.token.split('.')[1]));
             user = JSON.parse(encodedUser);
-            console.log("user", user);
+            //console.log("user", user);
         }
         this._user = user || response;
         this.loggedIn = true;

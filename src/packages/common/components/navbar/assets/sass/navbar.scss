@@ -128,3 +128,21 @@ div.navbar-app span.badge.new {
   right: 10px;
   left: auto;
 }
+
+.stylish-input-group {
+
+  .input-group-addon {
+    background: white !important;
+  }
+
+  .form-control {
+    border-right: 0 !important;
+    box-shadow: 0 0 0 !important;
+    border-color: #ccc !important;
+  }
+
+  button {
+    border: 0;
+    background: transparent;
+  }
+}

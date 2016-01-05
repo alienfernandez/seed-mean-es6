@@ -9,7 +9,9 @@ import * as Templates from './templates';
 /**
  * Module common
  */
-let commonModule = angular.module('common', ['ngLodash', Templates.NavBarTpl.name]);
+let commonModule = angular.module('common', [
+    'ngLodash', Templates.NavBarTpl.name, Templates.AppPanelTpl.name
+]);
 
 commonModule.config((localStorageServiceProvider, $appConstants) => {
     //Updating prefix and storage type of localStorage

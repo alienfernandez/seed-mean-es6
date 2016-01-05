@@ -14,9 +14,18 @@
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown" ng-if="user">
-                    <a ui-sref="admin.panel" role="navbar" role="button" aria-expanded="false">
-                        <i class="fa fa-th"></i> Control panel </a>
+                <!--<li class="dropdown" ng-if="user">-->
+                    <!--<a ui-sref="admin.panel" role="navbar" role="button" aria-expanded="false">-->
+                        <!--<i class="fa fa-th"></i> Control panel </a>-->
+                <!--</li>-->
+                <li class="dropdown">
+                    <a href="" role="navbar" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                        <i class="fa fa-th"></i> Control panel <span class="caret"></span> </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <app-panel></app-panel>
+                        </li>
+                    </ul>
                 </li>
                 <li class="dropdown" ng-if="user">
                     <a href="" role="navbar" class="dropdown-toggle" data-toggle="dropdown" role="button">
@@ -105,9 +114,16 @@
             </ul>
 
             <form class="navbar-form navbar-right search-form" role="search">
-                <input type="text" class="form-control" placeholder="Search"/>
+                <div class="input-group stylish-input-group input-append">
+                    <input type="text" class="form-control" placeholder="Search">
+                    <span class="input-group-addon">
+                        <button type="submit">
+                            <span class="fa fa-search"></span>
+                        </button>
+                    </span>
+                </div>
             </form>
-
-        </div><!--/.nav-collapse -->
+        </div>
+        <!--/.nav-collapse -->
     </div>
 </div>

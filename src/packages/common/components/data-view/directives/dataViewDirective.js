@@ -1,6 +1,6 @@
 import commonModule from '../../../commonModule';
 
-import DataView from '../react-components/dataViewReact';
+import DataView from '../react-components/DataViewReact';
 
 /**
  * @ngdoc directive
@@ -27,14 +27,13 @@ class DataViewDirective {
             restrict: 'E',
             replace: true,
             //controller: DataViewController,
-            template: '<div data-role="transclude" class="dv-main">' +
-            '<span id="testt" data-role="test"></span>' +
-            '</div>',
+            template: `<div data-role="transclude" class="dv-main">
+                <span role="container"></span>
+            </div>`,
             scope: {
                 options: '='
             },
             link: ($scope, $element, $attrs, ngModel, transclude) => {
-                //console.log("$scope", $scope);
                 //Render component with options
                 var opt = $scope.options;
                 //React.render(
@@ -43,7 +42,7 @@ class DataViewDirective {
                 //);
                 React.render(
                     React.createElement(DataView, $scope.options),
-                    $element.find('#testt')[0]
+                    $element.find('span[role="container"]')[0]
                 );
             }
         };

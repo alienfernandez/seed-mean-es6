@@ -1,6 +1,6 @@
 import commonModule from '../../../commonModule';
-import DataItemPanel from '../react-components/panelItemViewReact';
+import ItemCoverReact from '../react-components/ItemCoverReact';
 
-commonModule.value('DataItemPanel', DataItemPanel);
+commonModule.value('DataItemPanel', ItemCoverReact);
 
 export default commonModule;
