@@ -13,16 +13,7 @@ import DataView from '../react-components/DataViewReact';
  */
 class DataViewDirective {
 
-    constructor() {
-        //let templateDataView = `
-        //  <div class="dv-thumb-wrap dv-item-selected dv-view-item-focused" role="option" tabindex="-1" >
-        //    <div class="thumb">
-        //        <img src="icons/kiva.png">
-        //    </div>
-        //    <span>Kiva app</span>
-        //  </div>
-        //`;
-
+    constructor($compile) {
         let directive = {
             restrict: 'E',
             replace: true,
@@ -35,15 +26,12 @@ class DataViewDirective {
             },
             link: ($scope, $element, $attrs, ngModel, transclude) => {
                 //Render component with options
-                var opt = $scope.options;
-                //React.render(
-                //    <DataView options={opt} />,
-                //    $element.find('#testt')[0]
-                //);
                 React.render(
                     React.createElement(DataView, $scope.options),
                     $element.find('span[role="container"]')[0]
                 );
+                //Compile react.js source
+                $compile($element[0])($scope);
             }
         };
 
@@ -51,6 +39,6 @@ class DataViewDirective {
     }
 }
 
-commonModule.directive('dataview', () => new DataViewDirective());
+commonModule.directive('dataview', ['$compile', ($compile) => new DataViewDirective($compile)]);
 
 export default commonModule;

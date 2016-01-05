@@ -15,25 +15,31 @@ class AppPanelController {
                     {
                         name: "Blog",
                         iconCls: 'fa fa-university',
-                        description: "Blog"
+                        description: "Blog",
+                        state: "blog"
                     }, {
                         name: "Security",
                         iconCls: 'fa fa-key',
-                        description: "Security"
+                        description: "Security",
+                        state: "admin.panel"
                     }, {
                         name: "Home",
                         iconCls: 'fa fa-home',
-                        description: "Home"
+                        description: "Home",
+                        state: "home"
                     }, {
                         name: "Chat",
                         iconCls: 'fa fa-key',
-                        description: "Chat"
+                        description: "Chat",
+                        state: "chat"
+                    }, {
+                        name: "System",
+                        iconCls: 'fa fa-cog',
+                        description: "System",
+                        state: "admin.panel"
                     }
                 ],
-                itemSelector: 'div.dv-thumb-wrap',
                 overItemCls: 'dv-view-over',
-                selectItemCls: 'dv-item-selected',
-                multiSelect: false,
                 template: {
                     component: DataItemAppPanel,
                     listeners: {
@@ -44,7 +50,6 @@ class AppPanelController {
                             console.log("event", event);
                         }
                     }
-
                 }
             }
         };
