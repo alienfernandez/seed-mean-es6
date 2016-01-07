@@ -23,14 +23,19 @@ export default class DataGroupingView extends React.Component {
             'dv-collapse': this.state.collapse
         });
         let classItemIcon = classNames({
-            'fa fa-minus-circle': !this.state.collapse,
-            'fa fa-plus-circle': this.state.collapse,
+            'fa fa-minus-circle': !this.state.collapse && !this.props.hideTools,
+            'fa fa-plus-circle': this.state.collapse && !this.props.hideTools
         });
+        let classCursorPointer = (!this.props.hideTools) ? " dv-cursor-pointer" : "";
+        //console.log("this.props", this.props)
         return React.DOM.div({className: 'dv-grouping'},
             React.DOM.div({
-                    className: 'dv-header-grouping',
+                    className: 'dv-header-grouping' + classCursorPointer,
                     onClick: (function (event) {
-                        this.setState({collapse: !this.state.collapse});
+                        //Check hide tool is false
+                        if (!this.props.hideTools) {
+                            this.setState({collapse: !this.state.collapse});
+                        }
                     }).bind(this)
                 },
                 React.DOM.span({},
@@ -39,7 +44,10 @@ export default class DataGroupingView extends React.Component {
                     React.DOM.span({
                             className: 'dv-collapse-btn',
                             onClick: (function (event) {
-                                this.setState({collapse: !this.state.collapse});
+                                //Check hide tool is false
+                                if (!this.props.hideTools) {
+                                    this.setState({collapse: !this.state.collapse});
+                                }
                             }).bind(this)
                         },
                         React.DOM.span({className: classItemIcon})

@@ -48,6 +48,7 @@ export default class DataView extends React.Component {
                     dataGroup.name = dataItem[this.props.groupBy.name];
                     dataGroup.iconCls = dataItem[this.props.groupBy.iconCls];
                     dataGroup.key = dataItem[this.props.groupBy.key];
+                    dataGroup.hideTools = (_.isUndefined(this.props.hideTools) || _.isNull(this.props.hideTools) || !this.props.hideTools) ? false : true;
                     index++;
                 });
                 dataGroup.items = itemsGroup;

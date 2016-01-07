@@ -12,7 +12,8 @@ class HomeController {
         };
 
         this.optionsDv = {
-            store: [{
+            store: [
+                {
                 name: "ES6",
                 icon: 'app/assets/img/svg/es6.svg',
                 group: 1,
@@ -44,6 +45,7 @@ class HomeController {
                     endpoints can be created through the Registry API.`
             }],
             overItemCls: 'dv-view-over',
+            hideTools: true,
             groupBy: {
                 key: 'group',
                 name: 'groupName',
