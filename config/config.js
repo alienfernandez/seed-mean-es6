@@ -53,7 +53,6 @@ var getGlobbedPaths = function (globPatterns, excludes) {
  */
 var validateEnvironmentVariable = function () {
     var environmentFiles = glob.sync('./config/env/' + process.env.NODE_ENV + '.js');
-    console.log();
     if (!environmentFiles.length) {
         if (process.env.NODE_ENV) {
             console.error(chalk.red('+ Error: No configuration file found for "' + process.env.NODE_ENV + '" environment using development instead'));
@@ -98,7 +97,7 @@ var initGlobalConfigFolders = function (config, assets) {
     };
 
     // Setting globbed client paths
-    config.folders.client = getGlobbedPaths(path.join(process.cwd(), 'modules/*/client/'), process.cwd().replace(new RegExp(/\\/g), '/'));
+    config.folders.client = getGlobbedPaths(path.join(process.cwd(), 'public/app/packages/*/web/'), process.cwd().replace(new RegExp(/\\/g), '/'));
 };
 
 /**
@@ -122,6 +121,9 @@ var initGlobalConfigFiles = function (config, assets) {
 
     // Setting Globbed socket files
     config.files.server.sockets = getGlobbedPaths(assets.server.sockets);
+
+    // Setting Globbed socket files
+    config.files.server.messaging = getGlobbedPaths(assets.server.messaging);
 
     // Setting Globbed policies files
     config.files.server.policies = getGlobbedPaths(assets.server.policies);

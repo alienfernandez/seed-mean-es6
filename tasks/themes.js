@@ -20,10 +20,7 @@ gulp.task('css', function () {
         .pipe(plumber())
         .pipe(sourcemaps.init())
         .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest(config.path.output))
-        .pipe(browserSync.reload({
-            stream: true
-        }));
+        .pipe(gulp.dest(config.path.output));
 });
 
 gulp.task('css-themes', function () {
@@ -32,10 +29,7 @@ gulp.task('css-themes', function () {
         .pipe(plumber())
         .pipe(sourcemaps.init())
         .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest(config.path.themesOutput))
-        .pipe(browserSync.reload({
-            stream: true
-        }));
+        .pipe(gulp.dest(config.path.themesOutput));
 });
 
 /**
@@ -51,8 +45,7 @@ gulp.task('less', function () {
             plugins: [cleancss]
         }))
         .pipe(sourcemaps.write("."))
-        .pipe(gulp.dest(config.path.outputCss))
-        .pipe(browserSync.reload({stream: true}));
+        .pipe(gulp.dest(config.path.outputCss));
 });
 
 gulp.task('less-themes', function () {
@@ -65,8 +58,7 @@ gulp.task('less-themes', function () {
             plugins: [cleancss]
         }))
         .pipe(sourcemaps.write("."))
-        .pipe(gulp.dest(config.path.themesOutput))
-        .pipe(browserSync.reload({stream: true}));
+        .pipe(gulp.dest(config.path.themesOutput));
 });
 
 /**

@@ -45,6 +45,7 @@ module.exports = {
         config: 'src/packages/**/server/config/*.js',
         routes: ['src/packages/!(core)/**/server/routes/**/*.js', 'src/packages/core/**/server/routes/**/*.js'],
         sockets: 'src/packages/**/server/sockets/*.js',
+        messaging: 'src/packages/**/server/messaging/*.js',
         policies: 'src/packages/**/server/policies/*.js'
     }
 };

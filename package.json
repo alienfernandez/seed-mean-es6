@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "meanrr-version": "0.1.0",
   "description": "Full-Stack JavaScript with MongoDB, Express, AngularJS, Node.js, React.js and Redis.",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "watch-gulp": "gulp",
     "watch-gulp-prod": "gulp prod",
