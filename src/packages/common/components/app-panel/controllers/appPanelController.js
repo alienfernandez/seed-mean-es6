@@ -38,6 +38,11 @@ class AppPanelController {
                         iconCls: 'fa fa-th',
                         description: "Control Panel",
                         state: "admin.panel"
+                    }, {
+                        name: "Articles",
+                        iconCls: 'fa fa-bars',
+                        description: "Articles",
+                        state: "article-list"
                     }
                 ],
                 overItemCls: 'dv-view-over',

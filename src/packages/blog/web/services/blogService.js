@@ -6,7 +6,7 @@ class BlogService {
         this.$window = $window;
         this.http = BaseHttpService;
         this.serverUri = this.http.config.serverUri;
-        console.log("serverUri: ", this.serverUri);
+        //console.log("serverUri: ", this.serverUri);
     }
 
     /*ngInject*/

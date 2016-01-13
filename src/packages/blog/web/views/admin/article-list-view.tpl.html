@@ -1,27 +1,31 @@
+<navbar user="articleCtrl.user"></navbar>
 <section ng-init="articleCtrl.find()">
-    <div class="page-header">
-        <h2>Users
-            <small>
-            <span class="pull-right" style="margin-right: 15px;">
-                <a ui-sref="add-article" class="btn btn-xs btn-info"><i class="fa fa-plus-circle"></i> Create</a>
-            </span>
-            </small>
-        </h2>
-    </div>
-    <div class="list-group">
-        <a ng-repeat="article in articleCtrl.articles" ng-click="articleCtrl.edit({articleId: article._id})"
-           class="list-group-item">
-            <small class="list-group-item-text">
-                Title:
-                <span ng-bind="article.title"></span>
+    <div class="col-lg-12">
+        <div class="page-header">
+            <h2><i class="fa fa-bars"></i> Articles list
+                <small>
+                <span class="pull-right" style="margin-right: 15px;">
+                    <a ui-sref="add-article" class="btn btn-xs btn-info"><i class="fa fa-plus-circle"></i> Create</a>
+                </span>
+                </small>
+            </h2>
+        </div>
+        <div class="list-group">
+            <a ng-repeat="article in articleCtrl.articles" ng-click="articleCtrl.edit({articleId: article._id})"
+               class="list-group-item">
+                <small class="list-group-item-text">
+                    Title:
+                    <span ng-bind="article.title"></span>
                 <span class="pull-right">
                     <button class="btn btn-xs btn-danger" ng-click="articleCtrl.remove(article)">
                         <i class="fa fa-trash"></i> Delete
                     </button></span>
-            </small>
-        </a>
-    </div>
-    <div class="alert alert-warning text-center" ng-if="articleCtrl.articles.$resolved && !articleCtrl.articles.length">
-        No article yet, why don't you <a ui-sref="add-article">create one</a>?
+                </small>
+            </a>
+        </div>
+        <div class="alert alert-warning text-center"
+             ng-if="articleCtrl.articles.$resolved && !articleCtrl.articles.length">
+            No article yet, why don't you <a ui-sref="add-article">create one</a>?
+        </div>
     </div>
 </section>

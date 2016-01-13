@@ -48,6 +48,12 @@
     "src": "packages/blog"
   },
   {
+    "stateName": "article-list",
+    "urlPrefix": "/articles",
+    "type": "load",
+    "src": "packages/blog"
+  },
+  {
     "stateName": "blog-state",
     "urlPrefix": "/blog",
     "type": "load",
