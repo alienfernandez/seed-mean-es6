@@ -9,7 +9,8 @@ class ArticleResourceService {
         }, {
             update: {
                 method: 'PUT'
-            }
+            },
+            query: {method: 'GET', isArray: true}
         });
     }
 

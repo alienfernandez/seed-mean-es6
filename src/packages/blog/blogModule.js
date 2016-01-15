@@ -2,6 +2,7 @@ import angular from 'angular';
 //Import angular translate (i18n for your Angular app)
 import 'angular-translate';
 import 'angular-translate-loader-static';
+import 'ag-grid';
 
 //Import all module templates
 import * as Templates from './templates';
@@ -12,7 +13,7 @@ import BlogConfig from './web/config/blog.config';
 import {commonModule} from 'commons';
 
 let blogModule = angular.module('app.blog', [
-    'pascalprecht.translate',
+    'pascalprecht.translate', 'agGrid',
     //Templates
     Templates.AddArticleTpl.name,
     Templates.EditArticleTpl.name,
