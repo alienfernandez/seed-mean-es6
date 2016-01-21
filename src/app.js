@@ -20,7 +20,7 @@ let app = angular.module(appModuleName, appDependencies);
 app.config(routing(app, futureRoutes));
 
 app.config(($urlRouterProvider, $locationProvider, $stateProvider, $httpProvider,
-            toastrConfig, $validationProvider, $translateProvider) => {
+            toastrConfig, $validationProvider, $translateProvider, FlashProvider) => {
     //$locationProvider.html5Mode(true);
     //------------- $httpProvider config ---------------
     $httpProvider.useApplyAsync(true);
@@ -58,33 +58,10 @@ app.config(($urlRouterProvider, $locationProvider, $stateProvider, $httpProvider
     $validationProvider.showSuccessMessage = false;
     //-------------------------------------------------------
 
-    //Config toastr
-    angular.extend(toastrConfig, {
-        autoDismiss: false,
-        allowHtml: true,
-        closeButton: true,
-        containerId: 'toast-container',
-        maxOpened: 0,
-        newestOnTop: true,
-        positionClass: 'toast-bottom-right',
-        preventDuplicates: false,
-        preventOpenDuplicates: false,
-        target: 'body',
-        closeHtml: '<button>&times;</button>',
-        onHidden: null,
-        onShown: null,
-        onTap: null,
-        iconClasses: {
-            error: 'toast-error',
-            info: 'toast-info',
-            success: 'toast-success',
-            warning: 'toast-warning'
-        },
-        progressBar: true,
-        timeOut: 5000,
-        titleClass: 'toast-title',
-        toastClass: 'toast'
-    });
+    //----------- Toastr config ---------------------------
+    let defaultOptions = FlashProvider.getDefaultOptions();
+    angular.extend(toastrConfig, defaultOptions);
+    //-------------------------------------------------------
 });
 
 /**

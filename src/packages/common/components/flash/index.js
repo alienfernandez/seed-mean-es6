@@ -5,3 +5,6 @@ import './constants/default';
 
 //Import providers
 import './provider/flashProvider';
+
+//Import services
+import './services/flashService';

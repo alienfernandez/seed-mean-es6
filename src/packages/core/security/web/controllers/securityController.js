@@ -4,10 +4,8 @@ class SecurityController {
 
     /*ngInject*/
     constructor($state, $window, $location, AuthenticationService, SecurityService, LoadMask, toastr,
-                localStorageService, $rootScope) {
-        $rootScope.$emit("message:show", {
-            message: "Testtttt"
-        })
+                localStorageService, $rootScope, FlashService) {
+
         this.loadMask = LoadMask;
         this.loadMask.create('loadMaskData', "Espere por favor, autenticando ...", 'body');
         this.authentication = AuthenticationService;
@@ -15,6 +13,7 @@ class SecurityController {
         this.$state = $state;
         this.$window = $window;
         this.toastr = toastr;
+        this.$rootScope = $rootScope;
         this.localStorageService = localStorageService;
 
         // If user is signed in then redirect back home
@@ -42,6 +41,9 @@ class SecurityController {
         //Show loading
         this.loadMask.show('#loadMaskData');
         this.security.signin(this.credentials).then((response) => {
+            this.$rootScope.$emit("message:show", {
+                message: "Mensaje de prueba"
+            });
             let defaultRedirect = response.redirect || 'home';
             this.loadMask.hide('#loadMaskData');
             // And redirect to the previous or home page

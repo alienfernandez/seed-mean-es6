@@ -1,5 +1,5 @@
 import commonModule from '../../../commonModule';
-import Constant from '../components/core/Constant';
+import Constant from '../../../components/core/Constant';
 
 let flashConst = {
     POSITION: {

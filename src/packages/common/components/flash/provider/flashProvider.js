@@ -50,9 +50,7 @@ class FlashProvider {
         let _ = lodash;
 
         return {
-            showError: (message, options) => {
-                toastr.error(message);
-            }
+
         };
     }
 }

@@ -1,8 +1,8 @@
 import commonModule from '../../../commonModule';
-import $ from 'jquery';
 
 class FlashService {
 
+    /*ngInject*/
     constructor(lodash, toastr, $flashConstants, $rootScope) {
         this.toastr = toastr;
         this.lodash = lodash;
@@ -12,6 +12,7 @@ class FlashService {
     }
 
     events() {
+        console.log("test events")
         this.$rootScope.$on('message:show', (event, args) => {
             let type = (this.lodash.isObject(args) && args.type) ? args.type : this.constant.MESSAGE_TYPE.INFO.CODE;
             this.showMessage(args, type);
@@ -21,10 +22,9 @@ class FlashService {
         });
     }
 
-    /*ngInject*/
-    static instance(lodash, toastr, $flashConstants) {
-        return new FlashService(lodash, toastr, $flashConstants);
-    }
+    //static instance(lodash, toastr, $flashConstants, $rootScope) {
+    //    return new FlashService(lodash, toastr, $flashConstants, $rootScope);
+    //}
 
     showMessage(data, type = this.constant.MESSAGE_TYPE.INFO.CODE) {
         let flashConst = this.constant;
@@ -64,6 +64,7 @@ class FlashService {
 
 }
 
-commonModule.factory('FlashService', FlashService.instance);
+commonModule.factory('FlashService', ['lodash', 'toastr', '$flashConstants', '$rootScope',
+    (lodash, toastr, $flashConstants, $rootScope) => new FlashService(lodash, toastr, $flashConstants, $rootScope)]);
 
 export default commonModule;
