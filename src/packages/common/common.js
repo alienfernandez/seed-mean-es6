@@ -23,6 +23,7 @@ import './components/navbar/index';
 import './components/tree-panel/index';
 import './components/window/index';
 import './components/app-panel/index';
+import './components/flash/index';
 
 import routing from './providers/routing';
 
