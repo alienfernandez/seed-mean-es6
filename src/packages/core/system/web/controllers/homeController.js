@@ -3,7 +3,8 @@ import systemModule from '../../systemModule';
 class HomeController {
 
     /*ngInject*/
-    constructor(AuthenticationService, DataItemModule, DataItem) {
+    constructor(AuthenticationService, DataItemModule, DataItem, ChatBoxes) {
+        ChatBoxes.create('alien');
         // This provides Authentication context.
         this.authentication = AuthenticationService;
         this.user = AuthenticationService.user;
