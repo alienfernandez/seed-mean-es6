@@ -130,6 +130,58 @@ a.badge:focus, a.badge:hover {
   font-family: Verdana, Arial, sans-serif; }
 
 /***************************/
+/*    Button circle         */
+/***************************/
+.btn-circle-xxs {
+  border-radius: 25px;
+  font-size: 9px;
+  height: 13px;
+  line-height: 1.4;
+  text-align: center;
+  width: 13px; }
+
+.btn-circle-xs {
+  width: 16px;
+  height: 16px;
+  border-radius: 20px;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.428571429; }
+
+.btn-circle-sm {
+  width: 20px;
+  height: 20px;
+  border-radius: 20px;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.4; }
+
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  padding: 6px 0;
+  border-radius: 15px;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.428571429; }
+
+.btn-circle.btn-lg {
+  width: 50px;
+  height: 50px;
+  padding: 10px 16px;
+  border-radius: 25px;
+  font-size: 18px;
+  line-height: 1.33; }
+
+.btn-circle.btn-xl {
+  width: 70px;
+  height: 70px;
+  padding: 10px 16px;
+  border-radius: 35px;
+  font-size: 24px;
+  line-height: 1.33; }
+
+/***************************/
 /*    File chooser         */
 /***************************/
 .app-file-container {

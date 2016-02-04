@@ -16,55 +16,94 @@ class ChatBoxProvider {
         this.chatboxPrefix = "chatbox_";
     }
 
+    restructureChatBoxes() {
+        let align = 0;
+        for (let chatbox in this.chatBoxes) {
+            let chatboxtitle = this.chatBoxes[chatbox].title;
+            let selector = "#" + this.chatboxPrefix + chatboxtitle;
+            if ($(selector).css('display') != 'none') {
+                if (align == 0) {
+                    $(selector).css('right', '20px');
+                } else {
+                    let width = (align) * (225 + 7) + 20;
+                    $(selector).css('right', width + 'px');
+                }
+                align++;
+            }
+        }
+    }
+
+    closeChatBox(chatboxtitle) {
+        $("#" + this.chatboxPrefix + chatboxtitle).css('display', 'none');
+        this.restructureChatBoxes();
+    }
+
+    initChatBox(element, title, minimizeChatBox) {
+        let selector = "#" + this.chatboxPrefix + title;
+        element.css('bottom', '0px');
+        for (let chatbox in this.chatBoxes) {
+            if ($(selector + this.chatBoxes[chatbox].title).css('display') != 'none') {
+                this.chatBoxesVisibles++;
+            }
+        }
+        if (this.chatBoxesVisibles == 0) {
+            element.css('right', '20px');
+        } else {
+            let width = (this.chatBoxesVisibles) * (225 + 7) + 20;
+            element.css('right', width + 'px');
+        }
+        this.chatBoxes.push({
+            title: title,
+            minimize: false
+        });
+        if (minimizeChatBox) {
+            //console.log("chatboxcontent", $("#" + this.chatboxPrefix + title + ' .chatboxcontent'))
+            $("#chat_content_" + title).css('display', 'none');
+            $("#" + this.chatboxPrefix + title + ' .chatboxinput').css('display', 'none');
+        }
+    }
+
+    show(selector) {
+        if (angular.element(selector)) {
+            angular.element(selector).show();
+        }
+    }
+
     /*ngInject*/
     $get($document, $rootScope, lodash, $q, $compile) {
         let _ = lodash;
 
         return {
             show: (selector) => {
-                if (angular.element(selector)) {
-                    angular.element(selector).show();
-                }
+                this.show(selector);
             },
-            hide: (selector) => {
-                if (angular.element(selector)) {
-                    angular.element(selector).hide();
-                }
+            closeChatBox: (selector) => {
+                this.closeChatBox(selector);
             },
-            create: (title) => {
+            create: (title, minimizeChatBox = false) => {
                 let selector = "#" + this.chatboxPrefix + title;
                 if ($(selector).length > 0) {
                     if ($(selector).css('display') == 'none') {
                         $(selector).css('display', 'block');
-                        //restructureChatBoxes();
+                        this.restructureChatBoxes();
                     }
                     $("#tfInput_" + title).focus();
                     return;
                 }
-
                 let template = angular.element('<chatbox title="' + title + '"></chatbox>');
                 let chatboxExist = $document.find(selector);
-                //Check exist mask in DOM
+                let element;
+                //Check exist chatbox in DOM
                 if (!chatboxExist.length) {
-                    let compileTpl = $compile(template)($rootScope);
-                    $document.find('body').prepend(compileTpl);
-                }
-                $(selector).css('bottom', '0px');
-                for (x in this.chatBoxes) {
-                    if ($(selector + this.chatBoxes[x]).css('display') != 'none') {
-                        this.chatBoxesVisibles++;
-                    }
-                }
-                console.log("this.chatBoxesVisibles", this.chatBoxesVisibles)
-                if (this.chatBoxesVisibles == 0) {
-                    $(selector).css('right', '20px');
+                    element = $compile(template)($rootScope);
+                    $document.find('body').prepend(element);
                 } else {
-                    let width = (this.chatBoxesVisibles) * (225 + 7) + 20;
-                    $(selector).css('right', width + 'px');
+                    element = chatboxExist;
                 }
-                this.chatBoxes.push(title);
-                if (angular.element(selector)) {
-                    angular.element(selector).show();
+                //Init chat box to create
+                this.initChatBox(element, title, minimizeChatBox);
+                if (element) {
+                    element.show();
                 }
             }
         };

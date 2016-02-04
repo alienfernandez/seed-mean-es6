@@ -19,15 +19,9 @@ class ChatDirective {
                         <i class="fa fa-comments fa-fw"></i>
                         {{title}}
                         <div class="pull-right">
-                            <button type="button" class="btn btn-default btn-xs" ng-click="closeChatBox('title')">
-                                <i class="fa fa-sign-out"></i>
+                            <button type="button" class="btn btn-danger btn-xs btn-circle-xs" ng-click="chatboxCtrl.closeChatBox(title)">
+                                <i class="fa fa-times"></i>
                             </button>
-                        </div>
-                        <div class="btn-group pull-right">
-                            <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-chevron-down"></i>
-                            </button>
-                            <ul class="dropdown-menu slidedown"><li><a href="#"><i class="fa fa-refresh fa-fw"></i> Refresh</a></li><li><a href="#"><i class="fa fa-check-circle fa-fw"></i> Available</a></li><li><a href="#"><i class="fa fa-times fa-fw"></i> Busy</a></li><li><a href="#"><i class="fa fa-clock-o fa-fw"></i> Away</a></li></ul>
                         </div>
                     </div>
                     <div id="chat_content_{{title}}" class="panel-body chatboxcontent">
@@ -49,9 +43,9 @@ class ChatDirective {
         let directive = {
             restrict: 'E',
             replace: true,
-            scope: {
-                //title: '='
-            },
+            scope: {},
+            controller: 'ChatboxController',
+            controllerAs: 'chatboxCtrl',
             template: tpl,
             link: this.link
         };
@@ -60,12 +54,10 @@ class ChatDirective {
     }
 
     link($scope, element, $attrs) {
-        console.log("$scope", $scope)
         console.log("element", element)
-        console.log("$attrs", $attrs)
+        console.log("$scope", $scope)
         $scope.title = $attrs.title;
         element.prependTo('body');
-        //$("#chatbox_"+chatboxtitle).css('bottom', '0px');
     }
 }
 
