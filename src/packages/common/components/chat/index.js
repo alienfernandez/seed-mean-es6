@@ -7,4 +7,5 @@ import './controllers/chatboxController';
 import './directives/chatDirective';
 
 //Import providers
-import './provider/chatProvider';
+//import './provider/chatProvider';
+import './provider/chatBoxFactory';

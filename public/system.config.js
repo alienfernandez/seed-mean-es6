@@ -69,7 +69,7 @@ System.config({
         },
         "github:twbs/bootstrap@3.3.6": {
             "deps": [
-                "github:twbs/bootstrap@3.3.6/css/bootstrap.min.css!"
+                
             ]
         },
         "npm:font-awesome@4.4.0": {

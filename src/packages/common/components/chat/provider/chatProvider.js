@@ -10,6 +10,7 @@ import commonModule from '../../../commonModule';
  *
  */
 class ChatBoxProvider {
+
     constructor() {
         this.chatBoxes = [];
         this.chatBoxesVisibles = 0;
@@ -54,12 +55,12 @@ class ChatBoxProvider {
         }
         this.chatBoxes.push({
             title: title,
-            minimize: false
+            minimized: false,
+            focused: false
         });
         if (minimizeChatBox) {
-            //console.log("chatboxcontent", $("#" + this.chatboxPrefix + title + ' .chatboxcontent'))
-            $("#chat_content_" + title).css('display', 'none');
-            $("#" + this.chatboxPrefix + title + ' .chatboxinput').css('display', 'none');
+            element.find('div.chatboxcontent').css('display', 'none');
+            element.find('.panel-footer').css('display', 'none');
         }
     }
 
@@ -72,6 +73,11 @@ class ChatBoxProvider {
     /*ngInject*/
     $get($document, $rootScope, lodash, $q, $compile) {
         let _ = lodash;
+        //function getChatBoxByTitle(title) => {
+        //    return _.find(function (chatbox) {
+        //        return chatbox.title === title;
+        //    })
+        //}
 
         return {
             show: (selector) => {
@@ -80,6 +86,10 @@ class ChatBoxProvider {
             closeChatBox: (selector) => {
                 this.closeChatBox(selector);
             },
+
+            onChatBoxBlur: (title) => {
+
+            },
             create: (title, minimizeChatBox = false) => {
                 let selector = "#" + this.chatboxPrefix + title;
                 if ($(selector).length > 0) {
@@ -87,7 +97,6 @@ class ChatBoxProvider {
                         $(selector).css('display', 'block');
                         this.restructureChatBoxes();
                     }
-                    $("#tfInput_" + title).focus();
                     return;
                 }
                 let template = angular.element('<chatbox title="' + title + '"></chatbox>');
@@ -110,6 +119,6 @@ class ChatBoxProvider {
     }
 }
 
-commonModule.provider('ChatBoxes', ChatBoxProvider);
+commonModule.provider('ChatBoxes1', ChatBoxProvider);
 
 export default commonModule;
