@@ -112,8 +112,8 @@ class ChatDirective {
     }
 
     link($scope, element, $attrs) {
-        console.log("element", element)
-        console.log("$scope", $scope)
+        //console.log("element", element)
+        //console.log("$scope", $scope)
         $scope.title = $attrs.title;
         element.prependTo('body');
     }

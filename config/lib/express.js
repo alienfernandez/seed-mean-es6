@@ -20,7 +20,8 @@ var config = require('../config'),
     flash = require('connect-flash'),
     consolidate = require('consolidate'),
     redisClient = require('./redis'),
-    path = require('path');
+    path = require('path'),
+    proxy = require('express-http-proxy');
 /**
  * Initialize local variables
  */
@@ -229,6 +230,27 @@ module.exports.initCors = function (app) {
     app.use(cors());
 };
 
+
+/**
+ * Configure proxy http bind ()
+ */
+module.exports.initProxy = function (app) {
+    app.use('localhost:8000/http-bind', proxy('http://localhost:7070/http-bind', {
+        forwardPath: function (req, res) {
+            return require('url').parse(req.url).path;
+        },
+        filter: function (req, res) {
+            return req.method == 'GET';
+        },
+        decorateRequest: function (req) {
+            req.headers['Content-Type'] = '';
+            req.method = 'GET';
+            req.bodyContent = wrap(req.bodyContent);
+            return req;
+        }
+    }));
+};
+
 /**
  * Initialize the Express application
  */
@@ -276,6 +298,8 @@ module.exports.init = function (db) {
 
     // Initialize cors
     this.initCors(app);
+
+    this.initProxy(app);
 
     // Configure Socket.io
     app = this.configureSocketIO(app, db);

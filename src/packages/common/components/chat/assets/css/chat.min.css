@@ -1,7 +1,7 @@
 .chatbox {
   position: fixed;
   position: absolute;
-  width: 275px;
+  width: 250px;
   display: none;
   bottom: -15px;
   z-index: 10001; }
@@ -22,7 +22,7 @@
   font-family: arial, sans-serif;
   font-size: 13px;
   height: 250px;
-  width: 275px;
+  width: 255px;
   overflow-y: auto;
   overflow-x: auto;
   padding: 7px; }
@@ -35,12 +35,8 @@
   border-bottom: 1px solid #cccccc; }
 
 .chatboxtextarea {
-  width: 206px;
-  height: 44px;
-  padding: 3px 0pt 3px 3px;
-  border: 1px solid #eeeeee;
-  margin: 1px;
-  overflow: hidden; }
+  height: 22px;
+  padding: 3px 0pt 3px 3px; }
 
 .chatboxtextareaselected {
   border: 2px solid #f99d39;

@@ -8,6 +8,7 @@ class ChatBoxesFactory {
         this.chatboxPrefix = "chatbox_";
         this.iconClsMaximize = "fa-plus";
         this.iconClsMinimize = "fa-minus";
+        this.chatBoxWidth = 250;
         this.$document = $document;
         this.$rootScope = $rootScope;
         this._ = lodash;
@@ -56,7 +57,7 @@ class ChatBoxesFactory {
         if (this.chatBoxesVisibles == 0) {
             element.css('right', '20px');
         } else {
-            let width = (this.chatBoxesVisibles) * (225 + 7) + 20;
+            let width = (this.chatBoxesVisibles) * (this.chatBoxWidth + 7) + 20;
             element.css('right', width + 'px');
         }
         var chatbox = {
@@ -81,7 +82,7 @@ class ChatBoxesFactory {
                 if (align == 0) {
                     $(selector).css('right', '20px');
                 } else {
-                    let width = (align) * (225 + 7) + 20;
+                    let width = (align) * (this.chatBoxWidth + 7) + 20;
                     $(selector).css('right', width + 'px');
                 }
                 align++;
@@ -116,7 +117,7 @@ class ChatBoxesFactory {
     onChatBoxMaximized(title) {
         let element = $("#" + this.chatboxPrefix + title);
         element.find('div.chatboxcontent').css('display', 'block');
-        element.find('.panel-footer').css('display', 'block');
+        element.find('.box-footer').css('display', 'block');
         element.find('button[data-role="maxmin"]').find('i').removeClass(this.iconClsMaximize).addClass(this.iconClsMinimize);
         let chatbox = this.getChatBoxByTitle(title);
         chatbox.minimized = false;
