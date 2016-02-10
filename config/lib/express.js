@@ -235,20 +235,21 @@ module.exports.initCors = function (app) {
  * Configure proxy http bind ()
  */
 module.exports.initProxy = function (app) {
-    app.use('localhost:8000/http-bind', proxy('http://localhost:7070/http-bind', {
-        forwardPath: function (req, res) {
-            return require('url').parse(req.url).path;
-        },
-        filter: function (req, res) {
-            return req.method == 'GET';
-        },
-        decorateRequest: function (req) {
-            req.headers['Content-Type'] = '';
-            req.method = 'GET';
-            req.bodyContent = wrap(req.bodyContent);
-            return req;
-        }
-    }));
+    // New hostname+path as specified by question:
+    //var apiProxy = proxy('localhost:7070/http-bind', {
+    //    forwardPath: function (req, res) {
+    //        return require('url').parse(req.baseUrl).path;
+    //    }
+    //});
+    //app.use("/http-bind", apiProxy);
+
+    var httpProxy = require('http-proxy');
+
+    var apiProxy = httpProxy.createProxyServer();
+
+    app.all("/http-bind", function (req, res) {
+        apiProxy.web(req, res, {target: 'http://localhost:7070'});
+    });
 };
 
 /**

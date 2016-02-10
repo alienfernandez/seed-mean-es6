@@ -1,24 +1,24 @@
 import commonModule from '../../../../commonModule';
-import XmppCoreService from '../core/xmpp-core-service';
+//import XmppCoreService from '../core/xmpp-core';
 
 class ChatXmppFactory {
 
-    constructor(lodash, $chatConstants, localStorageService) {
-        this._ = lodash;
-        this.ChatXmppCore = new XmppCoreService($chatConstants, localStorageService);
+    constructor(XmppCore) {
+        //this.ChatXmppCore = new XmppCoreService($chatConstants, localStorageService);
+        this.XmppCore = XmppCore;
     }
 
     /*ngInject*/
-    static instance(lodash, $chatConstants, localStorageService) {
-        return new ChatXmppFactory(lodash, $chatConstants, localStorageService);
+    static instance(XmppCore) {
+        return new ChatXmppFactory(XmppCore);
     }
 
     init(service, options) {
-        this.ChatXmppCore.init(service, options);
+        this.XmppCore.init(service, options);
     }
 
     getXmppCore() {
-        return this.ChatXmppCore;
+        return this.XmppCore;
     }
 
 

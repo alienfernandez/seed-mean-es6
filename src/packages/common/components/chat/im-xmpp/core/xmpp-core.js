@@ -1,3 +1,5 @@
+import commonModule from '../../../../commonModule';
+
 import XmppCoreLog from './xmpp-core-log';
 import XmppCoreEventJabber from './xmpp-core-event-jabber';
 import XmppCoreEventStrophe from './xmpp-core-event-strophe';
@@ -6,7 +8,7 @@ import XmppCoreUser from './xmpp-core-user';
 //import Strophe from 'strophe';
 import _ from 'lodash';
 
-class XmppCoreService {
+class XmppCore {
 
     constructor($chatConstants, localStorageService) {
         this._connection = null;
@@ -23,12 +25,16 @@ class XmppCoreService {
             presencePriority: 1,
             resource: this.about.name
         };
-        //this.ChatXmppCoreEvent = ChatXmppCoreEvent;
         this.jabberEvent = new XmppCoreEventJabber(this);
         this.stropheEvent = new XmppCoreEventStrophe(this);
         this.stanza = new XmppStanza(this);
         this.localStorageService = localStorageService;
         this.$chatConstants = $chatConstants;
+    }
+
+    /*ngInject*/
+    static instance($chatConstants, localStorageService) {
+        return new XmppCore($chatConstants, localStorageService);
     }
 
     init(service, options) {
@@ -43,9 +49,9 @@ class XmppCoreService {
         //this._connection.rawOutput = this.rawOutput(this);
         // Window unload handler... works on all browsers but Opera. There is NO workaround.
         // Opera clients getting disconnected 1-2 minutes delayed.
-        //if (!this._options.disableWindowUnload) {
-        //    window.onbeforeunload = this.onWindowUnload;
-        //}
+        if (!this._options.disableWindowUnload) {
+            window.onbeforeunload = this.onWindowUnload;
+        }
     }
 
     addNamespace(name, value) {
@@ -106,10 +112,11 @@ class XmppCoreService {
         this.registerEventHandlers();
         if (jid && password) {
             // authentication
+            //console.log("this._connection", this._connection);
             this._connection.connect(this.getEscapedJidFromJid(jid) + "/" + this._options.resource, password, this.stropheEvent.Connect);
             this._user = new XmppCoreUser(jid, Strophe.getNodeFromJid(jid));
-            console.log("this._connection", this._connection);
-            //if (xids) {
+            //console.log("this._connection", this._connection);
+            ////if (xids) {
             setTimeout(() => {
                 this.storeUserData();
                 if (this._connection && this._connection.connected) {
@@ -261,4 +268,8 @@ class XmppCoreService {
 
 }
 
-export default XmppCoreService;
+//export default XmppCore;
+
+commonModule.factory('XmppCore', XmppCore.instance);
+
+export default commonModule;

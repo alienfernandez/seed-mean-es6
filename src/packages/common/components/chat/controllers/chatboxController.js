@@ -1,14 +1,11 @@
 import commonModule from '../../../commonModule';
-//import 'strophe';
 
 class ChatboxController {
 
     /*ngInject*/
-    constructor(ChatBoxes, ChatXmpp) {
+    constructor(ChatBoxes) {
         //console.log("ChatBoxes", ChatBoxes);
         this.ChatBoxes = ChatBoxes;
-        ChatXmpp.init('http://localhost:7070/http-bind/', {});
-        ChatXmpp.getXmppCore().connect('alien@localhost', 'dani!');
     }
 
     closeChatBox(title) {

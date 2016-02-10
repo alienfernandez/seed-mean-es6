@@ -4,7 +4,10 @@ import ChatXmppCoreLog from './xmpp-core-log';
 class XmppCoreEventStrophe {
 
     constructor(XmppCoreService) {
-        this.log = new ChatXmppCoreLog(true);
+        //this.log = new ChatXmppCoreLog(true);
+        this.log = function () {
+            
+        };
         this.coreService = XmppCoreService;
     }
 

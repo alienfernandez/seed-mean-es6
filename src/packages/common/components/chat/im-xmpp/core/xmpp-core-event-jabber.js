@@ -5,7 +5,10 @@ import XmppUtil from '../util/xmpp-util';
 class XmppCoreEventJabber {
 
     constructor(XmppCoreService) {
-        this.log = new ChatXmppCoreLog(true);
+        //this.log = new ChatXmppCoreLog(true);
+        this.log = function () {
+            
+        };
         this.coreService = XmppCoreService;
     }
 
