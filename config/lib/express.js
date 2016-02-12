@@ -236,7 +236,7 @@ module.exports.initCors = function (app) {
  */
 module.exports.initProxy = function (app) {
     // New hostname+path as specified by question:
-    //var apiProxy = proxy('localhost:7070/http-bind', {
+    //var apiProxy = proxy('localhost:7070', {
     //    forwardPath: function (req, res) {
     //        return require('url').parse(req.baseUrl).path;
     //    }
@@ -244,10 +244,8 @@ module.exports.initProxy = function (app) {
     //app.use("/http-bind", apiProxy);
 
     var httpProxy = require('http-proxy');
-
     var apiProxy = httpProxy.createProxyServer();
-
-    app.all("/http-bind", function (req, res) {
+    app.post("/http-bind", function (req, res) {
         apiProxy.web(req, res, {target: 'http://localhost:7070'});
     });
 };

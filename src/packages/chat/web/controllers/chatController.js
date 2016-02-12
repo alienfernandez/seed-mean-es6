@@ -6,9 +6,9 @@ class ChatController {
     constructor($scope, $location, Socket, AuthenticationService, ChatBoxes, ChatXmpp) {
         ChatBoxes.create('alien');
         ChatBoxes.create('pedro', true);
-        ChatXmpp.init('http://localhost:8000/http-bind', {});
+        ChatXmpp.init('http://localhost/http-bind/', {});
         //ChatXmpp.init('http://localhost:7070/http-bind', {});
-        ChatXmpp.getXmppCore().connect('alien@localhost', 'dani!');
+        ChatXmpp.getXmppCore().connect('alien@pc-smxk50', 'dani!');
 
         this.$location = $location;
         this.Socket = Socket;

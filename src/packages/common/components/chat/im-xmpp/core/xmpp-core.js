@@ -1,8 +1,6 @@
 import commonModule from '../../../../commonModule';
 
 import XmppCoreLog from './xmpp-core-log';
-import XmppCoreEventJabber from './xmpp-core-event-jabber';
-import XmppCoreEventStrophe from './xmpp-core-event-strophe';
 import XmppStanza from './xmpp-core-stanza';
 import XmppCoreUser from './xmpp-core-user';
 //import Strophe from 'strophe';
@@ -10,7 +8,7 @@ import _ from 'lodash';
 
 class XmppCore {
 
-    constructor($chatConstants, localStorageService) {
+    constructor($chatConstants, localStorageService, XmppCoreEventStrophe, XmppCoreEventJabber) {
         this._connection = null;
         this._service = null;
         this._user = null;
@@ -25,16 +23,16 @@ class XmppCore {
             presencePriority: 1,
             resource: this.about.name
         };
-        this.jabberEvent = new XmppCoreEventJabber(this);
-        this.stropheEvent = new XmppCoreEventStrophe(this);
+        this.jabberEvent = XmppCoreEventJabber;
+        this.stropheEvent = XmppCoreEventStrophe;
         this.stanza = new XmppStanza(this);
         this.localStorageService = localStorageService;
         this.$chatConstants = $chatConstants;
     }
 
     /*ngInject*/
-    static instance($chatConstants, localStorageService) {
-        return new XmppCore($chatConstants, localStorageService);
+    static instance($chatConstants, localStorageService, XmppCoreEventStrophe, XmppCoreEventJabber) {
+        return new XmppCore($chatConstants, localStorageService, XmppCoreEventStrophe, XmppCoreEventJabber);
     }
 
     init(service, options) {
@@ -45,12 +43,16 @@ class XmppCore {
         this.addNamespaces();
         // Connect to BOSH/Websocket service
         this._connection = new Strophe.Connection(this._service);
-        //this._connection.rawInput = this.rawInput(this);
-        //this._connection.rawOutput = this.rawOutput(this);
+        this._connection.rawInput = (data) => {
+            console.log("RECV: " + data);
+        };
+        this._connection.rawOutput = (data) => {
+            console.log("SENT: " + data);
+        };
         // Window unload handler... works on all browsers but Opera. There is NO workaround.
         // Opera clients getting disconnected 1-2 minutes delayed.
         if (!this._options.disableWindowUnload) {
-            window.onbeforeunload = this.onWindowUnload;
+            //window.onbeforeunload = this.onWindowUnload;
         }
     }
 
@@ -112,24 +114,46 @@ class XmppCore {
         this.registerEventHandlers();
         if (jid && password) {
             // authentication
+            this._connection.connect(this.getEscapedJidFromJid(jid) + "/" + this._options.resource, password, this.stropheEvent.Connect);
+            this._user = new XmppCoreUser(jid, Strophe.getNodeFromJid(jid));
+            console.log("this._connection", this._connection);
+            if (xids) {
+                this.attach(xids[0], xids[1], xids[2], this.stropheEvent.Connect);
+            }
+        }
+
+    }
+
+    connect1(jid, password) {
+        // Reset before every connection attempt to make sure reconnections work after authfail, alltabsclosed, ...
+        this._connection.reset();
+        this._storage = this.getSessionStorageData();
+        let xids;
+        if (this._storage) {
+            xids = this._storage.split("|");
+            this.delStorage(this.$chatConstants.SESSION_STORE_DATA);
+        }
+        this.registerEventHandlers();
+        if (jid && password) {
+            // authentication
             //console.log("this._connection", this._connection);
             this._connection.connect(this.getEscapedJidFromJid(jid) + "/" + this._options.resource, password, this.stropheEvent.Connect);
             this._user = new XmppCoreUser(jid, Strophe.getNodeFromJid(jid));
-            //console.log("this._connection", this._connection);
+            console.log("this._connection", this._connection);
             ////if (xids) {
-            setTimeout(() => {
-                this.storeUserData();
-                if (this._connection && this._connection.connected) {
-                    this._storage = this.getSessionStorageData();
-                    if (this._storage) {
-                        xids = this._storage.split("|");
-                        console.log("xids", xids);
-                        this.delStorage(this.$chatConstants.SESSION_STORE_DATA);
-                    }
-                    console.log("connected connected", this._connection.connected);
-                    this.attach(xids[0], xids[1], xids[2], this.stropheEvent.Connect);
-                }
-            }, 50);
+            //setTimeout(() => {
+            //    this.storeUserData();
+            //    if (this._connection && this._connection.connected) {
+            //        this._storage = this.getSessionStorageData();
+            //        if (this._storage) {
+            //            xids = this._storage.split("|");
+            //            console.log("xids", xids);
+            //            this.delStorage(this.$chatConstants.SESSION_STORE_DATA);
+            //        }
+            //        console.log("connected connected", this._connection.connected);
+            //        this.attach(xids[0], xids[1], xids[2], this.stropheEvent.Connect);
+            //    }
+            //}, 50);
         }
     }
 
@@ -264,6 +288,17 @@ class XmppCore {
             this.localStorageService.set(this.$chatConstants.SESSION_STORE_DATA, this._connection.jid + "|" +
                 this._connection.sid + "|" + this._connection.rid)
         }
+    }
+
+    /** Function: onWindowUnload
+     * window.onbeforeunload event which disconnects the client from the Jabber server.
+     */
+    onWindowUnload() {
+        // Enable synchronous requests because Safari doesn't send asynchronous requests within unbeforeunload events.
+        // Only works properly when following patch is applied to strophejs: https://github.com/metajack/strophejs/issues/16/#issuecomment-600266
+        this._connection.options.sync = true;
+        this.disconnect();
+        this._connection.flush();
     }
 
 }

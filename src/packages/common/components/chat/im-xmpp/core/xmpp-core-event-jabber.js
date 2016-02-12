@@ -1,29 +1,32 @@
-import ChatXmppCoreLog from './xmpp-core-log';
+import commonModule from '../../../../commonModule';
 import XmppUtil from '../util/xmpp-util';
-//import Strophe from 'strophe';
 
-class XmppCoreEventJabber {
+let xmppEventJabber;
+class XmppCoreEventJabberFactory {
 
-    constructor(XmppCoreService) {
-        //this.log = new ChatXmppCoreLog(true);
-        this.log = function () {
-            
+    /*ngInject*/
+    constructor($injector) {
+        xmppEventJabber = this;
+        this.injector = $injector;
+        this.log = function (data) {
+            console.log(data);
         };
-        this.coreService = XmppCoreService;
     }
 
     Version(msg) {
+        var coreService = xmppEventJabber.injector.get('XmppCore');
         this.log("[Jabber] Version");
-        this.coreService.stanza.Version($(msg));
+        coreService.stanza.Version($(msg));
         return true;
     }
 
     Presence(msg) {
+        var coreService = xmppEventJabber.injector.get('XmppCore');
         this.log("[Jabber] Presence");
         msg = $(msg);
         /*if (msg.children('x[xmlns^="' + Strophe.NS.MUC + '"]').length > 0) {
          } else {*/
-        this.coreService.stanza.Presence();
+        coreService.stanza.Presence();
         //}
         return true;
     }
@@ -96,4 +99,5 @@ class XmppCoreEventJabber {
 
 }
 
-export default XmppCoreEventJabber;
+commonModule.factory('XmppCoreEventJabber', ['$injector', ($injector) => new XmppCoreEventJabberFactory($injector)]);
+
