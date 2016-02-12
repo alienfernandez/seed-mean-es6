@@ -52,7 +52,7 @@ class XmppCore {
         // Window unload handler... works on all browsers but Opera. There is NO workaround.
         // Opera clients getting disconnected 1-2 minutes delayed.
         if (!this._options.disableWindowUnload) {
-            //window.onbeforeunload = this.onWindowUnload;
+            window.onbeforeunload = this.onWindowUnload;
         }
     }
 
@@ -281,10 +281,7 @@ class XmppCore {
     }
 
     storeUserData() {
-        //this.localStorageService.set(this.$chatConstants.SESSION_STORE_DATA, "ok");
-        if (this._connection && this._connection.connected) {
-            //setCookie('chat_xid_data', this._connection.jid + "|" +
-            //    this._connection.sid + "|" + this._connection.rid);
+        if (this._connection && this._connection.connected && this._connection.sid && this._connection.rid) {
             this.localStorageService.set(this.$chatConstants.SESSION_STORE_DATA, this._connection.jid + "|" +
                 this._connection.sid + "|" + this._connection.rid)
         }
@@ -296,9 +293,11 @@ class XmppCore {
     onWindowUnload() {
         // Enable synchronous requests because Safari doesn't send asynchronous requests within unbeforeunload events.
         // Only works properly when following patch is applied to strophejs: https://github.com/metajack/strophejs/issues/16/#issuecomment-600266
-        this._connection.options.sync = true;
-        this.disconnect();
-        this._connection.flush();
+        if (this._connection) {
+            this._connection.options.sync = true;
+            this.disconnect();
+            this._connection.flush();
+        }
     }
 
 }
