@@ -3,9 +3,11 @@ import commonModule from '../../../commonModule';
 class ChatboxController {
 
     /*ngInject*/
-    constructor(ChatBoxes) {
-        //console.log("ChatBoxes", ChatBoxes);
+    constructor(ChatBoxes, ChatXmpp) {
         this.ChatBoxes = ChatBoxes;
+        this.ChatXmpp = ChatXmpp;
+        console.log("_user", ChatXmpp.getXmppCore()._user);
+
     }
 
     closeChatBox(title) {
@@ -32,6 +34,19 @@ class ChatboxController {
 
     onChatBoxBlur(title) {
         this.ChatBoxes.onChatBoxBlur(title);
+    }
+
+    sendMessage() {
+        this.chatbox = this.ChatBoxes.getChatBoxByTitle(this.title);
+        //console.log("this.chatbox", this.chatbox);
+        let to = this.chatbox.jid;
+        let xmppCore = this.ChatXmpp.getXmppCore();
+        xmppCore._connection.send($msg({
+            to: to, from: xmppCore._connection.jid, type: 'chat'
+        }).c('body').t(this.message).tree());
+
+        this.ChatBoxes.addMessage(xmppCore._connection.authcid, this.message, this.chatbox);
+        this.message = '';
     }
 }
 

@@ -34,7 +34,7 @@ class XmppCoreEventJabberFactory {
     Message(msg) {
         this.log("[Jabber:Room] Message");
         // Room subject
-        console.info(msg);
+        console.info("msg", msg);
         var roomJid, _message;
         if (msg.children("subject").length > 0) {
             roomJid = XmppUtil.unescapeJid(Strophe.getBareJidFromJid(msg.attr("from")));

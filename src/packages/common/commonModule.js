@@ -2,6 +2,7 @@ import angular from 'angular';
 import Constant from './components/core/Constant';
 //Import lodash
 import 'ng-lodash';
+import 'focusif';
 
 //Import all module templates
 import * as Templates from './templates';
@@ -10,7 +11,7 @@ import * as Templates from './templates';
  * Module common
  */
 let commonModule = angular.module('common', [
-    'ngLodash', Templates.NavBarTpl.name, Templates.AppPanelTpl.name
+    'ngLodash', 'focus-if', Templates.NavBarTpl.name, Templates.AppPanelTpl.name
 ]);
 
 commonModule.config((localStorageServiceProvider, $appConstants) => {

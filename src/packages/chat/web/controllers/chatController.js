@@ -4,11 +4,17 @@ class ChatController {
 
     /*ngInject*/
     constructor($scope, $location, Socket, AuthenticationService, ChatBoxes, ChatXmpp) {
-        ChatBoxes.create('alien');
-        ChatBoxes.create('pedro', true);
+        //ChatBoxes.create('alien');
+        //ChatBoxes.create('pedro', true);
+        this.ChatBoxes = ChatBoxes;
+        this.ChatXmpp = ChatXmpp;
         ChatXmpp.init('http://localhost/http-bind/', {});
-        //ChatXmpp.init('http://localhost:7070/http-bind', {});
-        ChatXmpp.getXmppCore().connect('alien@pc-smxk50', 'dani!');
+        ChatXmpp.getXmppCore().connect('alien@localhost', 'dani!');
+        $scope.$on('onRoster', (event, data) => {
+            this.roster = data.roster;
+            $scope.$digest();
+        });
+
 
         this.$location = $location;
         this.Socket = Socket;
@@ -34,6 +40,10 @@ class ChatController {
         $scope.$on('$destroy', () => {
             this.Socket.removeListener('chatMessage');
         });
+    }
+
+    createChat(jid) {
+        this.ChatBoxes.create(jid);
     }
 
     sendMessage() {

@@ -11,12 +11,11 @@ import commonModule from '../../../commonModule';
  */
 class ChatDirective {
     constructor() {
-
         let tpl = `
         <div class="chatbox" id="chatbox_{{title}}">
             <div class="box box-success direct-chat direct-chat-success">
                 <div class="box-header with-border" id="id_{{title}}">
-                    <h4 class="box-title">{{title}}</h4>
+                    <h4 class="box-title">{{titleShow}}</h4>
                     <div class="box-tools pull-right">
                         <button type="button" class="btn btn-box-tool">
                             <i class="fa fa-cogs"></i></button>
@@ -33,50 +32,7 @@ class ChatDirective {
                 <div class="box-body" style="display: block;">
                     <!-- Conversations are loaded here -->
                     <div class="direct-chat-messages chatboxcontent" id="chat_content_{{title}}">
-                        <!-- Message. Default to the left -->
-                        <div class="direct-chat-msg">
-                            <div class="direct-chat-info clearfix">
-                                <span class="direct-chat-name pull-left">Alexander Pierce</span>
-                                <span class="direct-chat-timestamp pull-right">23 Jan 2:00 pm</span>
-                            </div>
-                            <!-- /.direct-chat-info -->
-                            <img class="direct-chat-img" src="http://placehold.it/128x128" alt="message user image"><!-- /.direct-chat-img -->
-                            <div class="direct-chat-text">
-                                Is this template really for free? That's unbelievable!
-                            </div>
-                            <!-- /.direct-chat-text -->
-                        </div>
-                        <!-- /.direct-chat-msg -->
 
-                        <!-- Message to the right -->
-                        <div class="direct-chat-msg right">
-                            <div class="direct-chat-info clearfix">
-                                <span class="direct-chat-name pull-right">Sarah Bullock</span>
-                                <span class="direct-chat-timestamp pull-left">23 Jan 2:05 pm</span>
-                            </div>
-                            <!-- /.direct-chat-info -->
-                            <img class="direct-chat-img" src="http://placehold.it/128x128" alt="message user image"><!-- /.direct-chat-img -->
-                            <div class="direct-chat-text">
-                                You better believe it!
-                            </div>
-                            <!-- /.direct-chat-text -->
-                        </div>
-                        <!-- /.direct-chat-msg -->
-
-                        <!-- Message. Default to the left -->
-                        <div class="direct-chat-msg">
-                            <div class="direct-chat-info clearfix">
-                                <span class="direct-chat-name pull-left">Alexander Pierce</span>
-                                <span class="direct-chat-timestamp pull-right">23 Jan 5:37 pm</span>
-                            </div>
-                            <!-- /.direct-chat-info -->
-                            <img class="direct-chat-img" src="http://placehold.it/128x128" alt="message user image"><!-- /.direct-chat-img -->
-                            <div class="direct-chat-text">
-                                Working with AdminLTE on a great new app! Wanna join?
-                            </div>
-                            <!-- /.direct-chat-text -->
-                        </div>
-                        <!-- /.direct-chat-msg -->
                     </div>
                     <!--/.direct-chat-messages-->
                     <!-- /.direct-chat-pane -->
@@ -85,11 +41,12 @@ class ChatDirective {
                 <div class="box-footer" style="display: block;">
                     <form action="#" method="post">
                         <div class="input-group">
-                            <input type="text" name="message" placeholder="Type Message ..."
-                                   class="form-control chatboxtextarea"
-                                   ng-blur="chatboxCtrl.onChatBoxBlur(title)">
+                            <input type="text" name="message" ng-model="chatboxCtrl.message" placeholder="Type Message ..."
+                                   class="form-control chatboxtextarea" ng-enter="chatboxCtrl.sendMessage()"
+                                   ng-blur="chatboxCtrl.onChatBoxBlur(title)" focus-if>
                                   <span class="input-group-btn">
-                                    <button type="button" class="btn btn-xs btn-success btn-flat">Send</button>
+                                    <button type="button" class="btn btn-xs btn-success btn-flat"
+                                    ng-click="chatboxCtrl.sendMessage()" ng-disabled="!chatboxCtrl.message">Send</button>
                                   </span>
                         </div>
                     </form>
@@ -114,7 +71,12 @@ class ChatDirective {
     link($scope, element, $attrs) {
         //console.log("element", element)
         //console.log("$scope", $scope)
-        $scope.title = $attrs.title;
+        let title = $attrs.title;
+        let user = title.split('@');
+        let titleId = title.replace('@', '_');
+        $scope.chatboxCtrl.title = titleId;
+        $scope.title = titleId;
+        $scope.titleShow = user[0];
         element.prependTo('body');
     }
 }

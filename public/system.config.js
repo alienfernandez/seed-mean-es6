@@ -123,6 +123,7 @@ System.config({
     "angular-material": "github:angular/bower-material@0.11.4",
     "angular-mocks": "github:angular/bower-angular-mocks@1.4.8",
     "angular-modal-service": "github:dwmkerr/angular-modal-service@0.6.9",
+    "angular-momentjs": "npm:angular-momentjs@0.2.2",
     "angular-relative-date": "github:wildlyinaccurate/angular-relative-date@1.0.0",
     "angular-resource": "github:angular/bower-angular-resource@1.4.8",
     "angular-translate": "npm:angular-translate@2.8.1",
@@ -140,6 +141,7 @@ System.config({
     "driftyco/ionicons": "github:driftyco/ionicons@2.0.1",
     "elevateweb/elevatezoom": "github:elevateweb/elevatezoom@2.2.3",
     "fancybox-plus": "github:igorlino/fancybox-plus@1.3.6",
+    "focusif": "github:hiebj/ng-focus-if@1.0.4",
     "font-awesome": "npm:font-awesome@4.5.0",
     "highlight": "github:isagalaev/highlight.js@9.0.0",
     "image": "github:systemjs/plugin-image@0.1.0",
@@ -147,7 +149,7 @@ System.config({
     "jquery-ui": "npm:jquery-ui@1.10.5",
     "json": "github:systemjs/plugin-json@0.1.0",
     "lodash": "npm:lodash@3.10.1",
-    "moment": "github:moment/moment@2.10.6",
+    "moment": "npm:moment@2.11.2",
     "mongoose": "github:Automattic/mongoose@4.3.1",
     "ng-file-upload": "npm:ng-file-upload@10.1.9",
     "ng-lodash": "npm:ng-lodash@0.2.3",
@@ -229,6 +231,11 @@ System.config({
       "path": "github:jspm/nodelibs-path@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
+    "npm:angular-momentjs@0.2.2": {
+      "angular": "npm:angular@1.5.0",
+      "moment": "npm:moment@2.11.2",
+      "path": "github:jspm/nodelibs-path@0.1.0"
+    },
     "npm:angular-translate-loader-static-files@2.8.1": {
       "angular-translate": "npm:angular-translate@2.8.1"
     },
@@ -285,6 +292,9 @@ System.config({
       "source-map": "npm:source-map@0.1.31"
     },
     "npm:lodash@3.10.1": {
+      "process": "github:jspm/nodelibs-process@0.1.2"
+    },
+    "npm:moment@2.11.2": {
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
     "npm:ng-file-upload@10.1.9": {

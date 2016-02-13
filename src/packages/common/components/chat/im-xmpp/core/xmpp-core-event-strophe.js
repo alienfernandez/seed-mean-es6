@@ -1,11 +1,16 @@
 import commonModule from '../../../../commonModule';
+import ImRoster from '../roster/im-roster';
+
 let xmppEventStrophe;
 class XmppCoreEventStropheFactory {
 
     /*ngInject*/
-    constructor($injector) {
+    constructor($injector, $rootScope, $timeout, ChatBoxes) {
         xmppEventStrophe = this;
         this.injector = $injector;
+        this.$rootScope = $rootScope;
+        this.ChatBoxes = ChatBoxes;
+        this.$timeout = $timeout;
         //this.coreService = $injector.get('XmppCore');
     }
 
@@ -19,7 +24,6 @@ class XmppCoreEventStropheFactory {
                 coreService.storeUserData();
                 coreService._connection.addHandler(xmppEventStrophe.onVersion, Strophe.NS.VERSION, 'iq', null, null, null);
                 coreService._connection.addHandler(xmppEventStrophe.onRoster, Strophe.NS.ROSTER, 'iq', null, null, null);
-                coreService._connection.addHandler(xmppEventStrophe.onPresence, null, 'presence', null, null, null);
                 coreService._connection.addHandler(xmppEventStrophe.onMessage, null, 'message', null, null, null);
                 //Get roster then announce presence.
                 coreService._connection.send($iq({type: 'get', xmlns: Strophe.NS.CLIENT}).c(
@@ -88,26 +92,34 @@ class XmppCoreEventStropheFactory {
      *  Roster iq handler
      */
     onRoster(msg) {
-        console.log("On roster:", msg);
         Strophe.debug("Roster handler");
-        console.log("msg.firstChild", msg.firstChild)
-        var roster_items = msg.firstChild.getElementsByTagName('item');
-        //for (var i = 0; i < roster_items.length; i++) {
-        //    var groups = roster_items[i].getElementsByTagName('group');
-        //    var group_array = new Array();
-        //    for (var g = 0; g < groups.length; g++) {
-        //        group_array[group_array.length] =
-        //            groups[g].firstChild.nodeValue;
-        //    }
-        //    TrophyIM.rosterObj.addContact(roster_items[i].getAttribute('jid'),
-        //        roster_items[i].getAttribute('subscription'),
-        //        roster_items[i].getAttribute('name'), group_array);
-        //}
+        let roster_items = msg.firstChild.getElementsByTagName('item');
+        let roster = new ImRoster();
+        console.log("msg", msg);
+        //$(msg).find('item').each(function (index, item) {
+        //    console.log("item", item);
+        //})
+        for (var i = 0; i < roster_items.length; i++) {
+            var groups = roster_items[i].getElementsByTagName('group');
+            var group_array = [];
+            for (var g = 0; g < groups.length; g++) {
+                group_array[group_array.length] = groups[g].firstChild.nodeValue;
+            }
+            roster.addContact(roster_items[i].getAttribute('jid'),
+                roster_items[i].getAttribute('subscription'),
+                roster_items[i].getAttribute('name'), group_array);
+        }
+        xmppEventStrophe.coreService._user.roster = roster;
         if (msg.getAttribute('type') == 'set') {
             xmppEventStrophe.coreService._connection.send($iq({
                 type: 'reply', id: msg.getAttribute('id'), to: msg.getAttribute('from')
             }).tree());
         }
+        xmppEventStrophe.coreService._connection.addHandler(xmppEventStrophe.onPresence, null, 'presence', null, null, null);
+        xmppEventStrophe.$rootScope.$broadcast('onRoster', {
+            roster: roster
+        });
+
         return true;
     }
 
@@ -117,16 +129,15 @@ class XmppCoreEventStropheFactory {
      */
     onPresence(msg) {
         Strophe.debug("Presence handler");
-        //var type = msg.getAttribute('type') ? msg.getAttribute('type') :
-        //    'available';
-        //var show = msg.getElementsByTagName('show').length ? Strophe.getText(
-        //    msg.getElementsByTagName('show')[0]) : type;
-        //var status = msg.getElementsByTagName('status').length ? Strophe.getText(
-        //    msg.getElementsByTagName('status')[0]) : '';
-        //var priority = msg.getElementsByTagName('priority').length ? parseInt(
-        //    Strophe.getText(msg.getElementsByTagName('priority')[0])) : 0;
-        //TrophyIM.rosterObj.setPresence(msg.getAttribute('from'), priority,
-        //    show, status);
+        var type = msg.getAttribute('type') ? msg.getAttribute('type') :
+            'available';
+        var show = msg.getElementsByTagName('show').length ? Strophe.getText(
+            msg.getElementsByTagName('show')[0]) : type;
+        var status = msg.getElementsByTagName('status').length ? Strophe.getText(
+            msg.getElementsByTagName('status')[0]) : '';
+        var priority = msg.getElementsByTagName('priority').length ? parseInt(
+            Strophe.getText(msg.getElementsByTagName('priority')[0])) : 0;
+        xmppEventStrophe.coreService._user.roster.setPresence(msg.getAttribute('from'), priority, show, status);
         return true;
     }
 
@@ -140,33 +151,41 @@ class XmppCoreEventStropheFactory {
         let type = msg.getAttribute('type');
         let elems = msg.getElementsByTagName('body');
         let message = "";
+        let user = xmppEventStrophe.coreService._user;
         if ((type == 'chat' || type == 'normal') && elems.length > 0) {
+            console.log("xmppEventStrophe.coreService._user", user.roster.roster);
             var barejid = Strophe.getBareJidFromJid(from);
             var jid_lower = barejid.toLowerCase();
-            //var contact = TrophyIM.rosterObj.roster[barejid.toLowerCase()]['contact'];
-            //if (contact) { //Do we know you?
-            //    if (contact['name'] != null) {
-            //        message = contact['name'] + " (" + barejid + "): ";
-            //    } else {
-            //        message = contact['jid'] + ": ";
-            //    }
-            //    message += Strophe.getText(elems[0]);
-            //TrophyIM.makeChat(from); //Make sure we have a chat window
-            //TrophyIM.addMessage(message, jid_lower);
-            //if (TrophyIM.activeChats['current'] != jid_lower) {
-            //    TrophyIM.activeChats['divs'][jid_lower][
-            //        'tab'].className = "trophyimchattab trophyimchattab_a";
-            //    TrophyIM.setTabPresence(from,
-            //        TrophyIM.activeChats['divs'][jid_lower]['tab']);
-            //}
-            //}
+            //var contact = xmppEventStrophe.coreService._user.roster.roster[barejid.toLowerCase()]['contact'];
+            var contact = xmppEventStrophe.coreService._user.roster.roster[barejid.toLowerCase()]['contact'];
+            console.log("contact", contact);
+            if (contact) { //Do we know you?
+                message += Strophe.getText(elems[0]);
+                xmppEventStrophe.makeChat(from); //Make sure we have a chat window
+                xmppEventStrophe.$timeout(() => {
+                    xmppEventStrophe.addMessage(message, jid_lower);
+
+                }, 50);
+            }
         }
         return true;
+    }
+
+    makeChat(fullJid) {
+        let jid = fullJid.split('/');
+        xmppEventStrophe.ChatBoxes.create(jid[0]);
+    }
+
+    addMessage(message, jid_lower) {
+        let id = jid_lower.replace('@', '_');
+        let chatbox = xmppEventStrophe.ChatBoxes.getChatBoxByTitle(id);
+        xmppEventStrophe.ChatBoxes.addMessage(jid_lower, message, chatbox, 'right');
     }
 
 }
 
 //commonModule.factory('XmppCoreEventStrophe', XmppCoreEventStrophe.instance);
-commonModule.factory('XmppCoreEventStrophe', ['$injector', ($injector) => new XmppCoreEventStropheFactory($injector)]);
+commonModule.factory('XmppCoreEventStrophe', ['$injector', '$rootScope', '$timeout', 'ChatBoxes',
+    ($injector, $rootScope, $timeout, ChatBoxes) => new XmppCoreEventStropheFactory($injector, $rootScope, $timeout, ChatBoxes)]);
 
 export default commonModule;

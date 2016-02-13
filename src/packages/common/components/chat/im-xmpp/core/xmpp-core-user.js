@@ -30,6 +30,15 @@ class XmppCoreUser {
             customData: {},
             previousNick: undefined
         };
+
+    }
+
+    set roster(pRoster) {
+        this._roster = pRoster;
+    }
+
+    get roster() {
+        return this._roster;
     }
 
     /** Function: getJid

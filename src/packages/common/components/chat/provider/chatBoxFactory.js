@@ -1,27 +1,32 @@
 import commonModule from '../../../commonModule';
+import moment from 'moment';
 
 class ChatBoxesFactory {
 
-    constructor($document, $rootScope, lodash, $compile) {
+    constructor($document, $rootScope, lodash, $compile, $window) {
         this.chatBoxes = [];
         this.chatBoxesVisibles = 0;
         this.chatboxPrefix = "chatbox_";
         this.iconClsMaximize = "fa-plus";
         this.iconClsMinimize = "fa-minus";
         this.chatBoxWidth = 250;
+        this.chatBoxStart = 250;
         this.$document = $document;
         this.$rootScope = $rootScope;
         this._ = lodash;
         this.$compile = $compile;
+        this.$window = $window;
     }
 
     /*ngInject*/
-    static instance($document, $rootScope, lodash, $compile) {
-        return new ChatBoxesFactory($document, $rootScope, lodash, $compile);
+    static instance($document, $rootScope, lodash, $compile, $window) {
+        return new ChatBoxesFactory($document, $rootScope, lodash, $compile, $window);
     }
 
     create(title, minimizeChatBox = false) {
-        let selector = "#" + this.chatboxPrefix + title;
+        let jid = this._.clone(title);
+        let titleChatBox = title.replace('@', '_');
+        let selector = "#" + this.chatboxPrefix + titleChatBox;
         if ($(selector).length > 0) {
             if ($(selector).css('display') == 'none') {
                 $(selector).css('display', 'block');
@@ -29,7 +34,7 @@ class ChatBoxesFactory {
             }
             return;
         }
-        let template = angular.element('<chatbox title="' + title + '"></chatbox>');
+        let template = angular.element('<chatbox title="' + jid + '"></chatbox>');
         let chatboxExist = this.$document.find(selector);
         let element;
         ////Check exist chatbox in DOM
@@ -40,13 +45,14 @@ class ChatBoxesFactory {
             element = chatboxExist;
         }
         //Init chat box to create
-        this.initChatBox(element, title, minimizeChatBox);
+        this.initChatBox(element, jid, minimizeChatBox);
         if (element) {
             element.show();
         }
     }
 
-    initChatBox(element, title, minimizeChatBox) {
+    initChatBox(element, jid, minimizeChatBox) {
+        let title = this._.clone(jid).replace('@', '_');
         let selector = "#" + this.chatboxPrefix + title;
         element.css('bottom', '0px');
         for (let chatbox in this.chatBoxes) {
@@ -55,13 +61,14 @@ class ChatBoxesFactory {
             }
         }
         if (this.chatBoxesVisibles == 0) {
-            element.css('right', '20px');
+            element.css('right', this.chatBoxStart + 'px');
         } else {
-            let width = (this.chatBoxesVisibles) * (this.chatBoxWidth + 7) + 20;
+            let width = (this.chatBoxesVisibles) * (this.chatBoxWidth + 7) + this.chatBoxStart;
             element.css('right', width + 'px');
         }
         var chatbox = {
             title: title,
+            jid: jid,
             minimized: false,
             maximized: true,
             focused: false
@@ -80,9 +87,9 @@ class ChatBoxesFactory {
             let selector = "#" + this.chatboxPrefix + chatboxtitle;
             if ($(selector).css('display') != 'none') {
                 if (align == 0) {
-                    $(selector).css('right', '20px');
+                    $(selector).css('right', this.chatBoxStart + 'px');
                 } else {
-                    let width = (align) * (this.chatBoxWidth + 7) + 20;
+                    let width = (align) * (this.chatBoxWidth + 7) + this.chatBoxStart;
                     $(selector).css('right', width + 'px');
                 }
                 align++;
@@ -97,7 +104,9 @@ class ChatBoxesFactory {
 
     onChatBoxBlur(title) {
         let chatbox = this.getChatBoxByTitle(title);
-        chatbox.focused = false;
+        if (chatbox) {
+            chatbox.focused = false;
+        }
     }
 
     onChatBoxMinimizedElement(element, title) {
@@ -134,6 +143,16 @@ class ChatBoxesFactory {
         if (angular.element(selector)) {
             angular.element(selector).show();
         }
+    }
+
+    addMessage(from, message, chatbox, orientation = 'left') {
+        let orientationStr = (orientation == 'left') ? 'left = 1' : 'right = 1';
+        let time = moment().format('DD MMM, hh:mm a');
+        let tpl = '<chat-message ' + orientationStr + ' message="' + message + '" from="' + from +
+            '" time="' + time + '"></chat-message>';
+        let templateMsg = angular.element(tpl);
+        let element = this.$compile(templateMsg)(this.$rootScope);
+        $("#" + this.chatboxPrefix + chatbox.title).find('div.direct-chat-messages').append(element);
     }
 
 }

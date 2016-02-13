@@ -96,10 +96,10 @@ class XmppCore {
      * Use with caution from outside of ChatXMPP.
      */
     registerEventHandlers() {
-        this.addHandler(this.jabberEvent.Version, Strophe.NS.VERSION, "iq");
-        this.addHandler(this.jabberEvent.Presence, null, "presence");
+        //this.addHandler(this.jabberEvent.Version, Strophe.NS.VERSION, "iq");
+        //this.addHandler(this.jabberEvent.Presence, null, "presence");
         //this.addHandler(this.jabberEvent.Message, null, "message");
-        this.addHandler(this.jabberEvent.Roster, Strophe.NS.ROSTER, 'iq', null, null, null);
+        //this.addHandler(this.jabberEvent.Roster, Strophe.NS.ROSTER, 'iq', null, null, null);
     }
 
     connect(jid, password) {
@@ -116,44 +116,9 @@ class XmppCore {
             // authentication
             this._connection.connect(this.getEscapedJidFromJid(jid) + "/" + this._options.resource, password, this.stropheEvent.Connect);
             this._user = new XmppCoreUser(jid, Strophe.getNodeFromJid(jid));
-            console.log("this._connection", this._connection);
             if (xids) {
                 this.attach(xids[0], xids[1], xids[2], this.stropheEvent.Connect);
             }
-        }
-
-    }
-
-    connect1(jid, password) {
-        // Reset before every connection attempt to make sure reconnections work after authfail, alltabsclosed, ...
-        this._connection.reset();
-        this._storage = this.getSessionStorageData();
-        let xids;
-        if (this._storage) {
-            xids = this._storage.split("|");
-            this.delStorage(this.$chatConstants.SESSION_STORE_DATA);
-        }
-        this.registerEventHandlers();
-        if (jid && password) {
-            // authentication
-            //console.log("this._connection", this._connection);
-            this._connection.connect(this.getEscapedJidFromJid(jid) + "/" + this._options.resource, password, this.stropheEvent.Connect);
-            this._user = new XmppCoreUser(jid, Strophe.getNodeFromJid(jid));
-            console.log("this._connection", this._connection);
-            ////if (xids) {
-            //setTimeout(() => {
-            //    this.storeUserData();
-            //    if (this._connection && this._connection.connected) {
-            //        this._storage = this.getSessionStorageData();
-            //        if (this._storage) {
-            //            xids = this._storage.split("|");
-            //            console.log("xids", xids);
-            //            this.delStorage(this.$chatConstants.SESSION_STORE_DATA);
-            //        }
-            //        console.log("connected connected", this._connection.connected);
-            //        this.attach(xids[0], xids[1], xids[2], this.stropheEvent.Connect);
-            //    }
-            //}, 50);
         }
     }
 

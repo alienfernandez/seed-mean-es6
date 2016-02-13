@@ -5,9 +5,11 @@ import './constants/default';
 
 //Import controllers
 import './controllers/chatboxController';
+import './controllers/chatboxMessageController';
 
 //Import directives
 import './directives/chatDirective';
+import './directives/chatMessageDirective';
 
 //Import providers and services
 import './provider/chatBoxFactory';
