@@ -63,6 +63,17 @@ var UserSchema = new Schema({
         type: String,
         default: ''
     },
+    jid: {
+        type: String,
+        unique: 'Jid already exists',
+        required: 'Please fill in a jid',
+        lowercase: true,
+        trim: true
+    },
+    jidPassword: {
+        type: String,
+        default: ''
+    },
     salt: {
         type: String
     },

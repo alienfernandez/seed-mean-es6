@@ -129,6 +129,7 @@ class XmppCoreEventStropheFactory {
      */
     onPresence(msg) {
         Strophe.debug("Presence handler");
+        console.log("msg presence", msg);
         var type = msg.getAttribute('type') ? msg.getAttribute('type') :
             'available';
         var show = msg.getElementsByTagName('show').length ? Strophe.getText(
@@ -153,17 +154,15 @@ class XmppCoreEventStropheFactory {
         let message = "";
         let user = xmppEventStrophe.coreService._user;
         if ((type == 'chat' || type == 'normal') && elems.length > 0) {
-            console.log("xmppEventStrophe.coreService._user", user.roster.roster);
             var barejid = Strophe.getBareJidFromJid(from);
             var jid_lower = barejid.toLowerCase();
-            //var contact = xmppEventStrophe.coreService._user.roster.roster[barejid.toLowerCase()]['contact'];
-            var contact = xmppEventStrophe.coreService._user.roster.roster[barejid.toLowerCase()]['contact'];
-            console.log("contact", contact);
+            var contact = user.roster.roster[barejid.toLowerCase()]['contact'];
+            //console.log("contact", contact);
             if (contact) { //Do we know you?
                 message += Strophe.getText(elems[0]);
                 xmppEventStrophe.makeChat(from); //Make sure we have a chat window
                 xmppEventStrophe.$timeout(() => {
-                    xmppEventStrophe.addMessage(message, jid_lower);
+                    xmppEventStrophe.addMessage(message, jid_lower, contact.name || jid_lower);
 
                 }, 50);
             }
@@ -176,15 +175,14 @@ class XmppCoreEventStropheFactory {
         xmppEventStrophe.ChatBoxes.create(jid[0]);
     }
 
-    addMessage(message, jid_lower) {
+    addMessage(message, jid_lower, from) {
         let id = jid_lower.replace('@', '_');
         let chatbox = xmppEventStrophe.ChatBoxes.getChatBoxByTitle(id);
-        xmppEventStrophe.ChatBoxes.addMessage(jid_lower, message, chatbox, 'right');
+        xmppEventStrophe.ChatBoxes.addMessage(from, message, chatbox, 'right');
     }
 
 }
 
-//commonModule.factory('XmppCoreEventStrophe', XmppCoreEventStrophe.instance);
 commonModule.factory('XmppCoreEventStrophe', ['$injector', '$rootScope', '$timeout', 'ChatBoxes',
     ($injector, $rootScope, $timeout, ChatBoxes) => new XmppCoreEventStropheFactory($injector, $rootScope, $timeout, ChatBoxes)]);
 

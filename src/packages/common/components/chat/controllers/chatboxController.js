@@ -6,7 +6,6 @@ class ChatboxController {
     constructor(ChatBoxes, ChatXmpp) {
         this.ChatBoxes = ChatBoxes;
         this.ChatXmpp = ChatXmpp;
-        console.log("_user", ChatXmpp.getXmppCore()._user);
 
     }
 
@@ -16,7 +15,6 @@ class ChatboxController {
 
     onChatBoxToggle(title) {
         this.chatbox = this.ChatBoxes.getChatBoxByTitle(title);
-        console.log("this.chatbox", this.chatbox)
         if (this.chatbox.minimized) {
             this.ChatBoxes.onChatBoxMaximized(title);
         } else {

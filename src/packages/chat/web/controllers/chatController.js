@@ -3,15 +3,18 @@ import chatModule from '../../chatModule';
 class ChatController {
 
     /*ngInject*/
-    constructor($scope, $location, Socket, AuthenticationService, ChatBoxes, ChatXmpp) {
+    constructor($scope, $location, Socket, AuthenticationService, ChatBoxes, ChatXmpp, $appConstants) {
         //ChatBoxes.create('alien');
-        //ChatBoxes.create('pedro', true);
         this.ChatBoxes = ChatBoxes;
         this.ChatXmpp = ChatXmpp;
-        ChatXmpp.init('http://localhost/http-bind/', {});
-        ChatXmpp.getXmppCore().connect('alien@localhost', 'dani!');
+        console.log("AuthenticationService", AuthenticationService);
+        //Init bosh service
+        ChatXmpp.init($appConstants.xmpp.boshHttpService, {});
+        //Connect to jabber chat
+        ChatXmpp.getXmppCore().connect(AuthenticationService.user.jid, AuthenticationService.user.jidPassword);
         $scope.$on('onRoster', (event, data) => {
             this.roster = data.roster;
+            console.log("data roster", data);
             $scope.$digest();
         });
 

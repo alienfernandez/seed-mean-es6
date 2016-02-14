@@ -20,6 +20,10 @@ var prodConstants = {
             local_storage: 'localStorage',
             session_storage: 'sessionStorage'
         }
+    },
+    xmpp: {
+        "domain": "localhost",
+        "boshHttpService": "http://localhost/http-bind/"
     }
 }
 

@@ -6,7 +6,10 @@
 var path = require('path'),
     mongoose = require('mongoose'),
     User = mongoose.model('User'),
-    errorHandler = require(path.resolve('./src/packages/core/system/server/controllers/errors.server.controller'));
+    config = require(path.resolve('./config/config')),
+    errorHandler = require(path.resolve('./src/packages/core/system/server/controllers/errors.server.controller')),
+    ClientRest = require('node-rest-client').Client,
+    generatePassword = require('password-generator');
 
 /**
  * Show the current user
@@ -15,19 +18,37 @@ exports.read = function (req, res) {
     res.json(req.model);
 };
 
-
 /**
  * Create a user
  */
 exports.create = function (req, res) {
+    console.log("config", config);
+    var jidPassword = generatePassword(12, false);
     var user = new User(req.body);
+    user.jid = user.username + '@' + config.xmpp.domain;
     user.save(function (err) {
         if (err) {
             return res.status(400).send({
                 message: errorHandler.getErrorMessage(err)
             });
         } else {
-            res.json(user);
+            //Persist user in openfire server
+            var client = new ClientRest();
+            // set content-type header and data as json in args parameter
+            var args = {
+                data: {
+                    "username": user.username,
+                    "password": jidPassword,
+                    "name": user.displayName,
+                    "email": user.email
+                },
+                headers: {"Content-Type": "application/json", "Authorization": config.xmpp.api.secretKey}
+            };
+            var uri = config.xmpp.adminHttpService + config.xmpp.api.path.users;
+            client.post(uri, args, function (data, response) {
+                //Send user
+                res.json(user);
+            });
         }
     });
 };

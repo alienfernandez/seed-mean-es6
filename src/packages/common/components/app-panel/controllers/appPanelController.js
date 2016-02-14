@@ -50,10 +50,10 @@ class AppPanelController {
                     component: DataItemAppPanel,
                     listeners: {
                         onClick: (item, dataView, index, event) => {
-                            console.log("item", item);
-                            console.log("dataView", dataView);
-                            console.log("index", index);
-                            console.log("event", event);
+                            //console.log("item", item);
+                            //console.log("dataView", dataView);
+                            //console.log("index", index);
+                            //console.log("event", event);
                         }
                     }
                 }

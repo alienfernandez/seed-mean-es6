@@ -16,6 +16,17 @@ module.exports = {
         "ip": "127.0.0.1",
         "port": 6379
     },
+    xmpp: {
+        "domain": "localhost",
+        "boshHttpService": "http://localhost/http-bind/",
+        "adminHttpService": "http://localhost:9090/",
+        "api": {
+            "secretKey": "pXnyrebF5ys8Suv3",
+            "path": {
+                "users": "plugins/restapi/v1/users"
+            }
+        }
+    },
     log: {
         // logging with Morgan - https://github.com/expressjs/morgan
         // Can specify one of 'combined', 'common', 'dev', 'short', 'tiny'

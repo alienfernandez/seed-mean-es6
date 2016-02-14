@@ -12,7 +12,9 @@ var path = require('path'),
     jwt = require('jsonwebtoken'),
     util = require('../../util/utils'),
     rememberMe = require('../../config/strategies/remember-me'),
-    UtilRemember = require('../../util/util.remember_me');
+    UtilRemember = require('../../util/util.remember_me'),
+    ClientRest = require('node-rest-client').Client,
+    generatePassword = require('password-generator');
 
 
 //console.log("rememberMe", rememberMe)
@@ -29,7 +31,7 @@ var noReturnUrls = [
 exports.signup = function (req, res) {
     // For security measurement we remove the roles from the req.body object
     delete req.body.roles;
-
+    var jidPassword = generatePassword(12, false);
     // Init Variables
     var user = new User(req.body);
     var message = null;
@@ -37,6 +39,8 @@ exports.signup = function (req, res) {
     // Add missing user fields
     user.provider = 'local';
     user.displayName = user.firstName + ' ' + user.lastName;
+    user.jid = user.username + '@' + config.xmpp.domain;
+    user.jidPassword = jidPassword;
 
     // Then save the user
     user.save(function (err) {
@@ -48,21 +52,35 @@ exports.signup = function (req, res) {
             // Remove sensitive data before login
             user.password = undefined;
             user.salt = undefined;
-
-            req.login(user, function (err) {
-                if (err) {
-                    res.status(400).send(err);
-                } else {
-                    var payload = user;
-                    var escaped = JSON.stringify(payload);
-                    escaped = encodeURI(escaped);
-                    // We are sending the payload inside the token
-                    var token = jwt.sign(escaped, config.secret, null, {expiresIn: 300});
-                    res.json({
-                        token: token,
-                        redirect: config.landingPageState
-                    });
-                }
+            //Persist user in openfire server
+            var client = new ClientRest();
+            // set content-type header and data as json in args parameter
+            var args = {
+                data: {
+                    "username": user.username,
+                    "password": jidPassword,
+                    "name": user.displayName,
+                    "email": user.email
+                },
+                headers: {"Content-Type": "application/json", "Authorization": config.xmpp.api.secretKey}
+            };
+            var uri = config.xmpp.adminHttpService + config.xmpp.api.path.users;
+            client.post(uri, args, function (data, response) {
+                req.login(user, function (err) {
+                    if (err) {
+                        res.status(400).send(err);
+                    } else {
+                        var payload = user;
+                        var escaped = JSON.stringify(payload);
+                        escaped = encodeURI(escaped);
+                        // We are sending the payload inside the token
+                        var token = jwt.sign(escaped, config.secret, null, {expiresIn: 300});
+                        res.json({
+                            token: token,
+                            redirect: config.landingPageState
+                        });
+                    }
+                });
             });
         }
     });
