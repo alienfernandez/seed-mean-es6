@@ -3,7 +3,7 @@ import chatModule from '../../chatModule';
 class ChatController {
 
     /*ngInject*/
-    constructor($scope, $location, Socket, AuthenticationService, ChatBoxes, ChatXmpp, $appConstants, toastr) {
+    constructor($scope, $location, Socket, AuthenticationService, ChatBoxes, ChatXmpp, $appConstants, toastr, UsersService) {
         //ChatBoxes.create('alien');
         this.ChatBoxes = ChatBoxes;
         this.ChatXmpp = ChatXmpp;
@@ -14,6 +14,11 @@ class ChatController {
         ChatXmpp.getXmppCore().connect(AuthenticationService.user.jid, AuthenticationService.user.jidPassword);
         $scope.$on('onRoster', (event, data) => {
             $scope.$apply(() => {
+                //angular.forEach(data.roster.roster, function (data) {
+                //    UsersService.findUserByJid(data.contact.jid).then(function () {
+                //
+                //    });
+                //});
                 this.roster = data.roster;
             });
         });

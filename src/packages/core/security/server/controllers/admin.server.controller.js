@@ -108,6 +108,23 @@ exports.list = function (req, res) {
     });
 };
 
+
+/**
+ * User by jid
+ */
+exports.getUserByJid = function (req, res) {
+    User.findOne({
+        jid: req.jid
+    }, '-salt -password').exec(function (err, user) {
+        if (err) {
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+            });
+        }
+        res.json(user);
+    });
+};
+
 /**
  * User middleware
  */
