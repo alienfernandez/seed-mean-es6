@@ -29,7 +29,13 @@ class ChatMessageDirective {
         let directive = {
             restrict: 'E',
             replace: true,
-            scope: {},
+            scope: {
+                left: '@',
+                right: '@',
+                message: '@',
+                time: '@',
+                from: '@'
+            },
             controller: 'ChatboxMessageController',
             controllerAs: 'chatboxMsgCtrl',
             template: tpl,
@@ -40,11 +46,7 @@ class ChatMessageDirective {
     }
 
     link($scope, element, $attrs) {
-        $scope.left = $attrs.left || null;
-        $scope.right = $attrs.right || null;
-        $scope.message = $attrs.message || '';
-        $scope.time = $attrs.time || '';
-        $scope.from = $attrs.from || '';
+
     }
 }
 

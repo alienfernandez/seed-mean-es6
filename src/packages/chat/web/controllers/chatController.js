@@ -14,14 +14,13 @@ class ChatController {
         //Connect to jabber chat
         ChatXmpp.getXmppCore().connect(AuthenticationService.user.jid, AuthenticationService.user.jidPassword);
         $scope.$on('onRoster', (event, data) => {
-            this.roster = data.roster;
-            console.log("data roster", data);
-            $scope.$digest();
+            $scope.$apply(() => {
+                this.roster = data.roster;
+            });
         });
 
         $scope.$on('onPresence', (event, data) => {
             this.toastr.clear();
-            console.log("data.show", data.show);
             let _user = data.from.split('@');
             if (data.show == 'unavailable') {
                 this.toastr.info(_user[0] + ' is disconnected.');
