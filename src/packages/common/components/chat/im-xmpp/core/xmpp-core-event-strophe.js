@@ -130,15 +130,17 @@ class XmppCoreEventStropheFactory {
     onPresence(msg) {
         Strophe.debug("Presence handler");
         console.log("msg presence", msg);
-        var type = msg.getAttribute('type') ? msg.getAttribute('type') :
-            'available';
-        var show = msg.getElementsByTagName('show').length ? Strophe.getText(
-            msg.getElementsByTagName('show')[0]) : type;
-        var status = msg.getElementsByTagName('status').length ? Strophe.getText(
-            msg.getElementsByTagName('status')[0]) : '';
-        var priority = msg.getElementsByTagName('priority').length ? parseInt(
-            Strophe.getText(msg.getElementsByTagName('priority')[0])) : 0;
-        xmppEventStrophe.coreService._user.roster.setPresence(msg.getAttribute('from'), priority, show, status);
+        var type = msg.getAttribute('type') ? msg.getAttribute('type') : 'available';
+        var show = msg.getElementsByTagName('show').length ? Strophe.getText(msg.getElementsByTagName('show')[0]) : type;
+        var status = msg.getElementsByTagName('status').length ? Strophe.getText(msg.getElementsByTagName('status')[0]) : '';
+        var priority = msg.getElementsByTagName('priority').length ? parseInt(Strophe.getText(msg.getElementsByTagName('priority')[0])) : 0;
+        let from = msg.getAttribute('from');
+        xmppEventStrophe.coreService._user.roster.setPresence(from, priority, show, status);
+        xmppEventStrophe.$rootScope.$broadcast('onPresence', {
+            from: from,
+            status: status,
+            show: show
+        });
         return true;
     }
 

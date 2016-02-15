@@ -1,14 +1,11 @@
 import commonModule from '../../../../commonModule';
-
 import XmppCoreLog from './xmpp-core-log';
-import XmppStanza from './xmpp-core-stanza';
 import XmppCoreUser from './xmpp-core-user';
-//import Strophe from 'strophe';
 import _ from 'lodash';
 
 class XmppCore {
 
-    constructor($chatConstants, localStorageService, XmppCoreEventStrophe, XmppCoreEventJabber) {
+    constructor($chatConstants, localStorageService, XmppCoreEventStrophe, XmppCoreEventJabber, XmppStanza) {
         this._connection = null;
         this._service = null;
         this._user = null;
@@ -25,7 +22,7 @@ class XmppCore {
         };
         this.jabberEvent = XmppCoreEventJabber;
         this.stropheEvent = XmppCoreEventStrophe;
-        this.stanza = new XmppStanza(this);
+        this.stanza = XmppStanza;
         this.localStorageService = localStorageService;
         this.$chatConstants = $chatConstants;
     }

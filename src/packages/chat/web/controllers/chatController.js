@@ -3,10 +3,11 @@ import chatModule from '../../chatModule';
 class ChatController {
 
     /*ngInject*/
-    constructor($scope, $location, Socket, AuthenticationService, ChatBoxes, ChatXmpp, $appConstants) {
+    constructor($scope, $location, Socket, AuthenticationService, ChatBoxes, ChatXmpp, $appConstants, toastr) {
         //ChatBoxes.create('alien');
         this.ChatBoxes = ChatBoxes;
         this.ChatXmpp = ChatXmpp;
+        this.toastr = toastr;
         console.log("AuthenticationService", AuthenticationService);
         //Init bosh service
         ChatXmpp.init($appConstants.xmpp.boshHttpService, {});
@@ -18,6 +19,17 @@ class ChatController {
             $scope.$digest();
         });
 
+        $scope.$on('onPresence', (event, data) => {
+            this.toastr.clear();
+            console.log("data.show", data.show);
+            let _user = data.from.split('@');
+            if (data.show == 'unavailable') {
+                this.toastr.info(_user[0] + ' is disconnected.');
+            }
+            if (data.show == 'available') {
+                this.toastr.info(_user[0] + ' is ' + data.show + '.');
+            }
+        });
 
         this.$location = $location;
         this.Socket = Socket;

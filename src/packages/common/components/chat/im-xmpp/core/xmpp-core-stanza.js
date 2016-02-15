@@ -1,14 +1,21 @@
-//import Strophe from 'strophe';
+import commonModule from '../../../../commonModule';
 import XmppUtil from '../util/xmpp-util';
 
-class XmppStanza {
+let xmppStanza;
+class XmppStanzaFactory {
 
-    constructor(XmppCoreService) {
-        this.coreService = XmppCoreService;
+    constructor($injector) {
+        xmppStanza = this;
+        this.$injector = $injector;
+        this.coreService = xmppStanza.injector.get('XmppCore');
+    }
+
+    /*ngInject*/
+    static instance($injector) {
+        return new XmppStanzaFactory($injector);
     }
 
     Version(msg) {
-        console.log("this.coreService.getConnection()", this.coreService.getConnection());
         this.coreService.getConnection().send($iq({
             type: "result",
             to: XmppUtil.escapeJid(msg.attr("from")),
@@ -67,7 +74,7 @@ class XmppStanza {
 
     sendMessage(to, msg, type) {
         // Trim message
-        //msg = $.trim(msg);
+        msg = $.trim(msg);
         if (msg === "") {
             return false;
         }
@@ -131,4 +138,4 @@ class XmppStanza {
 
 }
 
-export default XmppStanza;
+commonModule.factory('XmppStanza', XmppStanzaFactory.instance);
