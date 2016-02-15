@@ -8,7 +8,6 @@ class ChatController {
         this.ChatBoxes = ChatBoxes;
         this.ChatXmpp = ChatXmpp;
         this.toastr = toastr;
-        console.log("AuthenticationService", AuthenticationService);
         //Init bosh service
         ChatXmpp.init($appConstants.xmpp.boshHttpService, {});
         //Connect to jabber chat
@@ -28,6 +27,9 @@ class ChatController {
             if (data.show == 'available') {
                 this.toastr.info(_user[0] + ' is ' + data.show + '.');
             }
+            $scope.$apply(() => {
+                this.roster = ChatXmpp.getXmppCore()._user.roster;
+            });
         });
 
         this.$location = $location;

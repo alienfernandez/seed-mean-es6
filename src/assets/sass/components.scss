@@ -778,7 +778,7 @@ a.badge:focus, a.badge:hover {
 
 .small-box h3,
 .small-box p {
-  z-index: 5px;
+  z-index: 5;
 }
 
 .small-box .icon {
@@ -1679,4 +1679,8 @@ input[type="date"] {
 
 .text-sm {
   font-size: 12px;
+}
+
+.img-circle {
+  border-radius: 50%;
 }

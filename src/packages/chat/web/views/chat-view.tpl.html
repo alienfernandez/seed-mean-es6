@@ -1,77 +1,6 @@
 <!-- The chat view -->
 <style>
-    .chat-sidebar {
-        /*box-shadow: 1px 0 0 #f0f0f2 inset;*/
-        /*border-left-color: #ccc;*/
-    }
 
-    .chat-sidebar {
-        background-clip: padding-box;
-        background-color: #fff;
-        border-left: 1px solid rgba(0, 0, 0, .4);
-        box-shadow: inset 2px 0 2px -2px #b2b9c9;
-        height: 100%;
-        position: fixed;
-        right: 0;
-        top: 55px;
-        width: 235px;
-        z-index: 300;
-    }
-
-    .chat-sidebar ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-    }
-
-    ._55ln {
-        color: #333;
-        display: block;
-        height: 32px;
-        line-height: 32px;
-        padding: 4px 0;
-        position: relative;
-    }
-
-    ._56p9 {
-        float: left;
-        height: 32px;
-        position: relative;
-        width: 32px;
-    }
-
-    .chat-time {
-        float: right;
-        line-height: 32px;
-        margin: 0 1px 0 4px;
-        text-align: right;
-    }
-
-    ._55lr {
-        line-height: 32px;
-    }
-
-    ._55lr, ._55ls {
-        overflow: hidden;
-        padding-left: 8px;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-
-    ._55ls {
-        color: #4e5665;
-        display: none;
-        font-size: 10px;
-        line-height: 14px;
-        overflow: hidden;
-    }
-
-    ._55lr, ._55ls {
-        overflow: hidden;
-        padding-left: 8px;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
 </style>
 
 <navbar user="chatCtrl.user"></navbar>
@@ -82,7 +11,7 @@
     <!-- The message form -->
     <div class="row">
         <div class="col-lg-9">
-            <form class="col-xs-12 col-md-offset-4 col-md-4" ng-submit="chatCtrl.sendMessage();">
+            <form class="col-xs-12 col-md-off8000set-4 col-md-4" ng-submit="chatCtrl.sendMessage();">
                 <fieldset class="row">
                     <div class="input-group">
                         <input type="text" id="messageText" name="messageText" class="form-control"
@@ -116,23 +45,21 @@
                     <li class="list-group-item" ng-repeat="rosterData in chatCtrl.roster.roster"
                         ng-click="chatCtrl.createChat(rosterData.contact.jid)">
                         <div class="_55lp">
-                            <div class="_56p9">
-                                <div size="32" class="_55lt" style="width: 32px; height: 32px;"><img
-                                        src="http://placehold.it/32x32"
-                                        width="32" height="32" alt="" class="img"></div>
-                                <div class="_568w"></div>
+                            <div class="roster-img-container">
+                                <div size="32" class="_55lt" style="width: 32px; height: 32px;">
+                                    <img src="http://placehold.it/32x32"
+                                         width="32" height="32" alt="" class="img img-circle"></div>
+                                <div class="online-user pD" title="Este usuario está disponible. "
+                                     ng-if="rosterData.presence"></div>
                             </div>
                             <div class="chat-time">
                                 <div class="chat-time-moment">
                                     <div class="_568-">0 min</div>
                                 </div>
                             </div>
-                            <div class="_55lr">{{rosterData.contact.jid}}</div>
-                            <div class="_55ls">
-                                <!--<span ng-if="rosterData.presence">-->
-                                    <!--<i class="fa fa-circle" style="color: green;"></i>-->
-                                <!--</span>-->
-                            </div>
+                            <div class="roster-item">{{rosterData.contact.jid}}</div>
+                            <!--<div class="_55ls">-->
+                            <!--</div>-->
                         </div>
                     </li>
                 </ul>
