@@ -8,7 +8,7 @@ var devConstants = {
         keywords: 'MongoDB, Express, AngularJS, Node.js, React.js, Redis'
     },
     port: 8000,
-    server: 'http://localhost',
+    server: 'http://meanrr',
     local_store: {
         prefix: 'app_storage',
         type: {
@@ -17,8 +17,8 @@ var devConstants = {
         }
     },
     xmpp: {
-        "domain": "localhost",
-        "boshHttpService": "http://localhost/http-bind/"
+        "domain": "meanrr",
+        "boshHttpService": "http://meanrr/http-bind/"
     }
 }
 

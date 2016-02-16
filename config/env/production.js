@@ -21,9 +21,9 @@ module.exports = {
         "port": 6379
     },
     xmpp: {
-        "domain": "localhost",
-        "boshHttpService": "http://localhost/http-bind/",
-        "adminHttpService": "http://localhost:9090/",
+        "domain": "meanrr",
+        "boshHttpService": "http://meanrr/http-bind/",
+        "adminHttpService": "http://meanrr:9090/",
         "api": {
             "secretKey": "pXnyrebF5ys8Suv3",
             "path": {

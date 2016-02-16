@@ -7,7 +7,7 @@ import './web/assets/css/users.min.css!';
 import './web/services/authenticationService';
 import './web/services/securityService';
 import './web/services/userService';
-import './web/services/usersService';
+//import './web/services/usersService';
 
 //Controllers
 import './web/controllers/securityController';

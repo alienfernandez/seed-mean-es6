@@ -3,7 +3,7 @@ import chatModule from '../../chatModule';
 class ChatController {
 
     /*ngInject*/
-    constructor($scope, $location, Socket, AuthenticationService, ChatBoxes, ChatXmpp, $appConstants, toastr, UsersService) {
+    constructor($scope, $location, Socket, AuthenticationService, ChatBoxes, ChatXmpp, $appConstants, toastr) {
         //ChatBoxes.create('alien');
         this.ChatBoxes = ChatBoxes;
         this.ChatXmpp = ChatXmpp;

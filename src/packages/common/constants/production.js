@@ -8,7 +8,7 @@ var prodConstants = {
         keywords: 'MongoDB, Express, AngularJS, Node.js, React.js, Redis'
     },
     port: 443,
-    server: 'https://localhost',
+    server: 'https://meanrr',
     secure: {
         ssl: true,
         privateKey: './config/sslcerts/key.pem',
@@ -22,8 +22,8 @@ var prodConstants = {
         }
     },
     xmpp: {
-        "domain": "localhost",
-        "boshHttpService": "http://localhost/http-bind/"
+        "domain": "meanrr",
+        "boshHttpService": "http://meanrr/http-bind/"
     }
 }
 
