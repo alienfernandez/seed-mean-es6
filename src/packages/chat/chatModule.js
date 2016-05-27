@@ -11,7 +11,7 @@ import {commonModule} from 'commons';
 //Import config module class
 import ChatConfig from './web/config/chat.config';
 
-let chatModule = angular.module('app.blog', [
+let chatModule = angular.module('app.chat', [
     'common', 'relativeDate', Templates.ChatTpl.name
 ]).config(($stateProvider, $translateProvider) => {
     //Init module routes

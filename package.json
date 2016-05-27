@@ -5,6 +5,7 @@
   "description": "Full-Stack JavaScript with MongoDB, Express, AngularJS, Node.js, React.js and Redis.",
   "main": "server.js",
   "scripts": {
+    "postinstall": "jspm install && jspm dl-loader",
     "watch-gulp": "gulp",
     "watch-gulp-prod": "gulp prod",
     "watch-server": "node server.js",
