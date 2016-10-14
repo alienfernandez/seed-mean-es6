@@ -56,14 +56,39 @@ $ npm install -g gulp
 $ npm install -g jspm
 ```
 
-### Cloning The Repository
-The recommended way to get MEAN.ES6 is to use git to directly clone the MEAN.ES6 repository:
+## Create a new project based on the seed-meanrr-es6
 
+Clone this repo into new project folder (e.g., `my-new-project`).
 ```bash
-$ https://alienfernandez@bitbucket.org/alienfernandez/seed-mean-es6.git meanes6
+git clone https://github.com/alienfernandez/seed-mean-es6  my-new-project
+cd my-new-project
 ```
-### Yo Generator
--Another way would be to use the [Official Yo Generator](http://url), which generates a copy of the MEANRR.ES6 0.0.0 (TODO) 
+
+We have no intention of updating the source on `alienfernandez/seed-mean-es6`.
+Discard everything "git-like" by deleting the `.git` folder.
+```bash
+rm -rf .git  # non-Windows
+rd .git /S/Q # windows
+```
+
+### Create a new git repo
+You could [start writing code](#start-development) now and throw it all away when you're done.
+If you'd rather preserve your work under source control, consider taking the following steps.
+
+Initialize this project as a *local git repo* and make the first commit:
+```bash
+git init
+git add .
+git commit -m "Initial commit"
+```
+
+Create a *remote repository* for this project on the service of your choice.
+
+Grab its address (e.g. *`https://github.com/<my-org>/my-new-project.git`*) and push the *local repo* to the *remote*.
+```bash
+git remote add origin <repo-address>
+git push -u origin master
+```
 
 ## Quick Install
 Once you've downloaded the boilerplate and installed all the prerequisites, you're just a few steps away from starting to develop your MEAN application.
@@ -72,15 +97,14 @@ The first thing you should do is install the Node.js dependencies. The boilerpla
 
 To install Node.js dependencies you're going to use npm again. In the application folder run this in the command-line:
 
+**Attention Windows Developers:  You must run all of these commands in administrator mode**.
 ```bash
 $ npm install
 ```
 
-To install jspm packages you're going to use jspm. In the application folder run this in the command-line:
+> If the `jspm_packages` folder doesn't show up after `npm install` please install them manually with:
 
-```bash
-$ jspm install
-```
+> `jspm install`
 
 This command does a few things:
 * First it will install the dependencies needed for the application to run.
