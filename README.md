@@ -1,5 +1,5 @@
 
-MEANRR.ES6 is a full-stack JavaScript open-source solution based in new version of javascript, which provides a solid starting point for [MongoDB](http://www.mongodb.org/), [Node.js](http://www.nodejs.org/), [Express](http://expressjs.com/), [React.js](https://facebook.github.io/react/), [Redis](http://redis.io/) and [AngularJS](http://angularjs.org/) based applications. The idea is to solve the common issues with connecting those frameworks, build a robust framework to support daily development needs, and help developers use better practices while working with popular JavaScript components.
+SEED-MEANRR.ES6 is a full-stack JavaScript open-source solution based in new version of javascript, which provides a solid starting point for [MongoDB](http://www.mongodb.org/), [Node.js](http://www.nodejs.org/), [Express](http://expressjs.com/), [React.js](https://facebook.github.io/react/), [Redis](http://redis.io/) and [AngularJS](http://angularjs.org/) based applications. The idea is to solve the common issues with connecting those frameworks, build a robust framework to support daily development needs, and help developers use better practices while working with popular JavaScript components.
 
 ## Before You Begin
 Before you begin we recommend you read about the basic building blocks that assemble a MEANRR.ES6 application:
@@ -86,6 +86,12 @@ This command does a few things:
 * First it will install the dependencies needed for the application to run.
 * If you're running in a development environment, it will then also install development dependencies needed for testing and running your application.
 * Finally, when the install process is over, npm will initiate a jspm install command to install all the front-end modules needed for the application
+
+## Install OpenFire
+* *OpenFire* - [Download & Install Openfire](https://www.igniterealtime.org/downloads/) and choose your platform.
+ If you are using ubuntu here is an example how you can install it 
+ [Install Oenfire in Ubuntu](https://www.thefanclub.co.za/how-to/how-setup-im-voip-server-using-openfire-ubuntu-1404) 
+ We are going to use OpenFire in the chat module
 
 ## Running Your Application
 After the install process is over, you'll be able to run your application using npm, just run:

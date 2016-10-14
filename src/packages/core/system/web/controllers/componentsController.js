@@ -44,39 +44,39 @@ class ComponentsController {
         this.options = {
             store: [
                 {
-                    name: "Modulo de Inventario",
+                    name: "Inventory Module",
                     group: 1,
-                    groupName: "Grupo de Logistica",
+                    groupName: "Logistic Group",
                     iconCls: 'fa fa-university',
-                    description: 1
+                    description: "Inventory Module"
                 },
                 {
-                    name: "Modulo de facturacion",
+                    name: "Billing Module",
                     group: 1,
-                    groupName: "Grupo de Logistica",
+                    groupName: "Logistic Group",
                     iconCls: 'fa fa-university',
-                    description: "Modulo de facturacion"
+                    description: "Billing Module"
                 },
                 {
-                    name: "Modulo de activos fijos",
+                    name: "Fixed Assets Module",
                     group: 1,
-                    groupName: "Grupo de Logistica",
+                    groupName: "Logistic Group",
                     iconCls: 'fa fa-university',
-                    description: "Modulo de activos fijos"
+                    description: "Fixed Assets Module"
                 }, {
-                    name: "Modulo de seguridad",
+                    name: "Security Module",
                     group: 2,
-                    groupName: "Grupo de seguridad",
+                    groupName: "Security Group",
                     iconCls: 'fa fa-key',
-                    description: "Modulo de seguridad"
+                    description: "Security Module"
                 },
                 {
-                    name: "Modulo de configuracion",
+                    name: "Configuration Module",
                     group: 3,
-                    groupName: "Grupo de configuracion",
+                    groupName: "Configuration Group",
                     iconCls: 'fa fa-cogs',
-                    description: "Modulo de configuracion"
-                },
+                    description: "Configuration Module"
+                }
             ],
             itemSelector: 'div.dv-thumb-wrap',
             overItemCls: 'dv-view-over',
