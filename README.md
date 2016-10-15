@@ -140,7 +140,7 @@ $ npm run prod
 * explore `config/env/production.js` for production environment configuration options
 
 ### Running with TLS (SSL)
-Application will start by default with secure configuration (SSL mode) turned on and listen on port 8443.
+Application will start by default with secure configuration (SSL mode) turned on and listen on port 443.
 To run your application in a secure manner you'll need to use OpenSSL and generate a set of self-signed certificates. Unix-based users can use the following command:
 
 ```bash
@@ -157,7 +157,7 @@ Finally, execute gulp's prod task `gulp prod`
 ### Troubleshooting
 During installation depending on your os and prerequisite versions you may encounter some issues.
 
-Most issues can be solved by one of the following tips, but if you are unable to find a solution feel free to contact us via the repository issue tracker or the links provided below.
+Most issues can be solved by one of the following tips, but if you are unable to find a solution feel free to contact us via the repository issue tracker.
 
 #### Update NPM, Jspm or Gulp
 Sometimes you may find there is a weird error during install like npm's *Error: ENOENT*. Usually updating those tools to the latest version solves the issue.
@@ -177,8 +177,8 @@ $ npm update -g gulp
 $ npm update -g jspm
 ```
 
-#### Cleaning NPM and Bower cache
-NPM and Bower has a caching system for holding packages that you already installed.
+#### Cleaning NPM and Jspm cache
+NPM and Jspm has a caching system for holding packages that you already installed.
 We found that often cleaning the cache solves some troubles this system creates.
 
 * NPM Clean Cache:
